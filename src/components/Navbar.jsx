@@ -7,20 +7,22 @@ const Header = () => {
   const navigate = useNavigate();
   const items = [
     {
-      label: 'Trang chủ',
+      label: (
+        <button
+        onClick={() => navigate('/')}
+        >
+          Cơ sở y tế
+        </button>
+      ),
       key: 'mail',
-      icon: <HomeOutlined/>,
     },
     {
-      label: 'Navigation Two',
+      label: 'Dịch vụ y tế',
       key: 'app',
-      icon: <MailOutlined/>,
-      disabled: true,
     },
     {
-      label: 'Navigation Three - Submenu',
+      label: 'Gói khám',
       key: 'SubMenu',
-      icon: <SettingOutlined/>,
       children: [
         {
           type: 'group',
@@ -54,8 +56,8 @@ const Header = () => {
     },
     {
       label: (
-        <a href="https://ant.design" target="_blank" rel="noopener noreferrer">
-          Navigation Four - Link
+        <a href="https://ant.design" rel="noopener noreferrer">
+          Cẩm nang
         </a>
       ),
       key: 'alipay',

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useMemo, useState} from "react";
 import {Button} from "@mui/material";
 import {toast} from "react-toastify";
 import {useNavigate} from 'react-router-dom';
@@ -56,6 +56,16 @@ const Register = () => {
       toast.error('Đăng ký thất bại!');
     }
   };
+
+  const token = useMemo(() => localStorage.getItem('token'), []);
+
+  useEffect(() => {
+      if (token) {
+        navigate('/');
+      }
+    },
+    [navigate, token]
+  );
 
 
   return (

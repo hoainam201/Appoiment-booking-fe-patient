@@ -130,9 +130,6 @@ const Login = () => {
           </div>
         </div>
       </section>
-      <div className="Footer">
-        <h2>Nam</h2>
-      </div>
     </div>
   );
 

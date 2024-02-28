@@ -1,0 +1,47 @@
+@media (min-width: 768px) {
+    .home {
+        background-image: url("../../assets/images/homebg.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        width: 100%;
+        height: 80%;
+    }
+
+    .banner{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 75vh;
+        width: 100%;
+    }
+    .nam{
+        display: flex;
+    }
+    .brue{
+        display: flex;
+    }
+    .expand{
+        display: none;
+    }
+
+}
+@media (max-width: 768px ){
+    .nam{
+        flex-direction: column;
+        overflow: hidden;
+    }
+    .brue{
+        flex-direction: column;
+    }
+    .expand{
+        display: block;
+
+    }
+    .expand button{
+        font-size: 2em;
+    }
+
+
+}
