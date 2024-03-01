@@ -12,6 +12,14 @@ export const NormalRoutes = [
   {
     path: '/register',
     element: <Pages.Register/>
+  },
+  {
+    path: '/forgot-password',
+    element: <Pages.ForgotPassword/>
+  },
+  {
+    path: '/profile',
+    element: <Pages.UserProfile/>
   }
 ];
 

@@ -4,48 +4,38 @@ import {toast,} from "react-toastify";
 import {useNavigate} from 'react-router-dom';
 import USER from "../../services/userService";
 import Header from "../../layouts/Header";
-import Footer from "../../layouts/Footer";
+import { Layout } from 'antd';
+
+const { Footer, Sider, Content } = Layout;
 
 
-const Login = () => {
+const ForgotPassword = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
 
 
   const handleMailChange = (event) => {
     setEmail(event.target.value);
   };
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  };
 
-  const navigateToRegister = () => {
-    navigate('/register');
-  }
 
-  const handleLogin = async () => {
+  const handleReset = async () => {
     try {
-      if (!email || !password) {
-        toast.error('Please enter email and password');
+      if (!email ) {
+        toast.error('Vui lòng điền thông tin email');
         return;
       }
-      console.log(email, password);
-      const res = await USER.login({
+      const res = await USER.forgotPassword({
         email: email,
-        password: password,
       });
-      const token = res?.data?.token;
-      console.log(res.data);
-      if (token && res.status === 200) {
-        localStorage.setItem('token', token);
-        navigate('/');
-        toast.success('Login successful');
+      if (res.status === 200) {
+        navigate('/login');
+        toast.success('Mật khẩu đã được đặt lại. Vui lòng kiểm tra email');
       } else {
         toast.error(res.data.message);
       }
     } catch (error) {
-      toast.error('Login failed');
+      toast.error('Thất bại');
     }
   };
 
@@ -77,7 +67,7 @@ const Login = () => {
               <form>
                 <div
                   className="mb-2 flex flex-row items-center justify-center lg:justify-start">
-                  <p className="mb-0 mr-4 text-lg">Đăng nhập</p>
+                  <p className="mb-0 mr-4 text-lg">Quên mật khẩu</p>
                 </div>
 
 
@@ -93,50 +83,23 @@ const Login = () => {
                     placeholder="abc@gmail.com"/>
                 </div>
 
-                <div className="relative mb-6">
-                  <div className="flex">
-                    <label className="justify-start">Mật khẩu</label>
-                  </div>
-                  <input
-                    type="password"
-                    name="password"
-                    value={password}
-                    onChange={handlePasswordChange}
-                    className="block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none"
-                    placeholder="••••••••"/>
-                </div>
-
-                <div className="mb-6 flex items-center justify-between">
-                  <button onClick={() => {
-                    navigate('/forgot-password');
-                  }}>Quên mật khẩu?</button>
-                </div>
 
                 <div className="text-center lg:text-left">
                   <Button
                     variant={`contained`}
-                    onClick={handleLogin}
+                    onClick={handleReset}
                   >
-                    Đăng nhập
+                    Lấy lại mật khẩu
                   </Button>
-
-                  <p className="mb-0 mt-2 pt-1 text-sm font-semibold">
-                    Chưa có tài khoản?
-                    <button
-                      onClick={navigateToRegister}
-                      className="px-1 text-rose-600 transition duration-150 ease-in-out hover:text-danger-600 focus:text-red-800 active:text-red-800"
-                    >Đăng ký</button>
-                  </p>
                 </div>
               </form>
             </div>
           </div>
         </div>
       </section>
-      <Footer/>
     </div>
   );
 
 }
 
-export default Login
+export default ForgotPassword;

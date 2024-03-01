@@ -5,6 +5,7 @@ import {useNavigate} from 'react-router-dom';
 import login from "../../assets/images/login.png";
 import USER from "../../services/userService";
 import Header from "../../layouts/Header";
+import Footer from "../../layouts/Footer";
 const Register = () => {
   const navigate = useNavigate();
   const [name, setName] = useState('');
@@ -42,9 +43,9 @@ const Register = () => {
         return;
       }
       const res = await USER.register({
-        name,
-        email,
-        password
+        name: name,
+        email: email,
+        password: password,
       })
       if (res.status === 200) {
         toast.success('Đăng ký thành công!');
@@ -161,6 +162,7 @@ const Register = () => {
           </div>
         </div>
       </section>
+      <Footer/>
     </div>
   );
 

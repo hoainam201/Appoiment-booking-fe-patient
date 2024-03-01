@@ -8,14 +8,49 @@ import {
   SearchOutlined,
   PlusCircleOutlined,
   UserOutlined,
+  KeyOutlined
 } from "@ant-design/icons";
 import logo from "../assets/images/Logo.png";
+import {Avatar, IconButton, Tooltip, Menu, MenuItem} from "@mui/material";
+import Typography from "@mui/material/Typography";
+
+// const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+
+const settings = [
+  {
+    key: '1',
+    label: 'Tài khoản',
+    icon: <UserOutlined/>
+  },
+  {
+    key: '2',
+    label: 'Đổi mật khẩu',
+    icon: <KeyOutlined/>
+  },
+  {
+    key: '3',
+    label: 'Đăng xuất',
+    icon: <LoginOutlined/>
+  }
+];
 
 
 const Header = () => {
   const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
   const isLogin = useLocation().pathname === '/login';
   const token = localStorage.getItem('token');
+
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(!anchorElUser);
+  };
+
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
 
   return (
     <div className="sticky top-0 flex flex-col w-full bg-white z-50">
@@ -34,25 +69,6 @@ const Header = () => {
             <Input size="small" className="w-96 rounded-full" placeholder="Search..." prefix={<SearchOutlined/>}/>
           </div>
           <div className="flex gap-4 w-1/4 justify-end">
-            {token ? (
-              <Button
-                shape="round"
-                size="large"
-                onClick={() => navigate('/profile')}
-                icon={<UserOutlined/>}
-              >
-                Profile
-              </Button>
-            ) : (
-            <Button
-              shape="round"
-              size="large"
-              onClick={() => navigate(isLogin ? '/register' : '/login')}
-              icon={isLogin ? <PlusOutlined/> : <LoginOutlined/>}
-            >
-              {isLogin ? 'Đăng ký' : 'Đăng nhập'}
-            </Button>
-            )}
             <Button
               className="bg-blue-600"
               type="primary"
@@ -63,6 +79,65 @@ const Header = () => {
             >
               Đặt lịch
             </Button>
+            {token ? (
+              <Button
+                shape="circle"
+                size="large"
+                onClick={handleOpenUserMenu}
+              >
+                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg"
+                         sx={{
+                           width: 40,
+                           height: 40,
+                           top: -8,
+                         }}
+                />
+                <Menu
+                  sx={{ mt: '45px' }}
+                  id="menu-appbar"
+                  anchorEl={anchorElUser}
+                  anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  open={Boolean(anchorElUser)}
+                  onClose={handleCloseUserMenu}
+                >
+                  {settings.map((setting) => (
+                    <MenuItem key={setting.key} onClick={()=>{
+                      switch (setting.key) {
+                        case '1':
+                          navigate('/profile');
+                          break;
+                        case '2':
+                          navigate('/change-password');
+                          break;
+                        case '3':
+                          localStorage.removeItem('token');
+                          navigate('/');
+                          break;
+                      }
+                      handleCloseUserMenu();
+                    }}>
+                      <Typography textAlign="center">{setting.label}</Typography>
+                    </MenuItem>
+                  ))}
+                </Menu>
+              </Button>
+            ) : (
+            <Button
+              shape="circle"
+              size="large"
+              onClick={() => navigate(isLogin ? '/register' : '/login')}
+              icon={isLogin ? <PlusOutlined/> : <LoginOutlined/>}
+            >
+            </Button>
+            )}
           </div>
         </div>
         <Navbar/>

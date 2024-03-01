@@ -17,7 +17,13 @@ const Header = () => {
       key: 'mail',
     },
     {
-      label: 'Dịch vụ y tế',
+      label: (
+        <button
+        onClick={() => navigate('/')}
+        >
+          Bác sĩ
+        </button>
+      ),
       key: 'app',
     },
     {
@@ -56,9 +62,9 @@ const Header = () => {
     },
     {
       label: (
-        <a href="https://ant.design" rel="noopener noreferrer">
+        <button onClick={() => navigate('/')} rel="noopener noreferrer">
           Cẩm nang
-        </a>
+        </button>
       ),
       key: 'alipay',
     },
