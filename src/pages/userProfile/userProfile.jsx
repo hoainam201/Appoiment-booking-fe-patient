@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useMemo, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import USER from "../../services/userService";
 import Header from "../../layouts/Header";
@@ -8,7 +8,6 @@ import {toast} from "react-toastify";
 
 const UserProfile = () => {
   const navigate = useNavigate();
-  const token = localStorage.getItem('token');
   const [data, setData] = useState(null);
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
@@ -17,9 +16,15 @@ const UserProfile = () => {
   const [gender, setGender] = useState('');
 
 
-  if (!token) {
-    navigate('/login');
-  }
+  const token = useMemo(() => localStorage.getItem('token'), []);
+
+  useEffect(() => {
+      if (!token) {
+        navigate('/login');
+      }
+    },
+    [navigate, token]
+  );
 
   useEffect(() => {
     const fetchData = async () => {

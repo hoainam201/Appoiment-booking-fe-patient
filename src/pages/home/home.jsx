@@ -7,6 +7,11 @@ import BoxSx from "../../components/Box";
 import ActionAreaCard from "../../components/ActionAreaCard";
 import "./home.css";
 import Footer from "../../layouts/Footer";
+import img1 from "../../assets/images/img1.png";
+import img2 from "../../assets/images/img2.png";
+import img3 from "../../assets/images/img3.png";
+import img4 from "../../assets/images/img4.png";
+import img5 from "../../assets/images/img5.png";
 
 
 const Home = () => {
@@ -35,31 +40,31 @@ const Home = () => {
     {
       id: 1,
       name: "Đặt khám tại cơ sở",
-      image: "https://medpro.vn/_next/image?url=https%3A%2F%2Fprod-partner.s3-hcm-r1.longvan.net%2F7751fd3f-f46c-436a-af19-2c64d4d5cf25-dkcs.png&w=64&q=75",
-      linkTo: "/login",
+      image: img1,
+      linkTo: "/health-facilities",
     },
     {
       id: 2,
       name: "Đặt khám bác sĩ",
-      image: "https://medpro.vn/_next/image?url=https%3A%2F%2Fprod-partner.s3-hcm-r1.longvan.net%2F488715df-05ff-42ef-bf6b-27d91d132158-bacsi.png&w=64&q=75",
+      image: img2,
       linkTo: "/register",
     },
     {
       id: 3,
       name: "Gói khám sức khỏe",
-      image: "https://medpro.vn/_next/image?url=https%3A%2F%2Fprod-partner.s3-hcm-r1.longvan.net%2Fb4181f19-f965-40b8-a4c5-2996cb960104-goi_kham.png&w=64&q=75",
+      image: img3,
       linkTo: "/",
     },
     {
       id: 4,
       name: "Dịch vụ y tế",
-      image: "https://medpro.vn/_next/image?url=https%3A%2F%2Fprod-partner.s3-hcm-r1.longvan.net%2Fdf388485-514d-44ef-ad7e-352c083f24e0-dkxn.png&w=64&q=75",
+      image: img4,
       linkTo: "/",
     },
     {
       id: 5,
       name: "Cẩm nang",
-      image: "https://medpro.vn/_next/image?url=https%3A%2F%2Fcdn-pkh.longvan.net%2Fprod-partner%2Ffa0b00be-d554-404a-bf9a-4a5f216ee978-chaam_saac_taaoa_i_nhaa.png&w=64&q=75",
+      image: img5,
       linkTo: "/",
     }
   ]

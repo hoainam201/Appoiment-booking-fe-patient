@@ -20,6 +20,14 @@ export const NormalRoutes = [
   {
     path: '/profile',
     element: <Pages.UserProfile/>
+  },
+  {
+    path: '/change-password',
+    element: <Pages.ChangePassword/>
+  },
+  {
+    path: '/health-facilities',
+    element: <Pages.HealthFacilities/>
   }
 ];
 

@@ -30,7 +30,7 @@ export default function BoxSx(props) {
           className={`w-full h-full flex flex-col justify-center items-center text-center`}
           onClick={() => navigate(props.linkTo)}
         >
-          <img src={`${props.image}`}/>
+          <img src={`${props.image}`} className={`w-16 h-16`}/>
           <div className={`pt-0.5`}>
             {props.name}
           </div>

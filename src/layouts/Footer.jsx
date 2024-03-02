@@ -6,9 +6,8 @@ import {useNavigate} from "react-router-dom";
 const Footer = () =>{
   const navigate = useNavigate();
   return (
-
-
     <footer className="bg-white">
+      <hr/>
       <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0">

@@ -37,7 +37,7 @@ const USER = {
   },
   changePassword: async ({oldPassword, newPassword }) => {
     let res = await privateHttp({
-      method: 'post',
+      method: 'put',
       url: '/user/change-password',
       data: {
         oldPassword,
