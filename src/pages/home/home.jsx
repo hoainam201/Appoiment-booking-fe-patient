@@ -1,12 +1,10 @@
 import React, {useState, useEffect} from "react";
 import {useNavigate} from "react-router-dom";
-import Header from "../../layouts/Header";
 import {Input} from "antd";
 import {SearchOutlined, MenuOutlined} from "@ant-design/icons";
 import BoxSx from "../../components/Box";
 import ActionAreaCard from "../../components/ActionAreaCard";
 import "./home.css";
-import Footer from "../../layouts/Footer";
 import img1 from "../../assets/images/img1.png";
 import img2 from "../../assets/images/img2.png";
 import img3 from "../../assets/images/img3.png";
@@ -71,7 +69,6 @@ const Home = () => {
 
   return (
     <div className={`relative`}>
-      <Header/>
       <div className={`flex flex-col justify-center items-center bg-blue-200`}>
         <div
           className={`home bg-cover bg-center w-full bg-no-repeat bg-bottom my-2`}
@@ -124,7 +121,6 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <Footer/>
     </div>
   )
 }

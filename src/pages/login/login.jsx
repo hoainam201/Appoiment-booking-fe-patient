@@ -61,7 +61,6 @@ const Login = () => {
 
   return (
     <div className="relative">
-      <Header/>
       <section className=" z-10">
         <div className="h-3/4">
           <div
@@ -133,7 +132,6 @@ const Login = () => {
           </div>
         </div>
       </section>
-      <Footer/>
     </div>
   );
 

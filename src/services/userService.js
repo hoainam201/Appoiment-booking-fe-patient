@@ -65,6 +65,13 @@ const USER = {
       }
     });
     return res;
+  },
+  getFacilities: async () => {
+    let res = await publicHttp({
+      method: 'get',
+      url: '/health-facilities/'
+    });
+    return res;
   }
 }
 

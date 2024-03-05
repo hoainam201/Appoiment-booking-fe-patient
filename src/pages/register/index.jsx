@@ -71,7 +71,6 @@ const Register = () => {
 
   return (
     <div>
-      <Header/>
       <section className="z-10">
         <div className="h-2/3">
           <div
@@ -162,7 +161,6 @@ const Register = () => {
           </div>
         </div>
       </section>
-      <Footer/>
     </div>
   );
 
