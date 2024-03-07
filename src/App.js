@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import {NormalRoutes} from "./routes/routes";
+import {NormalRoutes, NotFound} from "./routes/routes";
 import {Routes, Route, BrowserRouter} from "react-router-dom";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ToastContainer } from 'react-toastify';
@@ -23,6 +23,9 @@ function App() {
                 element={route.element}
               />
             ))}
+          </Route>
+          <Route element={<Layout/>}>
+            <Route path={NotFound.path} element={NotFound.element} />
           </Route>
         </Routes>
       </BrowserRouter>

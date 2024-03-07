@@ -66,10 +66,17 @@ const USER = {
     });
     return res;
   },
-  getFacilities: async () => {
+  getFacilities: async (pageNumber) => {
     let res = await publicHttp({
       method: 'get',
-      url: '/health-facilities/'
+      url: '/health-facilities' + (pageNumber ? `?page=${pageNumber}` : '')
+    });
+    return res;
+  },
+  getDoctors: async (pageNumber) => {
+    let res = await publicHttp({
+      method: 'get',
+      url: '/doctor/' + (pageNumber ? `?page=${pageNumber}` : '')
     });
     return res;
   }

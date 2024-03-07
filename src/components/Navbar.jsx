@@ -13,7 +13,7 @@ const Header = () => {
     {
       label: (
         <button
-        onClick={() => navigate('/health-facilities')}
+          onClick={() => navigate('/health-facilities')}
         >
           Cơ sở y tế
         </button>
@@ -23,7 +23,7 @@ const Header = () => {
     {
       label: (
         <button
-        onClick={() => navigate('/')}
+          onClick={() => navigate('/doctor')}
         >
           Bác sĩ
         </button>
@@ -33,11 +33,10 @@ const Header = () => {
     {
       label: 'Chuyên khoa',
       key: 'SubMenu',
-      popupClassName: 'h-1/4',
       children: specialities.map((specialty) => ({
         label: (
           <button
-          onClick={() => handleClick(specialty.id)}
+            onClick={() => handleClick(specialty.id)}
           >
             {specialty.name}
           </button>

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import Navbar from "../components/Navbar";
 import {useNavigate, useLocation} from 'react-router-dom';
 import {Button, Input} from "antd";
@@ -11,7 +11,7 @@ import {
   KeyOutlined
 } from "@ant-design/icons";
 import logo from "../assets/images/Logo.png";
-import {Avatar, IconButton, Tooltip, Menu, MenuItem} from "@mui/material";
+import {Avatar, Menu, MenuItem} from "@mui/material";
 import Typography from "@mui/material/Typography";
 
 // const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -37,13 +37,12 @@ const settings = [
 
 const Header = () => {
   const navigate = useNavigate();
-  const [isOpen, setIsOpen] = useState(false);
   const isLogin = useLocation().pathname === '/login';
   const token = localStorage.getItem('token');
 
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
-  const handleOpenUserMenu = (event) => {
+  const handleOpenUserMenu = () => {
     setAnchorElUser(!anchorElUser);
   };
 
@@ -57,7 +56,7 @@ const Header = () => {
       <div className="flex flex-col justify-center w-full bg-white h-28">
         <div className="flex justify-between py-4 px-20 top-0 w-full font-bold text-2xl">
           <button
-            className="flex text-center items-center text-blue-400 font-bold"
+            className="flex text-center items-center text-blue-400 font-bold text-nowrap"
             onClick={() => navigate('/')}
           >
             <div className="flex gap-4 w-10 h-10">
@@ -65,7 +64,7 @@ const Header = () => {
             </div>
             Health Pro
           </button>
-          <div className="flex justify">
+          <div className="justify hidden md:flex">
             <Input size="small" className="w-96 rounded-full" placeholder="Search..." prefix={<SearchOutlined/>}/>
           </div>
           <div className="flex gap-4 w-1/4 justify-end">

@@ -28,6 +28,18 @@ export const NormalRoutes = [
   {
     path: '/health-facilities',
     element: <Pages.HealthFacilities/>
+  },
+  {
+    path: '/doctor',
+    element: <Pages.DoctorList/>
+  },
+  {
+    path: '/doctor/:id',
+    element: <Pages.DoctorDetail/>
   }
 ];
 
+export const NotFound = {
+  path: '*',
+  element: <Pages.NotFound/>
+}

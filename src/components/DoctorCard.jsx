@@ -5,7 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Rating from '@mui/material/Rating';
-import hospital from '../assets/images/hospital.png';
+import doctor from '../assets/images/img2.png';
 import {useNavigate} from "react-router-dom";
 
 export default function ImgMediaCard(props) {
@@ -15,8 +15,8 @@ export default function ImgMediaCard(props) {
       width: 300,
     }}
     >
-      <img src={props.avatar ? props.avatar : hospital}
-           className={`w-40 h-40 mx-auto rounded-full`}/>
+      <img src={props.avatar ? props.avatar : doctor}
+           className={`w-40 h-40 mx-auto  object-fill`}/>
       <CardContent>
         <Typography gutterBottom variant="h5"
                     sx={{
@@ -26,7 +26,7 @@ export default function ImgMediaCard(props) {
           {props.name}
         </Typography>
         <Rating name="half-rating-read"
-                defaultValue={(props.service_rate_average + props.qualification_rate_average + props.facility_rate_average) / 3}
+                defaultValue={props.rating}
                 precision={0.1} readOnly/>
       </CardContent>
       <CardActions>
