@@ -40,18 +40,20 @@ export default function DoctorList() {
             <DoctorCard key={doctor.id} {...doctor} />
           ))}
         </div>
-        <div className={'flex justify-center items-center mx-auto'}>
-          <Stack spacing={5}>
-            <Pagination
-              count={totalPages}
-              variant={`outlined`}
-              onChange={(event, value) => {
-                console.log(value);
-                setPageNumber(value);
-              }}
-            />
-          </Stack>
-        </div>
+        {totalPages > 1 ? (
+          <div className={'flex justify-center items-center mx-auto'}>
+            <Stack spacing={5}>
+              <Pagination
+                count={totalPages}
+                variant={`outlined`}
+                onChange={(event, value) => {
+                  console.log(value);
+                  setPageNumber(value);
+                }}
+              />
+            </Stack>
+          </div>
+        ) : null}
       </div>
     </div>
   );

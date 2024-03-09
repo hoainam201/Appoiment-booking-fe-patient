@@ -37,7 +37,7 @@ export default function ImgMediaCard(props) {
         <Button
           size="small"
           onClick={() => {
-            navigate('/doctor/' + props.id);
+            navigate('/health-facilities/' + props.id);
           }}
         >Chi tiết</Button>
       </CardActions>
