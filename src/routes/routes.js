@@ -30,6 +30,10 @@ export const NormalRoutes = [
     element: <Pages.HealthFacilities/>
   },
   {
+    path: '/health-facilities/:id',
+    element: <Pages.FacilityDetail/>
+  },
+  {
     path: '/doctor',
     element: <Pages.DoctorList/>
   },

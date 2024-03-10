@@ -73,6 +73,13 @@ const USER = {
     });
     return res;
   },
+  getFacilityDetail: async (id) => {
+    let res = await publicHttp({
+      method: 'get',
+      url: '/health-facilities/' + id
+    });
+    return res;
+  },
   getDoctors: async (pageNumber) => {
     let res = await publicHttp({
       method: 'get',
