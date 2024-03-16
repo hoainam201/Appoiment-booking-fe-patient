@@ -19,9 +19,9 @@ export default function FacilityInfo(props) {
         <div className={`text-lg whitespace-pre-line break-words`}>
           {props.address}
         </div>
-        <div className={`mb-2`}>
-          <Button variant={`contained`}>Đặt khám</Button>
-        </div>
+        {/*<div className={`mb-2`}>*/}
+        {/*  <Button variant={`contained`}>Đặt khám</Button>*/}
+        {/*</div>*/}
       </div>
     </div>
   )

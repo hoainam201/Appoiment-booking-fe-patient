@@ -6,11 +6,11 @@ export const NormalRoutes = [
     element: <Pages.Home/>
   },
   {
-    path: '/login',
+    path: '/Login',
     element: <Pages.Login/>
   },
   {
-    path: '/register',
+    path: '/Register',
     element: <Pages.Register/>
   },
   {

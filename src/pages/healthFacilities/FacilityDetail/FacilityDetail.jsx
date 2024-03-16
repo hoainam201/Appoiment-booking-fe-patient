@@ -79,13 +79,14 @@ const FacilityDetail = () => {
                     <Select
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
-                      value={id}
+                      value={0}
                       label="Chuyên khoa"
                       size="small"
                       onChange={(event) => {
                         setId(event.target.value);
                       }}
                     >
+                      <MenuItem value={0}>Tất cả</MenuItem>
                       <MenuItem value={10}>Tai-Mũi-Họng</MenuItem>
                       <MenuItem value={20}>Thận-tiết niệu</MenuItem>
                       <MenuItem value={30}>Sản-nhi</MenuItem>

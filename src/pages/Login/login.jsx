@@ -5,7 +5,7 @@ import {useNavigate} from 'react-router-dom';
 import USER from "../../services/userService";
 import Header from "../../layouts/Header";
 import Footer from "../../layouts/Footer";
-
+import {isValidEmail} from "../../utils/validate";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ const Login = () => {
   };
 
   const navigateToRegister = () => {
-    navigate('/register');
+    navigate('/Register');
   }
 
   const handleLogin = async () => {
@@ -30,9 +30,13 @@ const Login = () => {
         toast.error('Please enter email and password');
         return;
       }
+      if(isValidEmail(email) === false) {
+        toast.error('Please enter valid email');
+        return;
+      }
       console.log(email, password);
       const res = await USER.login({
-        email: email,
+        email: email.trim().toLowerCase(),
         password: password,
       });
       const token = res?.data?.token;

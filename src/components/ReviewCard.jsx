@@ -10,8 +10,8 @@ const ReviewCard = () => {
       <div className="flex flex-col ml-3">
         <div className="flex gap-3 my-1">
           <div className="font-bold">Nguyen Van A</div>
-          <Rating name="read-only" value={5} readOnly/>
-          <div className="text-sm"> hh:mm dd/mm/yyyy</div>
+          <Rating name="read-only" value={4} readOnly/>
+          <div className="text-sm"> 12:30 - 12/12/2022</div>
         </div>
         <div>ABC</div>
         <hr/>

@@ -1,8 +1,10 @@
-import React from "react";
+import React, {useEffect, useMemo} from "react";
 import DoctorImg from "../../assets/images/img2.png";
 import {useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 const DoctorBooking = (props) => {
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [gender, setGender] = useState("");
@@ -14,6 +16,16 @@ const DoctorBooking = (props) => {
   const handleSubmit = () => {
     console.log(name, phone, address, date, time, reason)
   }
+
+  const token = useMemo(() => localStorage.getItem('token'), []);
+
+  useEffect(() => {
+      if (!token) {
+        navigate('/Login');
+      }
+    },
+    [navigate, token]
+  );
   return (
     <div>
       <div className={`flex justify-center w-full bg-blue-100`}>

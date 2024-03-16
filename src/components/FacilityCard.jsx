@@ -33,9 +33,6 @@ export default function ImgMediaCard(props) {
         <Button
           size="small"
           variant={`contained`}
-        >Đặt khám</Button>
-        <Button
-          size="small"
           onClick={() => {
             navigate('/health-facilities/' + props.id);
           }}

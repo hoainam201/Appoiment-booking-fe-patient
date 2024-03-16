@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Navbar from "../components/Navbar";
 import {useNavigate, useLocation} from 'react-router-dom';
 import {Button, Input} from "antd";
@@ -8,11 +8,13 @@ import {
   SearchOutlined,
   PlusCircleOutlined,
   UserOutlined,
-  KeyOutlined
+  KeyOutlined,
+  UnorderedListOutlined
 } from "@ant-design/icons";
 import logo from "../assets/images/Logo.png";
 import {Avatar, Menu, MenuItem} from "@mui/material";
 import Typography from "@mui/material/Typography";
+import USER from "../services/userService";
 
 // const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
@@ -29,6 +31,11 @@ const settings = [
   },
   {
     key: '3',
+    label: 'Lịch của bạn',
+    icon: <UnorderedListOutlined/>
+  },
+  {
+    key: '4',
     label: 'Đăng xuất',
     icon: <LoginOutlined/>
   }
@@ -37,10 +44,24 @@ const settings = [
 
 const Header = () => {
   const navigate = useNavigate();
-  const isLogin = useLocation().pathname === '/login';
+  const isLogin = useLocation().pathname === '/Login';
   const token = localStorage.getItem('token');
 
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [anchorElUser, setAnchorElUser] = useState(null);
+  const [name, setName] = useState('');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await USER.getProfile();
+        setName(response.data.name);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
+  }, [token]);
+
 
   const handleOpenUserMenu = () => {
     setAnchorElUser(!anchorElUser);
@@ -68,31 +89,23 @@ const Header = () => {
             <Input size="small" className="w-96 rounded-full" placeholder="Search..." prefix={<SearchOutlined/>}/>
           </div>
           <div className="flex gap-4 w-1/4 justify-end">
-            <Button
-              className="bg-blue-600"
-              type="primary"
-              shape="round"
-              size="large"
-              icon={<PlusCircleOutlined/>}
-              onClick={() => navigate('/register')}
-            >
-              Đặt lịch
-            </Button>
             {token ? (
               <Button
                 shape="circle"
                 size="large"
                 onClick={handleOpenUserMenu}
               >
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg"
-                         sx={{
-                           width: 40,
-                           height: 40,
-                           top: -8,
-                         }}
+                <Avatar alt={name}
+                        src="../../assets/images/Avatar.png"
+                        sx={{
+                          width: 40,
+                          height: 40,
+                          top: -8,
+                          bgcolor: "#003bfd",
+                        }}
                 />
                 <Menu
-                  sx={{ mt: '45px' }}
+                  sx={{mt: '45px'}}
                   id="menu-appbar"
                   anchorEl={anchorElUser}
                   anchorOrigin={{
@@ -108,7 +121,7 @@ const Header = () => {
                   onClose={handleCloseUserMenu}
                 >
                   {settings.map((setting) => (
-                    <MenuItem key={setting.key} onClick={()=>{
+                    <MenuItem key={setting.key} onClick={() => {
                       switch (setting.key) {
                         case '1':
                           navigate('/profile');
@@ -117,6 +130,9 @@ const Header = () => {
                           navigate('/change-password');
                           break;
                         case '3':
+                          navigate('/history');
+                          break;
+                        case '4':
                           localStorage.removeItem('token');
                           navigate('/');
                           break;
@@ -129,13 +145,13 @@ const Header = () => {
                 </Menu>
               </Button>
             ) : (
-            <Button
-              shape="circle"
-              size="large"
-              onClick={() => navigate(isLogin ? '/register' : '/login')}
-              icon={isLogin ? <PlusOutlined/> : <LoginOutlined/>}
-            >
-            </Button>
+              <Button
+                shape="circle"
+                size="large"
+                onClick={() => navigate(isLogin ? '/Register' : '/Login')}
+                icon={isLogin ? <PlusOutlined/> : <LoginOutlined/>}
+              >
+              </Button>
             )}
           </div>
         </div>

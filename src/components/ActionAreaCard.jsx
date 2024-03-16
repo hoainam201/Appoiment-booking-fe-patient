@@ -5,7 +5,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import {CardActionArea} from '@mui/material';
 
-export default function ActionAreaCard() {
+export default function ActionAreaCard(props) {
   return (
     <Card sx={{
       maxWidth: 150,
@@ -23,10 +23,10 @@ export default function ActionAreaCard() {
         />
         <CardContent>
           <Typography gutterBottom variant="h6" component="div" color={`white`}>
-            20M+
+            {props?.number}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Lượt khám
+            {props?.name}
           </Typography>
         </CardContent>
       </CardActionArea>

@@ -6,6 +6,7 @@ import login from "../../assets/images/login.png";
 import USER from "../../services/userService";
 import Header from "../../layouts/Header";
 import Footer from "../../layouts/Footer";
+import {isValidEmail} from "../../utils/validate";
 const Register = () => {
   const navigate = useNavigate();
   const [name, setName] = useState('');
@@ -29,7 +30,7 @@ const Register = () => {
   };
 
   const navigateToLogin = () => {
-    navigate('/login');
+    navigate('/Login');
   };
 
   const handleRegister = async () => {
@@ -42,14 +43,18 @@ const Register = () => {
         toast.error('Passwords do not match');
         return;
       }
+      if(isValidEmail(email) === false) {
+        toast.error('Please enter valid email');
+        return;
+      }
       const res = await USER.register({
-        name: name,
-        email: email,
+        name: name.trim(),
+        email: email.trim().toLowerCase(),
         password: password,
       })
       if (res.status === 200) {
         toast.success('Đăng ký thành công!');
-        navigate('/login');
+        navigate('/Login');
       } else if(res.status === 409){
         toast.error(res.data.message);
       }

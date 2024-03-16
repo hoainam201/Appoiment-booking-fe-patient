@@ -29,7 +29,7 @@ const ForgotPassword = () => {
         email: email,
       });
       if (res.status === 200) {
-        navigate('/login');
+        navigate('/Login');
         toast.success('Mật khẩu đã được đặt lại. Vui lòng kiểm tra email');
       } else {
         toast.error(res.data.message);

@@ -45,13 +45,13 @@ const Home = () => {
       id: 2,
       name: "Đặt khám bác sĩ",
       image: img2,
-      linkTo: "/register",
+      linkTo: "/Register",
     },
     {
       id: 3,
       name: "Gói khám sức khỏe",
       image: img3,
-      linkTo: "/",
+      linkTo: "/health-package",
     },
     {
       id: 4,
@@ -64,6 +64,45 @@ const Home = () => {
       name: "Cẩm nang",
       image: img5,
       linkTo: "/",
+    }
+  ]
+
+  const info = [
+    {
+      id: 1,
+      name: "Lượt khám",
+      image: img1,
+      number: "200000+",
+    },
+    {
+      id: 2,
+      name: "Người dùng",
+      image: img2,
+      number: "20000+",
+    },
+    {
+      id: 3,
+      name: "Bác sĩ",
+      image: img3,
+      number: "200000+",
+    },
+    {
+      id: 4,
+      name: "Cơ sở y tế",
+      image: img4,
+      number: "200000+",
+    },
+    {
+      id: 5,
+      name: "Lượt truy cập",
+      image: img5,
+      number: "200000+",
+    },
+    {
+      id: 6,
+      name: "Dịch vụ khám",
+      image: img1,
+      number: "200+",
     }
   ]
 
@@ -111,12 +150,9 @@ const Home = () => {
           <div className={`text-white text-center text-4xl my-4`}>Thông tin</div>
           <div className={`text-white text-lg pt-4 pb-8 `}>
             <div className={`justify-center brue flex items-center gap-10`}>
-              <ActionAreaCard/>
-              <ActionAreaCard/>
-              <ActionAreaCard/>
-              <ActionAreaCard/>
-              <ActionAreaCard/>
-              <ActionAreaCard/>
+              {info.map((item) => (
+                <ActionAreaCard key={item.id} name={item.name} number={item.number}/>
+              ))}
             </div>
           </div>
         </div>

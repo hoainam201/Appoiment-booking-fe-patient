@@ -20,7 +20,7 @@ const UserProfile = () => {
 
   useEffect(() => {
       if (!token) {
-        navigate('/login');
+        navigate('/Login');
       }
     },
     [navigate, token]
@@ -47,10 +47,10 @@ const UserProfile = () => {
   const handleSave = async () => {
     try {
       const res = await USER.updateProfile({
-        name,
-        phone,
-        gender,
-        address
+        name: name.trim(),
+        phone: phone.trim(),
+        gender: gender,
+        address: address.trim(),
       });
       if (res.status === 200) {
         toast.success('Cập nhật thành công');

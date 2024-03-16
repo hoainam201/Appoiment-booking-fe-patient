@@ -17,7 +17,7 @@ const ChangePassword = () => {
 
   useEffect(() => {
       if (!token) {
-        navigate('/login');
+        navigate('/Login');
       }
     },
     [navigate, token]
