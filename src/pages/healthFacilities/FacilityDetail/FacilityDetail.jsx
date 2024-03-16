@@ -95,7 +95,7 @@ const FacilityDetail = () => {
               </div>
               <hr className={`mx-5 mt-2 bg-gray-500`}/>
               <div className={`gap-2 mx-2 max-h-72 overflow-auto`}>
-              {data.doctors.map((item) => {
+              {data?.doctors?.map((item) => {
                 return (
                   <DoctorButton/>
                 )

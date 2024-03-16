@@ -7,7 +7,7 @@ import {specialities} from "../utils/constants";
 const Header = () => {
   const navigate = useNavigate();
   const handleClick = (specialty) => {
-    navigate('/health-facilities/' + specialty);
+    navigate('/speciality/' + specialty);
   };
   const items = [
     {
@@ -43,6 +43,14 @@ const Header = () => {
         ),
         key: specialty.id,
       }))
+    },
+    {
+      label: (
+        <button onClick={() => navigate('/health-package')} rel="noopener noreferrer">
+          Gói khám
+        </button>
+      ),
+      key: 'package',
     },
     {
       label: (

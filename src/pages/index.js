@@ -9,6 +9,9 @@ import FacilityDetail from "./healthFacilities/FacilityDetail/FacilityDetail";
 import NotFound from "./404/404";
 import DoctorList from "./Doctor/DoctorList";
 import DoctorDetail from "./Doctor/DoctorDetail";
+import HealthPackageList from "./HealthPackage/HealthPackageList";
+import HealthPackageDetail from "./HealthPackage/HealthPackageDetail";
+import DoctorBooking from "./Booking/DoctorBooking";
 
 export {
   Home,
@@ -21,5 +24,8 @@ export {
   FacilityDetail,
   NotFound,
   DoctorList,
-  DoctorDetail
+  DoctorDetail,
+  DoctorBooking,
+  HealthPackageList,
+  HealthPackageDetail
 };
