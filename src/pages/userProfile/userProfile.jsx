@@ -5,6 +5,7 @@ import Header from "../../layouts/Header";
 import Footer from "../../layouts/Footer";
 import {Button} from "@mui/material";
 import {toast} from "react-toastify";
+import validator from 'validator'
 
 const UserProfile = () => {
   const navigate = useNavigate();
@@ -46,18 +47,36 @@ const UserProfile = () => {
 
   const handleSave = async () => {
     try {
-      const res = await USER.updateProfile({
+      if(name.trim() === '') {
+        toast.error('Vui lòng điền đầy đủ thông tin');
+        return;
+      }
+      if(name.trim().length < 6) {
+        toast.error('Tên người dùng phải có độ dài tối thiểu 6 ký tự');
+        return;
+      }
+      const req = {
         name: name.trim(),
-        phone: phone.trim(),
         gender: gender,
-        address: address.trim(),
+      }
+      if(phone.trim() !== '') {
+        if(!validator.isMobilePhone(phone, 'vi-VN') || phone.trim().length !== 10) {
+          toast.error('Số điện thoại không hợp lệ');
+          return;
+        }
+        req.phone = phone.trim();
+      }
+      if(address.trim() !== '') {
+        req.address = address.trim();
+      }
+      const res = await USER.updateProfile({
+        ...req
       });
       if (res.status === 200) {
         toast.success('Cập nhật thành công');
       } else {
         toast.error('Cập nhật thất bại');
       }
-
     } catch (error) {
       console.error(error);
     }
@@ -76,10 +95,10 @@ const UserProfile = () => {
       <div className="bg-white overflow-hidden shadow rounded-lg border w-1/2 m-auto">
         <div className="px-4 py-5 sm:px-6">
           <h3 className="text-lg leading-6 font-medium text-gray-900">
-            User Profile
+            Hồ sơ
           </h3>
           <p className="mt-1 max-w-2xl text-sm text-gray-500">
-            This is some information about the user.
+            Thông tin người dùng.
           </p>
         </div>
         <div className="border-t border-gray-200 px-4 py-5 sm:p-0">
