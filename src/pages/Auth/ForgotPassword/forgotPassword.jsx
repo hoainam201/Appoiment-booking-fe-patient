@@ -2,8 +2,8 @@ import React, {useState, useEffect, useMemo} from "react";
 import {Button} from "@mui/material";
 import {toast,} from "react-toastify";
 import {useNavigate} from 'react-router-dom';
-import USER from "../../services/userService";
-import Header from "../../layouts/Header";
+import USER from "../../../services/userService";
+import Header from "../../../layouts/Header";
 import { Layout } from 'antd';
 
 const { Footer, Sider, Content } = Layout;

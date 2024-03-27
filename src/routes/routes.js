@@ -52,6 +52,10 @@ export const NormalRoutes = [
   {
     path: '/health-package/:id',
     element: <Pages.HealthPackageDetail/>
+  },
+  {
+    path: '/booking-dialog',
+    element: <Pages.BookingDialog/>
   }
 ];
 

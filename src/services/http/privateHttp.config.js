@@ -8,7 +8,7 @@ const privateHttp = axios.create({
     'Content-Type': 'application/json',
   },
   validateStatus: (status) => {
-    return status < 500;
+    return status <= 500;
   }
 });
 

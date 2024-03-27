@@ -86,6 +86,13 @@ const USER = {
       url: '/doctor/' + (pageNumber ? `?page=${pageNumber}` : '')
     });
     return res;
+  },
+  getDoctorDetail: async (id) => {
+    let res = await publicHttp({
+      method: 'get',
+      url: '/doctor/' + id
+    });
+    return res;
   }
 }
 

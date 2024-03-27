@@ -2,10 +2,8 @@ import React, {useState, useEffect, useMemo} from "react";
 import {Button} from "@mui/material";
 import {toast,} from "react-toastify";
 import {useNavigate} from 'react-router-dom';
-import USER from "../../services/userService";
-import Header from "../../layouts/Header";
-import Footer from "../../layouts/Footer";
-import {isValidEmail} from "../../utils/validate";
+import USER from "../../../services/userService";
+import {isValidEmail} from "../../../utils/validate";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -77,7 +75,7 @@ const Login = () => {
                 alt="Sample"/>
             </div>
             <div className="mb-12 md:mb-0 md:w-8/12 lg:w-5/12 xl:w-5/12">
-              <form>
+              <form onKeyDown={(e) => e.key === 'Enter' ? handleLogin() : null}>
                 <div
                   className="mb-2 flex flex-row items-center justify-center lg:justify-start">
                   <p className="mb-0 mr-4 text-lg">Đăng nhập</p>

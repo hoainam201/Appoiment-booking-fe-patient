@@ -2,11 +2,11 @@ import React, {useEffect, useMemo, useState} from "react";
 import {Button} from "@mui/material";
 import {toast} from "react-toastify";
 import {useNavigate} from 'react-router-dom';
-import login from "../../assets/images/login.png";
-import USER from "../../services/userService";
-import Header from "../../layouts/Header";
-import Footer from "../../layouts/Footer";
-import {isValidEmail} from "../../utils/validate";
+import login from "../../../assets/images/login.png";
+import USER from "../../../services/userService";
+import Header from "../../../layouts/Header";
+import Footer from "../../../layouts/Footer";
+import {isValidEmail} from "../../../utils/validate";
 const Register = () => {
   const navigate = useNavigate();
   const [name, setName] = useState('');

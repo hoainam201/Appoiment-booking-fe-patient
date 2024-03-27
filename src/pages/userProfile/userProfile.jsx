@@ -1,8 +1,6 @@
 import React, {useEffect, useMemo, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import USER from "../../services/userService";
-import Header from "../../layouts/Header";
-import Footer from "../../layouts/Footer";
 import {Button} from "@mui/material";
 import {toast} from "react-toastify";
 import validator from 'validator'

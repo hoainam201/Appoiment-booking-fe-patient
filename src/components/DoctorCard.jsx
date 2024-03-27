@@ -5,7 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Rating from '@mui/material/Rating';
-import doctor from '../assets/images/img2.png';
+import doctor from '../assets/images/doctor.png';
 import {useNavigate} from "react-router-dom";
 
 export default function ImgMediaCard(props) {
