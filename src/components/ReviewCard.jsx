@@ -3,28 +3,42 @@ import Rating from "@mui/material/Rating";
 import Button from "@mui/material/Button";
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt";
+import {FormattedDate} from "react-intl";
 
-const ReviewCard = () => {
+const ReviewCard = (props) => {
+  const token = localStorage.getItem('token');
+
   return (
     <div className="outline outline-1 outline-gray-200 rounded-md my-2">
       <div className="flex flex-col ml-3">
         <div className="flex gap-3 my-1">
-          <div className="font-bold">Nguyen Van A</div>
-          <Rating name="read-only" value={4} readOnly/>
-          <div className="text-sm"> 12:30 - 12/12/2022</div>
+          <div className="font-bold">{props.review?.name}</div>
+          <Rating name="read-only" value={props.review?.rating} readOnly/>
+          <div className="text-sm">
+            <FormattedDate value={props.review?.created_at}
+                           year="numeric"
+                           month="long"
+                           day="numeric"
+                           hour="numeric"
+                           minute="numeric"
+            />
+          </div>
         </div>
-        <div>ABC</div>
+        <div>{props.review?.comment}</div>
         <hr/>
         <div className="flex my-1">
           <Button
+            {...(token ? {} : {disabled: true})}
             size="small"
           >
             <ThumbUpOffAltIcon/>
           </Button>
           <Button
+            {...(token ? {} : {disabled: true})}
             size="small"
           >
-            <ThumbDownOffAltIcon color="error"/>
+            <ThumbDownOffAltIcon
+              color={token?"error":""}/>
           </Button>
         </div>
       </div>

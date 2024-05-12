@@ -43,7 +43,7 @@ export default function HealthPackageDetail() {
           <p className={`w-full text-2xl`}>Đánh giá từ người dùng</p>
           <div>
             {[1, 2, 3, 4, 5].map((item) => (
-              <ReviewCard key={item}/>
+              <ReviewCard/>
             ))}
           </div>
         </div>

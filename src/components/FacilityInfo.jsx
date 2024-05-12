@@ -9,7 +9,7 @@ export default function FacilityInfo(props) {
   return (
     <div className={`flex flex-col bg-white w-full h-auto rounded-2xl gap-3 my-4 `}>
       <div className={`flex justify-center items-center`}>
-        <img src={props.avatar||Logo} className={`w-40 h-40 object-fill`}/>
+        <img src={props.avatar || Logo} className={`w-40 h-40 object-fill`}/>
       </div>
       <div className={`mx-10 w-3/4`}>
         <div className={`font-bold text-3xl whitespace-pre-line break-words`}>
@@ -19,9 +19,6 @@ export default function FacilityInfo(props) {
         <div className={`text-lg whitespace-pre-line break-words`}>
           {props.address}
         </div>
-        {/*<div className={`mb-2`}>*/}
-        {/*  <Button variant={`contained`}>Đặt khám</Button>*/}
-        {/*</div>*/}
       </div>
     </div>
   )

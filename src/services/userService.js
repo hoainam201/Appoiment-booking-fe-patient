@@ -76,7 +76,7 @@ const USER = {
   getFacilityDetail: async (id) => {
     let res = await publicHttp({
       method: 'get',
-      url: '/health-facilities/' + id
+      url: '/health-facilities/get-by-id/' + id
     });
     return res;
   },

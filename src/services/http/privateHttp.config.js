@@ -1,6 +1,5 @@
 import axios from 'axios';
 import {baseUrl} from './baseUrl';
-import {toast} from "react-toastify";
 
 const privateHttp = axios.create({
   baseURL: baseUrl,

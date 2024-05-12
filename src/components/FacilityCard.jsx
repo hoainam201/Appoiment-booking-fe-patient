@@ -8,7 +8,7 @@ import Rating from '@mui/material/Rating';
 import hospital from '../assets/images/hospital.png';
 import {useNavigate} from "react-router-dom";
 
-export default function ImgMediaCard(props) {
+export default function FacilityCard(props) {
   const navigate = useNavigate();
   return (
     <Card sx={{
@@ -26,7 +26,7 @@ export default function ImgMediaCard(props) {
           {props.name}
         </Typography>
         <Rating name="half-rating-read"
-                defaultValue={(props.service_rate_average + props.qualification_rate_average + props.facility_rate_average) / 3}
+                defaultValue={props.avg_rating}
                 precision={0.1} readOnly/>
       </CardContent>
       <CardActions>

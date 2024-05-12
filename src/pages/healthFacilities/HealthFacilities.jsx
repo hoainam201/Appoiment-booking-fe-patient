@@ -16,7 +16,7 @@ export default function HealthFacilities() {
     try{
       const res = await USER.getFacilities(pageNumber? pageNumber:null);
       setFacilities(res.data.healthFacility);
-      console.log(facilities);
+      console.log(res.data.healthFacility);
       setTotalPages(res.data.maxPage)
     }
     catch (error) {
@@ -37,9 +37,13 @@ export default function HealthFacilities() {
       <div
         className={`flex flex-wrap justify-start items-center w-full gap-5 p-3`}
       >
-        {facilities.map((facility) => (
-          <FacilityCard key={facility.id} {...facility} />
-        ))}
+        {facilities && facilities.length > 0 ? (
+          facilities.map((facility) => (
+            <FacilityCard key={facility.id} {...facility} />
+          ))
+        ): (
+          <h1 className="flex mx-auto my-auto min-h-[200px] justify-center text-center">No facility found</h1>
+        )}
       </div>
         {totalPages > 1 ? (
           <div className={'flex justify-center items-center mx-auto'}>

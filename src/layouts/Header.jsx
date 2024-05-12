@@ -53,8 +53,10 @@ const Header = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await USER.getProfile();
-        setName(response.data.name);
+        if(token) {
+            const response = await USER.getProfile();
+            setName(response.data.name);
+        }
       } catch (error) {
         console.error(error);
       }

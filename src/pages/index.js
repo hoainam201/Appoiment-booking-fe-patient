@@ -4,7 +4,7 @@ import Register from "./Auth/Register";
 import ForgotPassword from "./Auth/ForgotPassword/forgotPassword";
 import UserProfile from "./userProfile/userProfile";
 import ChangePassword from "./ChangePassword/changePassword";
-import HealthFacilities from "./healthFacilities/healthFacilities";
+import HealthFacilities from "./healthFacilities/HealthFacilities";
 import FacilityDetail from "./healthFacilities/FacilityDetail/FacilityDetail";
 import NotFound from "./404/404";
 import DoctorList from "./Doctor/DoctorList";

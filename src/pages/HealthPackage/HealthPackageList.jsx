@@ -1,7 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
 import PackageCard from "../../components/PackageCard";
+import Stack from "@mui/material/Stack";
+import Pagination from "@mui/material/Pagination";
 
 export default function HealthPackageList() {
+    const [pageNumber, setPageNumber] = useState(1);
+    const [totalPages, setTotalPages] = useState(23);
 
   return (
     <div>
@@ -15,6 +19,20 @@ export default function HealthPackageList() {
             <PackageCard key={item} />
           ))}
         </div>
+          {totalPages > 1 ? (
+              <div className={'flex justify-center items-center mx-auto'}>
+                  <Stack spacing={5}>
+                      <Pagination
+                          count={totalPages}
+                          variant={`outlined`}
+                          onChange={(event, value) => {
+                              console.log(value);
+                              setPageNumber(value);
+                          }}
+                      />
+                  </Stack>
+              </div>
+          ) : null}
       </div>
     </div>
   )

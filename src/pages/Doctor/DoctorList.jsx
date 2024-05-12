@@ -36,9 +36,13 @@ export default function DoctorList() {
         <div
           className={`flex flex-wrap justify-start items-center w-full gap-5 p-3`}
         >
-          {doctors.map((doctor) => (
-            <DoctorCard key={doctor.id} {...doctor} />
-          ))}
+          {doctors && doctors.length > 0 ? (
+            doctors.map((doctor) => (
+              <DoctorCard key={doctor._id} doctor={doctor} />
+            ))
+          ): (
+            <h1 className="flex justify-center text-center">No doctor found</h1>
+          )}
         </div>
         {totalPages > 1 ? (
           <div className={'flex justify-center items-center mx-auto'}>
