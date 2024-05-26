@@ -28,22 +28,22 @@ const Header = () => {
           Bác sĩ
         </button>
       ),
-      key: 'Doctor',
+      key: 'Service',
     },
-    {
-      label: 'Chuyên khoa',
-      key: 'SubMenu',
-      children: specialities.map((specialty) => ({
-        label: (
-          <button
-            onClick={() => handleClick(specialty.id)}
-          >
-            {specialty.name}
-          </button>
-        ),
-        key: specialty.id,
-      }))
-    },
+    // {
+    //   label: 'Chuyên khoa',
+    //   key: 'SubMenu',
+    //   children: specialities.map((specialty) => ({
+    //     label: (
+    //       <button
+    //         onClick={() => handleClick(specialty.id)}
+    //       >
+    //         {specialty.name}
+    //       </button>
+    //     ),
+    //     key: specialty.id,
+    //   }))
+    // },
     {
       label: (
         <button onClick={() => navigate('/health-package')} rel="noopener noreferrer">

@@ -7,12 +7,13 @@ import ChangePassword from "./ChangePassword/changePassword";
 import HealthFacilities from "./healthFacilities/HealthFacilities";
 import FacilityDetail from "./healthFacilities/FacilityDetail/FacilityDetail";
 import NotFound from "./404/404";
-import DoctorList from "./Doctor/DoctorList";
-import DoctorDetail from "./Doctor/DoctorDetail";
-import HealthPackageList from "./HealthPackage/HealthPackageList";
+import DoctorList from "./Service/DoctorList";
+import Detail from "./Service/Detail";
+import PackageList from "./Service/PackageList";
 import HealthPackageDetail from "./HealthPackage/HealthPackageDetail";
 import DoctorBooking from "./Booking/DoctorBooking";
 import BookingDialog from "./Booking/BookingDialog";
+import MyBooking from "./Booking/MyBooking/MyBooking";
 
 export {
   Home,
@@ -25,9 +26,10 @@ export {
   FacilityDetail,
   NotFound,
   DoctorList,
-  DoctorDetail,
+  Detail,
   DoctorBooking,
-  HealthPackageList,
+  PackageList,
   HealthPackageDetail,
-  BookingDialog
+  BookingDialog,
+  MyBooking,
 };

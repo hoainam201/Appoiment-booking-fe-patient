@@ -36,11 +36,11 @@ const Footer = () =>{
             <div>
               <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase">Liên hệ</h2>
               <ul className="text-gray-500font-medium">
-                <li className="mb-4">
-                  <div className="hover:underline">(+84) 0965287582</div>
+                <li className="mb-4 hover:underline">
+                  (+84) 0965287582
                 </li>
-                <li>
-                  <div   className="hover:underline">nam.nh194628@sis.hust.edu.vn</div>
+                <li className="hover:underline">
+                    nam.nh194628@sis.hust.edu.vn
                 </li>
               </ul>
             </div>

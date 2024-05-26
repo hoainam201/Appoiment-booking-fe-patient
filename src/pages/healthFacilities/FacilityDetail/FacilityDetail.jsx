@@ -13,10 +13,7 @@ import USER from "../../../services/userService";
 import Viewer from "../../../components/Editor/Viewer";
 import LeafletMap from "../../../components/Map/LeafletMap";
 import {toast} from "react-toastify";
-import {MapContainer, Marker, TileLayer} from "react-leaflet";
-import {iconPerson} from "../../../components/Map/icon";
 
-import {Fly} from "../../../components/Map/Fly";
 
 
 const FacilityDetail = () => {
@@ -45,6 +42,8 @@ const FacilityDetail = () => {
         }
         getFacilityDetail();
     }, [facilityId.id]);
+
+
 
 
     return (

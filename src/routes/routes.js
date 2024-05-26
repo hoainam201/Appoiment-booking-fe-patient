@@ -38,8 +38,8 @@ export const NormalRoutes = [
     element: <Pages.DoctorList/>
   },
   {
-    path: '/doctor/:id',
-    element: <Pages.DoctorDetail/>
+    path: '/service/:id',
+    element: <Pages.Detail/>
   },
   {
     path: '/booking',
@@ -47,7 +47,7 @@ export const NormalRoutes = [
   },
   {
     path: '/health-package',
-    element: <Pages.HealthPackageList/>
+    element: <Pages.PackageList/>
   },
   {
     path: '/health-package/:id',
@@ -56,7 +56,11 @@ export const NormalRoutes = [
   {
     path: '/booking-dialog',
     element: <Pages.BookingDialog/>
-  }
+  },
+  {
+    path: '/appointments',
+    element: <Pages.MyBooking/>
+  },
 ];
 
 export const NotFound = {

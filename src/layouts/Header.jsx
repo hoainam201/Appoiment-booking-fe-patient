@@ -55,7 +55,11 @@ const Header = () => {
       try {
         if(token) {
             const response = await USER.getProfile();
-            setName(response.data.name);
+            if (response.status === 200) {
+              setName(response.data.name);
+            } else if (response.status === 401) {
+              localStorage.removeItem('token');
+            }
         }
       } catch (error) {
         console.error(error);
@@ -75,7 +79,7 @@ const Header = () => {
   };
 
   return (
-    <div className="sticky top-0 flex flex-col w-full bg-white z-50">
+    <div className="sticky top-0 flex flex-col w-full bg-white z-[999]">
       <div className="flex flex-col justify-center w-full bg-white h-28">
         <div className="flex justify-between py-4 px-20 top-0 w-full font-bold text-2xl">
           <button
@@ -132,11 +136,11 @@ const Header = () => {
                           navigate('/change-password');
                           break;
                         case '3':
-                          navigate('/history');
+                          navigate('/appointments');
                           break;
                         case '4':
                           localStorage.removeItem('token');
-                          navigate('/');
+                          navigate(0);
                           break;
                       }
                       handleCloseUserMenu();

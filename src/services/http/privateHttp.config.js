@@ -1,14 +1,15 @@
 import axios from 'axios';
 import {baseUrl} from './baseUrl';
+import {toast} from "react-toastify";
 
 const privateHttp = axios.create({
-  baseURL: baseUrl,
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  validateStatus: (status) => {
-    return status <= 500;
-  }
+    baseURL: baseUrl,
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    validateStatus: (status) => {
+        return status <= 500;
+    }
 });
 
 privateHttp.interceptors.request.use(

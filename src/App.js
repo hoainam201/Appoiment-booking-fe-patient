@@ -11,7 +11,7 @@ import { IntlProvider } from 'react-intl';
 
 
 // Đối tượng intl có thể chứa các thông tin địa phương như ngôn ngữ, quốc gia, v.v.
-const locale = 'en'; // Ngôn ngữ và quốc gia cụ thể
+const locale = navigator.language || 'vn';// Ngôn ngữ và quốc gia cụ thể
 
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
   return (
     <IntlProvider locale={locale}>
     <QueryClientProvider client={queryClient}>
-      <ToastContainer />
+      <ToastContainer autoClose={1000} />
       <BrowserRouter>
         <Routes>
           <Route element={<Layout/>}>

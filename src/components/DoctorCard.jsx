@@ -15,8 +15,8 @@ export default function ImgMediaCard(props) {
       width: 300,
     }}
     >
-      <img src={props.avatar ? props.avatar : doctor}
-           className={`w-40 h-40 mx-auto  object-fill`}/>
+      <img src={props.image ? props.image : doctor}
+           className={`w-40 h-40 mx-auto object-center rounded-full`}/>
       <CardContent>
         <Typography gutterBottom variant="h5"
                     sx={{
@@ -26,18 +26,15 @@ export default function ImgMediaCard(props) {
           {props.name}
         </Typography>
         <Rating name="half-rating-read"
-                defaultValue={props.rating}
+                defaultValue={props.avg_rating}
                 precision={0.1} readOnly/>
       </CardContent>
       <CardActions>
         <Button
-          size="small"
-          variant={`contained`}
-        >Đặt khám</Button>
-        <Button
+          variant="contained"
           size="small"
           onClick={() => {
-            navigate('/doctor/' + props.id);
+            navigate('/service/' + props.id);
           }}
         >Chi tiết</Button>
       </CardActions>

@@ -38,10 +38,9 @@ const Login = () => {
         password: password,
       });
       const token = res?.data?.token;
-      console.log(res.data);
       if (token && res.status === 200) {
         localStorage.setItem('token', token);
-        navigate('/');
+        navigate(-2);
         toast.success('Login successful');
       } else {
         toast.error(res.data.message);
