@@ -1,4 +1,4 @@
-import {htmlToMarkdown, markdownToHtml} from "./Parser";
+import {markdownToHtml} from "./Parser";
 import ReactQuill from "react-quill";
 
 export default function Viewer(props) {

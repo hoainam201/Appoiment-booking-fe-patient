@@ -77,41 +77,42 @@ export const specialities = [
 ];
 
 export const bookingStatus = [
-    {
-        id: 0,
-        name: 'Đang chờ',
-        color: 'yellow',
-    },
-    {
-        id: 1,
-        name: 'Xác nhận',
-        color: 'green',
-    },
-    {
-        id: 2,
-        name: 'Từ chối',
-        color: 'red',
-    },
-    {
-        id: 3,
-        name: 'Đã khám',
-        color: 'blue',
-    },
-    {
-        id: 4,
-        name: 'Đã huỷ',
-        color: 'gray',
-    },
-    {
-        id: 5,
-        name: 'Đang khám',
-        color: 'cyan',
-    },
-    {
-        id: 6,
-        name: 'Đã thanh toán',
-        color: 'purple',
-    }
+  {
+    id: 0,
+    name: 'Đang chờ',
+    color: 'yellow',
+  },
+  {
+    id: 1,
+    name: 'Xác nhận',
+    color: 'green',
+  },
+  {
+    id: 2,
+    name: 'Từ chối',
+    color: 'red',
+  },
+  {
+    id: 3,
+    name: 'Đã khám',
+    color: 'blue',
+  },
+  {
+    id: 4,
+    name: 'Đã huỷ',
+    color: 'gray',
+  },
+  {
+    id: 5,
+    name: 'Đang khám',
+    color: 'cyan',
+  },
 ];
+
+export const serviceType = {
+  DOCTOR: 0,
+  PACKAGE: 1,
+  REMOTE: 2,
+}
 
 export const timeZone = 'Asia/Ho_Chi_Minh';

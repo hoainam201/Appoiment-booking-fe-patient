@@ -6,6 +6,7 @@ import USER from "../../../services/userService";
 import {toast} from "react-toastify";
 import {useNavigate} from "react-router-dom";
 import {FormattedDate} from "react-intl";
+import Loading from "../../../components/Loading";
 
 
 
@@ -114,8 +115,6 @@ const MyBooking = () => {
 
     const fetchData = async () => {
         try {
-            toast.dismiss();
-            toast.loading("Đang xử lý...");
             const response = await USER.getMyBooking();
             if (response.status === 200) {
                 toast.dismiss();
@@ -155,7 +154,7 @@ const MyBooking = () => {
 
     return (
         <div className="h-full py-5 mx-20">
-            <Table
+            {data && data.length> 0 ? <Table
                 columns={columns}
                 dataSource={data}
                 pagination={{
@@ -166,7 +165,9 @@ const MyBooking = () => {
                     showTotal: (total) => `Bạn đã đặt ${total} lần khám`,
                 }}
                 scroll={{x: 'max-content'}}
-            />
+        />: <div className="h-96">
+                <Loading/>
+            </div> }
         </div>
     );
 };

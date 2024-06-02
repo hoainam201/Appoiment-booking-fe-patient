@@ -4,62 +4,65 @@ import {useEffect, useState} from "react";
 import USER from "../../services/userService";
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
+import Loading from "../../components/Loading";
 
 
 export default function HealthFacilities() {
-  const [facilities, setFacilities] = useState([]);
-  const [pageNumber, setPageNumber] = useState(1);
-  const [totalPages, setTotalPages] = useState(0);
+    const [facilities, setFacilities] = useState([]);
+    const [pageNumber, setPageNumber] = useState(1);
+    const [totalPages, setTotalPages] = useState(0);
 
 
-  const getFacilities = async () => {
-    try{
-      const res = await USER.getFacilities(pageNumber? pageNumber:null);
-      setFacilities(res.data.healthFacility);
-      console.log(res.data.healthFacility);
-      setTotalPages(res.data.maxPage)
+    const getFacilities = async () => {
+        try {
+            const res = await USER.getFacilities(pageNumber ? pageNumber : null);
+            setFacilities(res.data.healthFacility);
+            console.log(res.data.healthFacility);
+            setTotalPages(res.data.maxPage)
+        } catch (error) {
+            console.error(error);
+        }
     }
-    catch (error) {
-      console.error(error);
-    }
-  }
 
 
-  useEffect(() => {
-    getFacilities();
-  },[pageNumber]);
+    useEffect(() => {
+        getFacilities();
+    }, [pageNumber]);
 
-  return (
-    <div>
-      <div
-        className={`justify-center items-center mx-20`}
-      >
-      <div
-        className={`flex flex-wrap justify-start items-center w-full gap-5 p-3`}
-      >
-        {facilities && facilities.length > 0 ? (
-          facilities.map((facility) => (
-            <FacilityCard key={facility.id} {...facility} />
-          ))
-        ): (
-          <h1 className="flex mx-auto my-auto min-h-[200px] justify-center text-center">No facility found</h1>
-        )}
-      </div>
-        {totalPages > 1 ? (
-          <div className={'flex justify-center items-center mx-auto'}>
-            <Stack spacing={5}>
-              <Pagination
-                count={totalPages}
-                variant={`outlined`}
-                onChange={(event, value) => {
-                  console.log(value);
-                  setPageNumber(value);
-                }}
-              />
-            </Stack>
-          </div>
-        ) : null}
-      </div>
-    </div>
-  );
+    return (
+        <div>
+            <div
+                className={`justify-center items-center mx-20`}
+            >
+                <div
+                    className={`grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-4 w-full`}
+                >
+                    {facilities && facilities.length > 0 ? (
+                        facilities.map((facility) => (
+                            <FacilityCard key={facility.id} {...facility} />
+                        ))
+                    ) : null}
+                </div>
+                {!facilities || facilities.length === 0 ? (
+                    <div className="h-[60vh]">
+                        <Loading/>
+                    </div>
+                ) : null}
+                {totalPages > 1 ? (
+                    <div className={'flex justify-center items-center mx-auto'}>
+                        <Stack spacing={5}>
+                            <Pagination
+                                count={totalPages}
+                                variant={`outlined`}
+                                onChange={(event, value) => {
+                                    console.log(value);
+                                    setPageNumber(value);
+                                }}
+                            />
+                        </Stack>
+                    </div>
+                ) : null}
+            </div>
+        </div>
+    );
 }

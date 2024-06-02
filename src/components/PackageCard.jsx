@@ -8,7 +8,7 @@ export default function PackageCard( {...props}) {
     const navigate = useNavigate();
 
   return (
-    <button className={`w-72 text-left h-64 bg-white rounded-2xl shadow-lg outline outline-1 outline-gray-300 my-2`}
+    <button className={`w-auto text-left h-64 bg-white rounded-2xl shadow-lg outline outline-1 outline-gray-300 my-2`}
             onClick={() => navigate(`/service/${props?.id}`)}>
       <div className={`w-full h-40`}>
         <img

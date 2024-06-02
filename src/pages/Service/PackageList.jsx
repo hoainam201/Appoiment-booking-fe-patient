@@ -4,10 +4,11 @@ import Stack from "@mui/material/Stack";
 import Pagination from "@mui/material/Pagination";
 import USER from "../../services/userService";
 import {toast} from "react-toastify";
+import Loading from "../../components/Loading";
 
 export default function PackageList() {
     const [pageNumber, setPageNumber] = useState(1);
-    const [totalPages, setTotalPages] = useState(23);
+    const [totalPages, setTotalPages] = useState(1);
     const [packages, setPackages] = useState([]);
 
 
@@ -38,17 +39,21 @@ export default function PackageList() {
   return (
     <div>
       <div
-        className={`justify-center items-center mx-32`}
+        className={`justify-center items-center mx-20`}
       >
-        <div
-          className={`flex flex-wrap justify-start items-center w-full gap-5 p-3`}
+        {packages && packages.length > 0 ? <div
+          className={`grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] items-center w-full gap-5`}
         >
-          {packages.map((item) => (
-            <PackageCard key={item.id} {...item} />
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23].map((item) => (
+            packages.map((item) => (
+              <PackageCard key={item.id} {...item} />
+            ))
           ))}
-        </div>
-          {totalPages > 1 ? (
-              <div className={'flex justify-center items-center mx-auto'}>
+        </div> : <div className="h-[60vh]">
+          <Loading/>
+        </div>}
+        {totalPages > 1 ? (
+          <div className={'flex justify-center items-center mx-auto'}>
                   <Stack spacing={5}>
                       <Pagination
                           count={totalPages}

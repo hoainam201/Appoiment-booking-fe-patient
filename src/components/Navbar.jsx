@@ -54,7 +54,7 @@ const Header = () => {
     },
     {
       label: (
-        <button onClick={() => navigate('/')} rel="noopener noreferrer">
+        <button onClick={() => navigate('/news')} rel="noopener noreferrer">
           Cẩm nang
         </button>
       ),

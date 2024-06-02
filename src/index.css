@@ -43,7 +43,11 @@
 
 ::-webkit-scrollbar {
     width: 10px;
+    height: 10px;
+    scroll-behavior: smooth;
 }
+
+
 
 /* Track */
 ::-webkit-scrollbar-track {

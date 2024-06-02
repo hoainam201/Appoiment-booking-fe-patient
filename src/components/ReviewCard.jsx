@@ -9,7 +9,7 @@ const ReviewCard = (props) => {
   const token = localStorage.getItem('token');
 
   return (
-    <div className="outline outline-1 outline-gray-200 rounded-md my-2">
+    <div className="outline outline-1 outline-gray-200 rounded-md my-2 hover:outline-2 hover:outline-gray-300 hover:shadow">
       <div className="flex flex-col ml-3">
         <div className="flex gap-3 my-1">
           <div className="font-bold">{props.review?.name}</div>
@@ -24,6 +24,7 @@ const ReviewCard = (props) => {
             />
           </div>
         </div>
+        <hr/>
         <div>{props.review?.comment}</div>
         <hr/>
         <div className="flex my-1">
@@ -38,7 +39,7 @@ const ReviewCard = (props) => {
             size="small"
           >
             <ThumbDownOffAltIcon
-              color={token?"error":""}/>
+              color={token ? "error" : ""}/>
           </Button>
         </div>
       </div>

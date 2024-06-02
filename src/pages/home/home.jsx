@@ -45,7 +45,7 @@ const Home = () => {
       id: 2,
       name: "Đặt khám bác sĩ",
       image: img2,
-      linkTo: "/Register",
+      linkTo: "/doctor",
     },
     {
       id: 3,
@@ -63,7 +63,7 @@ const Home = () => {
       id: 5,
       name: "Cẩm nang",
       image: img5,
-      linkTo: "/",
+      linkTo: "/news",
     }
   ]
 

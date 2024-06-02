@@ -5,15 +5,17 @@ import ForgotPassword from "./Auth/ForgotPassword/forgotPassword";
 import UserProfile from "./userProfile/userProfile";
 import ChangePassword from "./ChangePassword/changePassword";
 import HealthFacilities from "./healthFacilities/HealthFacilities";
-import FacilityDetail from "./healthFacilities/FacilityDetail/FacilityDetail";
+import FacilityDetail from "./healthFacilities/FacilityDetail";
 import NotFound from "./404/404";
 import DoctorList from "./Service/DoctorList";
 import Detail from "./Service/Detail";
 import PackageList from "./Service/PackageList";
-import HealthPackageDetail from "./HealthPackage/HealthPackageDetail";
 import DoctorBooking from "./Booking/DoctorBooking";
 import BookingDialog from "./Booking/BookingDialog";
 import MyBooking from "./Booking/MyBooking/MyBooking";
+import NewsList from "./News/List";
+import NewDetails from "./News/Details";
+import BookingDetail from "./Booking/MyBooking/Detail";
 
 export {
   Home,
@@ -29,7 +31,9 @@ export {
   Detail,
   DoctorBooking,
   PackageList,
-  HealthPackageDetail,
   BookingDialog,
   MyBooking,
+  NewsList,
+  NewDetails,
+  BookingDetail,
 };

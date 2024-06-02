@@ -50,10 +50,6 @@ export const NormalRoutes = [
     element: <Pages.PackageList/>
   },
   {
-    path: '/health-package/:id',
-    element: <Pages.HealthPackageDetail/>
-  },
-  {
     path: '/booking-dialog',
     element: <Pages.BookingDialog/>
   },
@@ -61,6 +57,17 @@ export const NormalRoutes = [
     path: '/appointments',
     element: <Pages.MyBooking/>
   },
+  {
+    path: '/news',
+    element: <Pages.NewsList/>
+  }, {
+    path: '/news/:id',
+    element: <Pages.NewDetails/>
+  },
+  {
+    path: '/appointments/:id',
+    element: <Pages.BookingDetail/>
+  }
 ];
 
 export const NotFound = {

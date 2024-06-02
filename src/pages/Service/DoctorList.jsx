@@ -12,6 +12,7 @@ import CardActions from "@mui/material/CardActions";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import {useNavigate} from "react-router-dom";
+import Loading from "../../components/Loading";
 
 
 export default function DoctorList() {
@@ -43,14 +44,16 @@ export default function DoctorList() {
         className={`justify-center items-center mx-20`}
       >
         <div
-          className={`flex flex-wrap justify-start items-center w-full gap-5 p-3`}
+          className={`grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] items-center w-full gap-5`}
         >
           {doctors ? (
             doctors.map((doctor) => (
               <DoctorCard key={doctor.id} {...doctor} />
             ))
           ): (
-            <h1 className="flex justify-center mx-auto">No doctor found</h1>
+            <div className="h-[60vh]">
+              <Loading/>
+            </div>
           )}
         </div>
         {totalPages > 1 ? (

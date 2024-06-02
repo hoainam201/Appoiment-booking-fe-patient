@@ -11,9 +11,7 @@ import {useNavigate} from "react-router-dom";
 export default function ImgMediaCard(props) {
   const navigate = useNavigate();
   return (
-    <Card sx={{
-      width: 300,
-    }}
+    <Card
     >
       <img src={props.image ? props.image : doctor}
            className={`w-40 h-40 mx-auto object-center rounded-full`}/>
