@@ -163,10 +163,24 @@ const USER = {
     });
     return res;
   },
-  getReviews: async (id) => {
+  getReviews: async (id, page) => {
     let res = await publicHttp({
       method: 'get',
-      url: '/service-review/' + id
+      url: '/service-review/service/' + id + (page ? `?page=${page}` : '')
+    });
+    return res;
+  },
+  getReviewFacility: async (id, page) => {
+    let res = await publicHttp({
+      method: 'get',
+      url: '/service-review/facility/' + id + (page ? `?page=${page}` : '')
+    });
+    return res;
+  },
+  getReviewDetail: async (id) => {
+    let res = await publicHttp({
+      method: 'get',
+      url: '/service-review/get/' + id
     });
     return res;
   }

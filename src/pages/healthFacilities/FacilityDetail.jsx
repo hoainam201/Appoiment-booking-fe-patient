@@ -11,6 +11,8 @@ import {toast} from "react-toastify";
 import Chip from "@mui/material/Chip";
 import {serviceType} from "../../utils/constants";
 import { Empty } from 'antd';
+import UserService from "../../services/userService";
+import Rating from "@mui/material/Rating";
 
 
 const FacilityDetail = () => {
@@ -21,6 +23,25 @@ const FacilityDetail = () => {
   const facilityId = useParams();
   const [select, setSelect] = useState(0);
   const [services, setServices] = useState([]);
+  const [reviews, setReviews] = useState([]);
+  const token = localStorage.getItem("token");
+  const [totalReviews, setTotalReviews] = useState(0);
+  const [page, setPage] = useState(1);
+
+  const fetchReviews = async () => {
+    try {
+      const res = await UserService.getReviewFacility(facilityId.id, page);
+      if (res.status === 200) {
+        console.log(res.data);
+        setReviews(res.data.reviews);
+        setTotalReviews(res.data.total);
+      } else {
+        console.log(res)
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
 
   useEffect(() => {
@@ -43,6 +64,11 @@ const FacilityDetail = () => {
     window.scrollTo(0, 0);
     getFacilityDetail();
   }, [facilityId.id]);
+
+
+  useEffect(() => {
+    fetchReviews();
+  }, [page]);
 
 
   return (
@@ -124,14 +150,31 @@ const FacilityDetail = () => {
       <div>
         <div className="flex mx-36 mt-5 gap-5 bg-white rounded-xl">
           <div className={`w-1/3 justify-start`}>
-            <TotalReivew/>
+            <div className="flex flex-col outline outline-1 outline-gray-200 rounded-md">
+              <div className="flex justify-center text-center text-xl">
+                Tổng quan đánh giá
+              </div>
+              <div className="flex flex-col justify-center items-center">
+                <Rating name="read-only" value={Math.ceil(data?.avg_rating * 10) / 10} precision={0.1} readOnly/>
+                <div>{Math.ceil(data?.avg_rating * 10) / 10}/5 ({totalReviews} đánh giá)</div>
+              </div>
+              <div>
+                {/*{items.map((item) => (*/}
+                {/*  <LinearLoad key={item} {...item}/>*/}
+                {/*))}*/}
+              </div>
+
+            </div>
           </div>
           <div className={`flex flex-col w-full`}>
             <p className={`w-full text-2xl font-sans`}>Đánh giá từ người dùng</p>
             <div>
-              {[1, 2, 3, 4, 5].map((item) => (
-                <ReviewCard key={item}/>
-              ))}
+              {reviews && reviews.length > 0 ?
+                reviews.map((review) => (
+                  <ReviewCard review={review}/>
+                ))
+                : <div><Empty/></div>
+              }
             </div>
           </div>
         </div>

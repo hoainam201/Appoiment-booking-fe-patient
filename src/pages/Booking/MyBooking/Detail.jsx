@@ -16,6 +16,8 @@ import DialogContent from "@mui/material/DialogContent";
 import TextArea from "antd/es/input/TextArea";
 import DialogActions from "@mui/material/DialogActions";
 import Rating from "@mui/material/Rating";
+import Filter from 'bad-words';
+import {badwords} from "../../../utils/badwords";
 
 
 const Detail = () => {
@@ -27,7 +29,9 @@ const Detail = () => {
   const [content, setContent] = useState("");
   const [rating, setRating] = useState(0);
   const [service, setService] = useState(null);
-
+  const [reviewData, setReviewData] = useState(null);
+  const filter = new Filter();
+  filter.addWords(...badwords);
 
 
   const handleClickOpen = (id) => {
@@ -47,7 +51,11 @@ const Detail = () => {
         toast.error("Vui lòng đánh giá");
         return;
       }
-
+      if(filter.isProfane(content)) {
+        toast.dismiss();
+        toast.error("Vui lòng sử dụng ngôn từ phù hợp");
+        return;
+      }
       // Hiển thị thông báo loading
       toast.dismiss();
       toast.loading("Đang đánh giá...");
@@ -59,7 +67,7 @@ const Detail = () => {
       if (response.status === 201) {
         toast.dismiss();
         toast.success("Đánh giá đã được cập nhật");
-
+        setOpen(false);
         // Cập nhật dữ liệu trên giao diện
         fetchData();
       }
@@ -88,6 +96,21 @@ const Detail = () => {
           setDescription(response.data.diagnosis.description);
           setPrescription(response.data.prescription);
         }
+        if(response.data.service_review_id){
+          fetchReview(response.data.service_review_id);
+        }
+      }
+    } catch (error) {
+      toast.dismiss();
+      toast.error("Vui lòng thử lại sau1");
+    }
+  }
+
+  const fetchReview = async (id) => {
+    try {
+      const response = await USER.getReviewDetail(id);
+      if (response.status === 200) {
+        setReviewData(response.data);
       }
     } catch (error) {
       toast.dismiss();
@@ -154,9 +177,9 @@ const Detail = () => {
                 mr: 1,
                 textTransform: "none",
               }}
-              // onClick={hanldeStart}
+              disabled
               variant="contained"
-            >Xem đánh giá</Button>}
+            >Viết đánh giá</Button>}
         </div>
         <div className="flex items-center h-12 w-full justify-between">
           <p className="text-xl font-bold text-center">
@@ -233,25 +256,46 @@ const Detail = () => {
             dataSource={prescription}
           /> : null}
 
+        {reviewData && <div>
+          <p className="text-xl font-bold">
+            Đánh giá của bạn
+          </p>
+          <div className="flex gap-3 my-1">
+            <Rating name="read-only" value={reviewData?.rating} readOnly/>
+            <div className="text-sm">
+              <FormattedDate value={reviewData?.created_at}
+                             year="numeric"
+                             month="long"
+                             day="numeric"
+                             hour="numeric"
+                             minute="numeric"
+              />
+            </div>
+          </div>
+          <hr/>
+          <div>{reviewData?.comment}</div>
+        </div>
+        }
+
         <Dialog
           open={open}
           onClose={handleClose}
           fullWidth={true}
-          PaperProps={{
-            component: 'form',
-            onSubmit: (event) => {
-              event.preventDefault();
-              const formData = new FormData(event.currentTarget);
-              const formJson = Object.fromEntries(formData.entries());
-              const email = formJson.email;
-              console.log(email);
-              handleClose();
-            },
-          }}
-        >
-          <DialogTitle>Đánh giá</DialogTitle>
-          <DialogContent>
-            <Rating
+        PaperProps={{
+          component: 'form',
+          onSubmit: (event) => {
+            event.preventDefault();
+            const formData = new FormData(event.currentTarget);
+            const formJson = Object.fromEntries(formData.entries());
+            const email = formJson.email;
+            console.log(email);
+            handleClose();
+          },
+        }}
+      >
+        <DialogTitle>Đánh giá</DialogTitle>
+        <DialogContent>
+        <Rating
               defaultValue={rating}
               onChange={(event, newValue) => {
                 setRating(newValue);
@@ -264,7 +308,9 @@ const Detail = () => {
               multiline
               rows={4}
               value={content}
-              onChange={(e) => setContent(e.target.value)}
+              onChange={(e) => {
+                setContent(e.target.value);
+              }}
             />
           </DialogContent>
           <DialogActions>

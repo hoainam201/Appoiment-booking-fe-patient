@@ -105,7 +105,7 @@ const MyBooking = () => {
                     default:
                         return (
                             <div className="gap-2">
-                                <Button shape="round" disabled={true}>Đánh giá</Button>
+                                <Button shape="round" onClick={() => navigate(`/appointments/${id}`)}>Chi tiết</Button>
                             </div>
                         )
                 }

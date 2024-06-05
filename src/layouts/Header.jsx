@@ -106,7 +106,7 @@ const Header = () => {
                         sx={{
                           width: 40,
                           height: 40,
-                          top: -8,
+                          top: 0,
                           bgcolor: "#003bfd",
                         }}
                 />

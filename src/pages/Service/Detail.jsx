@@ -36,6 +36,7 @@ export default function Detail() {
   const [reviews, setReviews] = useState([]);
   const token = localStorage.getItem("token");
   const [totalReviews, setTotalReviews] = useState(0);
+  const [page, setPage] = useState(1);
 
   const id = useParams().id;
 
@@ -54,7 +55,7 @@ export default function Detail() {
 
   const fetchReviews = async () => {
     try {
-      const res = await UserService.getReviews(id);
+      const res = await UserService.getReviews(id, page);
       if (res.status === 200) {
         console.log(res.data);
         setReviews(res.data.reviews);
