@@ -1,10 +1,13 @@
 import React from "react";
 import logo from "../assets/images/Logo.png";
 import {useNavigate} from "react-router-dom";
+import {i18n} from "../utils/i18n";
+import {useTranslation} from "react-i18next";
 
 
 const Footer = () =>{
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
   return (
     <footer className="bg-white">
       <hr/>
@@ -24,6 +27,17 @@ const Footer = () =>{
           <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
             <div>
               <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase">mạng xã hội</h2>
+              <ul className="text-gray-500 font-medium">
+                <li className="mb-4">
+                  <a href="https://github.com/hoainam201" target={`_blank`} className="hover:underline ">Github</a>
+                </li>
+                <li>
+                  <a href="https://www.facebook.com/nh.nam201" target={`_blank`} className="hover:underline">Facebook</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase">{t("health_tool")}</h2>
               <ul className="text-gray-500 font-medium">
                 <li className="mb-4">
                   <a href="https://github.com/hoainam201" target={`_blank`} className="hover:underline ">Github</a>

@@ -1,0 +1,42 @@
+.translate {
+    display: flex;
+    justify-content: space-evenly;
+    width: 4rem;
+    background: inherit;
+    height: 2rem;
+    border-radius: 50px;
+    position: relative;
+    background-color: #ffffff;
+    border: 1px solid #003bfd;
+}
+
+.translate button {
+    width: 50%;
+    border-radius: 50px;
+    outline: 0;
+    border: none;
+    z-index: 3;
+    cursor: pointer;
+    font-size: 0.8rem;
+    color: #003bfd;
+}
+
+.spin {
+    position: absolute;
+    background-color: rgba(0, 59, 253, 0.55);
+    top: 0;
+    left: 0;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50px;
+    transition: left .5s ease, background-color .5s ease;
+    z-index: 2;
+}
+
+.turnToVI {
+    left: 50% !important;
+}
+
+.turnToEN {
+    left: 0% !important;
+}

@@ -15,6 +15,9 @@ import logo from "../assets/images/Logo.png";
 import {Avatar, Menu, MenuItem} from "@mui/material";
 import Typography from "@mui/material/Typography";
 import USER from "../services/userService";
+import "./style.css"
+import {useTranslation} from "react-i18next";
+import '../utils/i18n';
 
 // const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
@@ -49,6 +52,13 @@ const Header = () => {
 
   const [anchorElUser, setAnchorElUser] = useState(null);
   const [name, setName] = useState('');
+  const { t, i18n } = useTranslation();
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
+
+  const languageFromStorage = localStorage.getItem('language') || 'vi';
 
   useEffect(() => {
     const fetchData = async () => {
@@ -78,6 +88,17 @@ const Header = () => {
     setAnchorElUser(null);
   };
 
+  const [language, setLanguage] = useState('EN');
+
+  const turnLg = (buttonId) => {
+    setLanguage(buttonId);
+  };
+
+  useEffect(() => {
+    // Lấy ngôn ngữ hiện tại từ i18n và lưu vào localStorage
+    localStorage.setItem('language', i18n.language);
+  }, [i18n.language]);
+
   return (
     <div className="sticky top-0 flex flex-col w-full bg-white z-[999]">
       <div className="flex flex-col justify-center w-full bg-white h-28">
@@ -95,21 +116,25 @@ const Header = () => {
             <Input size="small" className="w-96 rounded-full" placeholder="Search..." prefix={<SearchOutlined/>}/>
           </div>
           <div className="flex gap-4 w-1/4 justify-end">
+            <div className="translate">
+              <button id="VI" onClick={() => {
+                turnLg('VI');
+                changeLanguage('vi');
+              }}>VI</button>
+              <button id="EN" onClick={() => {
+                turnLg('EN');
+                changeLanguage('en');
+              }}>EN</button>
+              <div className={`spin ${i18n.language !== 'vi' ? 'turnToVI' : 'turnToEN'}`}></div>
+            </div>
             {token ? (
               <Button
                 shape="circle"
                 size="large"
                 onClick={handleOpenUserMenu}
+                className="bg-blue-500 text-white "
               >
-                <Avatar alt={name}
-                        src="../../assets/images/Avatar.png"
-                        sx={{
-                          width: 40,
-                          height: 40,
-                          top: 0,
-                          bgcolor: "#003bfd",
-                        }}
-                />
+                <p className="rounded-full w-10 font-bold t">{name.charAt(0).toUpperCase()}</p>
                 <Menu
                   sx={{mt: '45px'}}
                   id="menu-appbar"

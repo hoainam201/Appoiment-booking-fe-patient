@@ -16,6 +16,8 @@ import MyBooking from "./Booking/MyBooking/MyBooking";
 import NewsList from "./News/List";
 import NewDetails from "./News/Details";
 import BookingDetail from "./Booking/MyBooking/Detail";
+import CalorieCalculator  from "./HealthTool/CalorieCalculator";
+import BMICalculator from "./HealthTool/BmiCalculator";
 
 export {
   Home,
@@ -36,4 +38,6 @@ export {
   NewsList,
   NewDetails,
   BookingDetail,
+  CalorieCalculator,
+  BMICalculator,
 };

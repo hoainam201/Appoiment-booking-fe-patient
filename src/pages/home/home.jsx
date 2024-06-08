@@ -146,16 +146,16 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className={`flex flex-col justify-center w-2/3 bg-blue-600 my-36 rounded-lg`}>
-          <div className={`text-white text-center text-4xl my-4`}>Thông tin</div>
-          <div className={`text-white text-lg pt-4 pb-8 `}>
-            <div className={`justify-center brue flex items-center gap-10`}>
-              {info.map((item) => (
-                <ActionAreaCard key={item.id} name={item.name} number={item.number}/>
-              ))}
-            </div>
-          </div>
-        </div>
+        {/*<div className={`flex flex-col justify-center w-2/3 bg-blue-600 my-36 rounded-lg`}>*/}
+        {/*  <div className={`text-white text-center text-4xl my-4`}>Thông tin</div>*/}
+        {/*  <div className={`text-white text-lg pt-4 pb-8 `}>*/}
+        {/*    <div className={`justify-center brue flex items-center gap-10`}>*/}
+        {/*      {info.map((item) => (*/}
+        {/*        <ActionAreaCard key={item.id} name={item.name} number={item.number}/>*/}
+        {/*      ))}*/}
+        {/*    </div>*/}
+        {/*  </div>*/}
+        {/*</div>*/}
       </div>
     </div>
   )

@@ -67,7 +67,15 @@ export const NormalRoutes = [
   {
     path: '/appointments/:id',
     element: <Pages.BookingDetail/>
-  }
+  },
+  {
+    path: '/calorie-calculator',
+    element: <Pages.CalorieCalculator/>
+  },
+  {
+      path: '/bmi-calculator',
+    element: <Pages.BMICalculator/>
+  },
 ];
 
 export const NotFound = {
