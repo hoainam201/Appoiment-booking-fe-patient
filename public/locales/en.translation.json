@@ -54,11 +54,5 @@
     "gardening": "Gardening (vigorous)",
     "gardening_calories": "100 calories burned in 30 minutes"
   },
-  "health_tool": "Health tool",
-  "contact": "contact",
-  "social_media": "social media",
-  "health_facilities": "Health Facilities",
-  "doctor": "Doctor",
-  "health_package": "Health Package",
-  "news": "News",
+  "health_tool": "Health tool"
 }
