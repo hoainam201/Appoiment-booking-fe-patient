@@ -57,5 +57,12 @@
   "health_tool": "Health tool",
   "about": "About",
   "social_media": "Social Media",
-  "contact": "Contact"
+  "contact": "Contact",
+  "navbar": {
+    "health_facilities": "Health Facilities",
+    "doctor": "Doctor",
+    "health_package": "Health Package",
+    "news": "News",
+    "search": "Search"
+  }
 }

@@ -3,9 +3,11 @@ import {HomeOutlined, MailOutlined, SettingOutlined} from '@ant-design/icons';
 import {useNavigate} from "react-router-dom";
 import React from "react";
 import {specialities} from "../utils/constants";
+import {useTranslation} from "react-i18next";
 
 const Header = () => {
   const navigate = useNavigate();
+  const {t} = useTranslation();
   const handleClick = (specialty) => {
     navigate('/speciality/' + specialty);
   };
@@ -15,7 +17,7 @@ const Header = () => {
         <button
           onClick={() => navigate('/health-facilities')}
         >
-          Cơ sở y tế
+          {t('navbar.health_facilities')}
         </button>
       ),
       key: 'Health Facilities',
@@ -25,7 +27,7 @@ const Header = () => {
         <button
           onClick={() => navigate('/doctor')}
         >
-          Bác sĩ
+          {t('navbar.doctor')}
         </button>
       ),
       key: 'Service',
@@ -47,7 +49,7 @@ const Header = () => {
     {
       label: (
         <button onClick={() => navigate('/health-package')} rel="noopener noreferrer">
-          Gói khám
+          {t('navbar.health_package')}
         </button>
       ),
       key: 'package',
@@ -55,7 +57,7 @@ const Header = () => {
     {
       label: (
         <button onClick={() => navigate('/news')} rel="noopener noreferrer">
-          Cẩm nang
+          {t('navbar.news')}
         </button>
       ),
       key: 'alipay',

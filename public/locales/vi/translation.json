@@ -57,6 +57,12 @@
   "health_tool": "Tính toán chỉ số sức khỏe",
   "about": "Về chúng tôi",
   "social_media": "Mạng xã hội",
-  "contact": "Liên hệ"
-
+  "contact": "Liên hệ",
+  "navbar": {
+    "health_facilities": "Cơ sở y tế",
+    "doctor": "Bác sĩ",
+    "health_package": "Gói khám sức khỏe",
+    "news": "Tin tức",
+    "search": "Tìm kiếm"
+  }
 }
