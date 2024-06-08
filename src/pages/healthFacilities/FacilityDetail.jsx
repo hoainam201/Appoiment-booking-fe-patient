@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from "react";
 import FacilityInfo from "../../components/FacilityInfo";
 import ServiceButton from "../../components/ServiceButton";
-import TotalReivew from "../../components/TotalReivew";
 import ReviewCard from "../../components/ReviewCard";
 import {useParams} from "react-router-dom";
 import USER from "../../services/userService";
@@ -10,10 +9,9 @@ import LeafletMap from "../../components/Map/LeafletMap";
 import {toast} from "react-toastify";
 import Chip from "@mui/material/Chip";
 import {serviceType} from "../../utils/constants";
-import { Empty } from 'antd';
+import {Empty} from 'antd';
 import UserService from "../../services/userService";
 import Rating from "@mui/material/Rating";
-
 
 const FacilityDetail = () => {
   const [id, setId] = useState('');
@@ -61,7 +59,10 @@ const FacilityDetail = () => {
         console.error(error);
       }
     }
-    window.scrollTo(0, 0);
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
     getFacilityDetail();
   }, [facilityId.id]);
 
@@ -72,29 +73,10 @@ const FacilityDetail = () => {
 
 
   return (
-    <div className={`bg-blue-100 pb-5`}>
-      <div className={`flex mx-36 gap-5 mb-4`}>
-        <div className={`flex w-1/3`}>
+    <div className={`bg-[#e8f2f7] pb-5`}>
+      <div className="grid lg:grid-cols-[33%,1fr] grid-cols-1 mx-36 gap-5 mb-4">
+        <div>
           <FacilityInfo {...data}/>
-        </div>
-        <div className={`flex w-2/3 mx-auto my-auto`}>
-          <div className={`w-full max-h-96`}>
-            <div
-              className={`flex flex-col bg-white w-full h-full rounded-2xl gap-3 my-4 overflow-x-hidden wrapper`}>
-              <div className={`flex justify-start mt-3 h-auto mx-10 w-3/4`}>
-                <div className={`font-bold text-2xl text-blue-800`}>Giới thiệu</div>
-              </div>
-              <div className={`mx-10 w-3/4 mb-3 h-96`}>
-                <div className={`text-lg whitespace-pre-line break-words`}>
-                  <Viewer value={data.description}/>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className={`flex mx-36 gap-5`}>
-        <div className={`flex w-1/3`}>
           <div className={`flex flex-col bg-white w-full h-96 rounded-xl gap-3 my-4 `}>
             <div className={`flex justify-start mt-3 h-auto mx-10 w-3/4`}>
               <div className={`font-bold text-2xl text-blue-800`}>Bản đồ</div>
@@ -102,8 +84,21 @@ const FacilityDetail = () => {
             {lat !== 0 ? <LeafletMap lat={lat} lng={lng}/> : <div className={`w-full h-96`}/>}
           </div>
         </div>
-        <div className={`flex w-2/3 mx-auto h-full`}>
-          <div className={`w-full h-96`}>
+        <div>
+          <div className={`w-full`}>
+            <div
+              className={`flex flex-col bg-white w-full h-full rounded-2xl gap-3 my-4 overflow-x-hidden wrapper`}>
+              <div className={`flex justify-start mt-3 h-auto mx-10 w-3/4`}>
+                <div className={`font-bold text-2xl text-blue-800`}>Giới thiệu</div>
+              </div>
+              <div className={`mx-10 w-3/4 mb-3 h-96`}>
+                <div className={`text-lg break-words`}>
+                  <Viewer value={data.description}/>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className={`w-full h-[500px]`}>
             <div className={`flex flex-col bg-white w-full h-full rounded-2xl gap-3 my-4 `}>
               <div className={`flex justify-start mt-3 h-auto mx-10 w-3/4 gap-3`}>
                 <div className={`text-blue-400 text-2xl`}>Danh sách</div>
@@ -131,16 +126,16 @@ const FacilityDetail = () => {
                   color={select === serviceType.PACKAGE ? 'primary' : 'default'}/>
               </div>
               <hr className={`mx-5 mt-2 bg-gray-500`}/>
-              <div className={`gap-2 mx-2 h-72 overflow-auto`}>
+              <div className={`gap-2 mx-2 overflow-y-auto`}>
                 {services.length > 0 ? services.map((item) => (
-                  item.type === select && (
-                    <ServiceButton
-                      key={item.id}
-                      {...item}
-                      select={select}
-                    />
+                    item.type === select && (
+                      <ServiceButton
+                        key={item.id}
+                        {...item}
+                        select={select}
+                      />
                     ))) :
-                  <Empty className="h-full" />
+                  <Empty className="h-full"/>
                 }
               </div>
             </div>

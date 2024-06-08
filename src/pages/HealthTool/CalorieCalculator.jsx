@@ -1,5 +1,5 @@
 // src/CalorieCalculator.js
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { useTranslation } from 'react-i18next';
 import Button from "@mui/material/Button";
 
@@ -11,6 +11,13 @@ const CalorieCalculator = () => {
   const [height, setHeight] = useState('');
   const [activity, setActivity] = useState('1.2');
   const [calories, setCalories] = useState(null);
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -36,8 +43,10 @@ const CalorieCalculator = () => {
     <div>
       <div
         className="flex flex-col items-center justify-center w-2/3 border-2 border-blue-700 mx-auto rounded-xl my-5">
-        <p className="text-5xl font-bold mb-4 text-blue-500">{t('title')}</p>
-        <form onSubmit={handleSubmit}>
+        <p className="text-5xl font-bold mb-4 text-blue-500">{t('calorie_calculator')}</p>
+        <form
+          className="w-2/3"
+          onSubmit={handleSubmit}>
           <div className="flex gap-4">
             <div>
               <label>{t('age')}:</label>

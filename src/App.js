@@ -8,6 +8,7 @@ import Layout from "./layouts/layout";
 import 'react-toastify/dist/ReactToastify.css';
 import React from 'react';
 import {IntlProvider} from 'react-intl';
+import './utils/i18n'
 
 
 // Đối tượng intl có thể chứa các thông tin địa phương như ngôn ngữ, quốc gia, v.v.

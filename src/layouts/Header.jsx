@@ -17,7 +17,6 @@ import Typography from "@mui/material/Typography";
 import USER from "../services/userService";
 import "./style.css"
 import {useTranslation} from "react-i18next";
-import '../utils/i18n';
 
 // const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 

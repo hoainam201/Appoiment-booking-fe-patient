@@ -55,10 +55,14 @@
     "gardening_calories": "100 calo tiêu thụ trong 30 phút"
   },
   "health_tool": "Tính toán chỉ số sức khỏe",
-  "contact": "LIÊN HỆ",
-  "social_media": "MẠNG XÃ HỘI",
-  "health_facility": "Cơ sở y tế",
-  "doctor": "Bác sĩ",
-  "health_package": "Gói khám sức khỏe",
-  "news": "Tin tức",
+  "about": "Về chúng tôi",
+  "social_media": "Mạng xã hội",
+  "contact": "Liên hệ",
+  "navbar": {
+    "health_facilities": "Cơ sở y tế",
+    "doctor": "Bác sĩ",
+    "health_package": "Gói khám sức khỏe",
+    "news": "Tin tức",
+    "search": "Tìm kiếm"
+  }
 }

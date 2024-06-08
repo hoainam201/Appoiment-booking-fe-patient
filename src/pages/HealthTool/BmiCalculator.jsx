@@ -1,5 +1,5 @@
 // src/BMICalculator.js
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { useTranslation } from 'react-i18next';
 import Button from "@mui/material/Button";
 
@@ -9,6 +9,13 @@ const BMICalculator = () => {
   const [weight, setWeight] = useState('');
   const [bmi, setBMI] = useState(null);
   const [category, setCategory] = useState('');
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }, []);
 
   const calculateBMI = () => {
     if (height && weight) {

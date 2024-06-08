@@ -11,31 +11,26 @@ import {useNavigate} from "react-router-dom";
 export default function ImgMediaCard(props) {
   const navigate = useNavigate();
   return (
-    <Card
+    <button
+      onClick={() => {
+        navigate('/service/' + props.id);
+      }}
+      className="border-2 border-white shadow-md p-1 rounded-lg cursor-pointer w-full hover:border-blue-500"
     >
       <img src={props.image ? props.image : doctor}
            className={`w-40 h-40 mx-auto object-center rounded-full`}/>
-      <CardContent>
-        <Typography gutterBottom variant="h5"
-                    sx={{
-                      fontWeight: 'flower',
-                      whiteSpace: 'nowrap',
-                    }}>
+      <div>
+        <p className="text-xl text-blue-500 font-bold">
           {props.name}
-        </Typography>
+        </p>
         <Rating name="half-rating-read"
                 defaultValue={props.avg_rating}
                 precision={0.1} readOnly/>
-      </CardContent>
-      <CardActions>
-        <Button
-          variant="contained"
-          size="small"
-          onClick={() => {
-            navigate('/service/' + props.id);
-          }}
-        >Chi tiết</Button>
-      </CardActions>
-    </Card>
+        <div className={`flex justify-center`}>
+          <div className={`justify-start items-center`}>Giá:</div>
+          <div className={`justify-end items-center`}>{props?.fee} VND</div>
+        </div>
+      </div>
+    </button>
   );
 }
