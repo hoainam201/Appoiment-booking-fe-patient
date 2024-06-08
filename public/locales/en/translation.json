@@ -1,5 +1,5 @@
 {
-  "title": "Calorie Calculator",
+  "calorie_calculator": "Calorie Calculator",
   "age": "Age",
   "gender": "Gender",
   "male": "Male",
@@ -54,5 +54,8 @@
     "gardening": "Gardening (vigorous)",
     "gardening_calories": "100 calories burned in 30 minutes"
   },
-  "health_tool": "Health tool"
+  "health_tool": "Health tool",
+  "about": "About",
+  "social_media": "Social Media",
+  "contact": "Contact"
 }

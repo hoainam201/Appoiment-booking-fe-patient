@@ -1,5 +1,5 @@
 {
-  "title": "Tính toán Calorie",
+  "calorie_calculator": "Tính toán Calorie",
   "age": "Tuổi",
   "gender": "Giới tính",
   "male": "Nam",
@@ -54,5 +54,9 @@
     "gardening": "Làm vườn (mạnh)",
     "gardening_calories": "100 calo tiêu thụ trong 30 phút"
   },
-  "health_tool": "Tính toán chỉ số sức khỏe"
+  "health_tool": "Tính toán chỉ số sức khỏe",
+  "about": "Về chúng tôi",
+  "social_media": "Mạng xã hội",
+  "contact": "Liên hệ"
+
 }

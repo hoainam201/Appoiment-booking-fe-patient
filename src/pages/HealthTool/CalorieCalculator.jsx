@@ -36,7 +36,7 @@ const CalorieCalculator = () => {
     <div>
       <div
         className="flex flex-col items-center justify-center w-2/3 border-2 border-blue-700 mx-auto rounded-xl my-5">
-        <p className="text-5xl font-bold mb-4 text-blue-500">{t('title')}</p>
+        <p className="text-5xl font-bold mb-4 text-blue-500">{t('calorie_calculator')}</p>
         <form onSubmit={handleSubmit}>
           <div className="flex gap-4">
             <div>
