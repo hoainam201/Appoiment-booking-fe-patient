@@ -1,8 +1,7 @@
 import React from "react";
 import Rating from "@mui/material/Rating";
 import Button from "@mui/material/Button";
-import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
-import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt";
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import {FormattedDate} from "react-intl";
 
 const ReviewCard = (props) => {
@@ -32,14 +31,7 @@ const ReviewCard = (props) => {
             {...(token ? {} : {disabled: true})}
             size="small"
           >
-            <ThumbUpOffAltIcon/>
-          </Button>
-          <Button
-            {...(token ? {} : {disabled: true})}
-            size="small"
-          >
-            <ThumbDownOffAltIcon
-              color={token ? "error" : ""}/>
+            <FavoriteBorderIcon/>
           </Button>
         </div>
       </div>

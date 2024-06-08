@@ -11,31 +11,22 @@ import {useNavigate} from "react-router-dom";
 export default function FacilityCard(props) {
   const navigate = useNavigate();
   return (
-    <Card
+    <button
+      className="border-2 border-gray-300 p-1 rounded-lg cursor-pointer w-full hover:border-blue-500"
+      onClick={() => {
+        navigate('/health-facilities/' + props.id);
+      }}
     >
       <img src={props.avatar ? props.avatar : hospital}
-           className={`w-40 h-40 mx-auto rounded-full`}/>
-      <CardContent>
-        <Typography gutterBottom variant="h5"
-                    sx={{
-                      fontWeight: 'flower',
-                      whiteSpace: 'nowrap',
-                    }}>
+           className={`w-40 h-40 mx-auto object-cover`}/>
+      <div>
+        <p className="text-xl text-blue-500 font-bold">
           {props.name}
-        </Typography>
+        </p>
         <Rating name="half-rating-read"
                 defaultValue={props.avg_rating}
                 precision={0.1} readOnly/>
-      </CardContent>
-      <CardActions>
-        <Button
-          size="small"
-          variant={`contained`}
-          onClick={() => {
-            navigate('/health-facilities/' + props.id);
-          }}
-        >Chi tiết</Button>
-      </CardActions>
-    </Card>
+      </div>
+    </button>
   );
 }

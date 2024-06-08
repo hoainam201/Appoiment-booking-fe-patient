@@ -1,5 +1,5 @@
 // src/CalorieCalculator.js
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { useTranslation } from 'react-i18next';
 import Button from "@mui/material/Button";
 
@@ -11,6 +11,13 @@ const CalorieCalculator = () => {
   const [height, setHeight] = useState('');
   const [activity, setActivity] = useState('1.2');
   const [calories, setCalories] = useState(null);
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
