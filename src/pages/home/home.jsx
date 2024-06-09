@@ -10,12 +10,14 @@ import img2 from "../../assets/images/img2.png";
 import img3 from "../../assets/images/img3.png";
 import img4 from "../../assets/images/img4.png";
 import img5 from "../../assets/images/img5.png";
+import {useSearch} from "../../context/SearchContext";
 
 
 const Home = () => {
   const navigate = useNavigate();
-  const [contentPlaceholder, setContentPlaceholder] = useState('Search...');
+  const [contentPlaceholder, setContentPlaceholder] = useState('');
   const [isShowMenu, setIsShowMenu] = useState(true);
+  const {updateSearchQuery} = useSearch();
 
   useEffect(() => {
     const handleResize = () => {
@@ -33,6 +35,14 @@ const Home = () => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+
+  const onSearch = () => {
+    if(contentPlaceholder.trim() === '') {
+      return;
+    }
+    updateSearchQuery(contentPlaceholder);
+    navigate("/health-facilities");
+  };
 
   const items = [
     {
@@ -53,12 +63,12 @@ const Home = () => {
       image: img3,
       linkTo: "/health-package",
     },
-    {
-      id: 4,
-      name: "Dịch vụ y tế",
-      image: img4,
-      linkTo: "/",
-    },
+    // {
+    //   id: 4,
+    //   name: "Dịch vụ y tế",
+    //   image: img4,
+    //   linkTo: "/",
+    // },
     {
       id: 5,
       name: "Cẩm nang",
@@ -120,7 +130,21 @@ const Home = () => {
               Kết nối mọi người với dịch vụ y tế
             </div>
             <div className="flex justify-center w-2/3 px-28 py-6">
-              <Input size="large" className="w-full rounded-full" placeholder="Search..." prefix={<SearchOutlined/>}/>
+              <Input
+                size="large"
+                className="w-full
+                rounded-full"
+                placeholder="Search..."
+                prefix={<SearchOutlined/>}
+                onChange={(e) => {
+                  setContentPlaceholder(e.target.value);
+                }}
+                onKeyUp={(e) => {
+                  if (e.key === "Enter") {
+                    onSearch();
+                  }
+                }}
+              />
             </div>
             <div className={`text-black text-xl`}>
               Đặt khám nhanh - Lấy số thứ tự trực tuyến - Tư vấn sức khỏe từ xa

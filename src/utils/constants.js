@@ -1,5 +1,10 @@
 export const specialities = [
   {
+    id: 0,
+    name: "Đa khoa - Tổng hợp",
+    key: "General",
+  },
+  {
     id: 1,
     name: "Tiêu hóa",
     key: "Gastroenterology",
@@ -73,6 +78,11 @@ export const specialities = [
     id: 15,
     name: "Nhãn khoa",
     key: "Opthalmology",
+  },
+  {
+    id: 16,
+    name: "Thú y",
+    key: "Veterinary",
   }
 ];
 

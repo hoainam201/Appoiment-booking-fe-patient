@@ -22,6 +22,10 @@ const Login = () => {
     navigate('/Register');
   }
 
+  const navigateToForgotPassword = () => {
+    navigate('/forgot-password');
+  }
+
   const handleLogin = async () => {
     try {
       if (!email || !password) {
@@ -40,7 +44,7 @@ const Login = () => {
       const token = res?.data?.token;
       if (token && res.status === 200) {
         localStorage.setItem('token', token);
-        navigate(-2);
+        navigate(-1);
         toast.success('Login successful');
       } else {
         toast.error(res.data.message);
@@ -107,14 +111,12 @@ const Login = () => {
                 </div>
 
                 <div className="mb-6 flex items-center justify-between">
-                  <button onClick={() => {
-                    navigate('/forgot-password');
-                  }}>Quên mật khẩu?</button>
+                  <button type="button" className="hover:underline" onClick={navigateToForgotPassword}>Quên mật khẩu?</button>
                 </div>
 
                 <div className="text-center lg:text-left">
                   <Button
-                    variant={`contained`}
+                    variant="contained"
                     onClick={handleLogin}
                   >
                     Đăng nhập
@@ -123,6 +125,7 @@ const Login = () => {
                   <p className="mb-0 mt-2 pt-1 text-sm font-semibold">
                     Chưa có tài khoản?
                     <button
+                      type="button"
                       onClick={navigateToRegister}
                       className="px-1 text-rose-600 transition duration-150 ease-in-out hover:text-danger-600 focus:text-red-800 active:text-red-800"
                     >Đăng ký</button>

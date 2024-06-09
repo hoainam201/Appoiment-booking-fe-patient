@@ -55,7 +55,7 @@ export default function Detail() {
 
   const fetchReviews = async () => {
     try {
-      const res = await UserService.getReviews(id, page);
+      const res = token ? await UserService.getReviewsByToken(id, page) : await UserService.getReviews(id, page);
       if (res.status === 200) {
         console.log(res.data);
         setReviews(res.data.reviews);

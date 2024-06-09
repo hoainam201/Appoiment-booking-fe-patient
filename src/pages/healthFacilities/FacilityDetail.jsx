@@ -12,6 +12,7 @@ import {serviceType} from "../../utils/constants";
 import {Empty} from 'antd';
 import UserService from "../../services/userService";
 import Rating from "@mui/material/Rating";
+import {useTranslation} from "react-i18next";
 
 const FacilityDetail = () => {
   const [id, setId] = useState('');
@@ -25,10 +26,11 @@ const FacilityDetail = () => {
   const token = localStorage.getItem("token");
   const [totalReviews, setTotalReviews] = useState(0);
   const [page, setPage] = useState(1);
+  const {t} = useTranslation();
 
   const fetchReviews = async () => {
     try {
-      const res = await UserService.getReviewFacility(facilityId.id, page);
+      const res = token ? await UserService.getReviewFacilityByToken(facilityId.id, page) : await UserService.getReviewFacility(facilityId.id, page);
       if (res.status === 200) {
         console.log(res.data);
         setReviews(res.data.reviews);
@@ -79,7 +81,7 @@ const FacilityDetail = () => {
           <FacilityInfo {...data}/>
           <div className={`flex flex-col bg-white w-full h-96 rounded-xl gap-3 my-4 `}>
             <div className={`flex justify-start mt-3 h-auto mx-10 w-3/4`}>
-              <div className={`font-bold text-2xl text-blue-800`}>Bản đồ</div>
+              <div className={`font-bold text-2xl text-blue-800`}>{t('map')}</div>
             </div>
             {lat !== 0 ? <LeafletMap lat={lat} lng={lng}/> : <div className={`w-full h-96`}/>}
           </div>
@@ -89,7 +91,7 @@ const FacilityDetail = () => {
             <div
               className={`flex flex-col bg-white w-full h-full rounded-2xl gap-3 my-4 overflow-x-hidden wrapper`}>
               <div className={`flex justify-start mt-3 h-auto mx-10 w-3/4`}>
-                <div className={`font-bold text-2xl text-blue-800`}>Giới thiệu</div>
+                <div className={`font-bold text-2xl text-blue-800`}>{t('introduction')}</div>
               </div>
               <div className={`mx-10 w-3/4 mb-3 h-96`}>
                 <div className={`text-lg break-words`}>
@@ -101,7 +103,7 @@ const FacilityDetail = () => {
           <div className={`w-full h-[500px]`}>
             <div className={`flex flex-col bg-white w-full h-full rounded-2xl gap-3 my-4 `}>
               <div className={`flex justify-start mt-3 h-auto mx-10 w-3/4 gap-3`}>
-                <div className={`text-blue-400 text-2xl`}>Danh sách</div>
+                <div className={`text-blue-400 text-2xl`}>{t('list')}</div>
                 <Chip
                   sx={{
                     width: '100px',
@@ -110,7 +112,7 @@ const FacilityDetail = () => {
                     justifyContent: 'center',
                     alignItems: 'center',
                   }}
-                  label="Bác sĩ"
+                  label={t('navbar.doctor')}
                   onClick={() => setSelect(serviceType.DOCTOR)}
                   color={select === serviceType.DOCTOR ? 'primary' : 'default'}/>
                 <Chip
@@ -121,7 +123,7 @@ const FacilityDetail = () => {
                     justifyContent: 'center',
                     alignItems: 'center',
                   }}
-                  label="Gói khám"
+                  label={t('package')}
                   onClick={() => setSelect(serviceType.PACKAGE)}
                   color={select === serviceType.PACKAGE ? 'primary' : 'default'}/>
               </div>
@@ -147,11 +149,11 @@ const FacilityDetail = () => {
           <div className={`w-1/3 justify-start`}>
             <div className="flex flex-col outline outline-1 outline-gray-200 rounded-md">
               <div className="flex justify-center text-center text-xl">
-                Tổng quan đánh giá
+                {t('reviewOverview')}
               </div>
               <div className="flex flex-col justify-center items-center">
                 <Rating name="read-only" value={Math.ceil(data?.avg_rating * 10) / 10} precision={0.1} readOnly/>
-                <div>{Math.ceil(data?.avg_rating * 10) / 10}/5 ({totalReviews} đánh giá)</div>
+                <div>{Math.ceil(data?.avg_rating * 10) / 10}/5 ({totalReviews} {t('review')})</div>
               </div>
               <div>
                 {/*{items.map((item) => (*/}
@@ -162,7 +164,7 @@ const FacilityDetail = () => {
             </div>
           </div>
           <div className={`flex flex-col w-full`}>
-            <p className={`w-full text-2xl font-sans`}>Đánh giá từ người dùng</p>
+            <p className={`w-full text-2xl font-sans`}>{t('userReviews')}</p>
             <div>
               {reviews && reviews.length > 0 ?
                 reviews.map((review) => (

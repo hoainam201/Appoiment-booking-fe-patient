@@ -4,7 +4,7 @@ import Pagination from "@mui/material/Pagination";
 import React, {useEffect, useState} from "react";
 import {Empty} from "antd";
 import Loading from "../../components/Loading";
-import NewsButton from "../../components/NewsButton";
+import NewsButton from "../../components/NewsButton/NewsButton";
 import UserService from "../../services/userService";
 
 const NewsList = () => {
@@ -42,7 +42,7 @@ const NewsList = () => {
         >
           {data && data.length > 0 && (
             data.map((news) => (
-              <NewsButton key={news.id} name={news.title} image={news.banner} id={news.id}/>
+              <NewsButton key={news.id} name={news.title} image={news.banner} id={news.id} subject={news.created_at}/>
             ))
           )}
         </div>

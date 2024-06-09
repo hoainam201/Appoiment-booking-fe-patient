@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import React from 'react';
 import {IntlProvider} from 'react-intl';
 import './utils/i18n'
+import {SearchProvider} from "./context/SearchContext";
 
 
 // Đối tượng intl có thể chứa các thông tin địa phương như ngôn ngữ, quốc gia, v.v.
@@ -20,8 +21,9 @@ function App() {
   return (
     <IntlProvider locale={locale}>
       <QueryClientProvider client={queryClient}>
-        <ToastContainer autoClose={1000}/>
-        <BrowserRouter>
+        <SearchProvider>
+          <ToastContainer autoClose={1000}/>
+          <BrowserRouter>
             <Routes>
               <Route element={<Layout/>}>
                 {NormalRoutes.map((route, index) => (
@@ -36,7 +38,8 @@ function App() {
                 <Route path={NotFound.path} element={NotFound.element}/>
               </Route>
             </Routes>
-        </BrowserRouter>
+          </BrowserRouter>
+        </SearchProvider>
       </QueryClientProvider>
     </IntlProvider>
   );

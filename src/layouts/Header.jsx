@@ -20,28 +20,7 @@ import {useTranslation} from "react-i18next";
 
 // const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
-const settings = [
-  {
-    key: '1',
-    label: 'Tài khoản',
-    icon: <UserOutlined/>
-  },
-  {
-    key: '2',
-    label: 'Đổi mật khẩu',
-    icon: <KeyOutlined/>
-  },
-  {
-    key: '3',
-    label: 'Lịch của bạn',
-    icon: <UnorderedListOutlined/>
-  },
-  {
-    key: '4',
-    label: 'Đăng xuất',
-    icon: <LoginOutlined/>
-  }
-];
+
 
 
 const Header = () => {
@@ -56,6 +35,29 @@ const Header = () => {
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
   };
+
+  const settings = [
+    {
+      key: '1',
+      label: t('account'),
+      icon: <UserOutlined/>
+    },
+    {
+      key: '2',
+      label: t('changePassword'),
+      icon: <KeyOutlined/>
+    },
+    {
+      key: '3',
+      label: t('appointment'),
+      icon: <UnorderedListOutlined/>
+    },
+    {
+      key: '4',
+      label: t('logout'),
+      icon: <LoginOutlined/>
+    }
+  ];
 
   const languageFromStorage = localStorage.getItem('language') || 'vi';
 
@@ -100,7 +102,7 @@ const Header = () => {
 
   return (
     <div className="sticky top-0 flex flex-col w-full bg-white z-[999]">
-      <div className="flex flex-col justify-center w-full bg-white h-28">
+      <div className="flex flex-col justify-center w-full bg-white h-20">
         <div className="flex justify-between py-4 px-20 top-0 w-full font-bold text-2xl">
           <button
             className="flex text-center items-center text-blue-400 font-bold text-nowrap"
@@ -111,8 +113,9 @@ const Header = () => {
             </div>
             Health Pro
           </button>
-          <div className="justify hidden md:flex">
-            <Input size="small" className="w-96 rounded-full" placeholder="Search..." prefix={<SearchOutlined/>}/>
+          <div className="mt-4 justify hidden md:flex">
+            <Navbar/>
+            {/*<Input size="small" className="w-96 rounded-full" placeholder="Search..." prefix={<SearchOutlined/>}/>*/}
           </div>
           <div className="flex gap-4 w-1/4 justify-end">
             <div className="translate">
@@ -185,7 +188,7 @@ const Header = () => {
             )}
           </div>
         </div>
-        <Navbar/>
+        {/*<Navbar/>*/}
       </div>
     </div>
   );

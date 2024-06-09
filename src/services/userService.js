@@ -177,10 +177,71 @@ const USER = {
     });
     return res;
   },
+  getReviewsByToken: async (id, page) => {
+    let res = await privateHttp({
+      method: 'get',
+      url: '/service-review/service/user/' + id + (page ? `?page=${page}` : '')
+    });
+    return res;
+  },
+  getReviewFacilityByToken: async (id, page) => {
+    let res = await privateHttp({
+      method: 'get',
+      url: '/service-review/facility/user/' + id + (page ? `?page=${page}` : '')
+    });
+    return res;
+  },
   getReviewDetail: async (id) => {
     let res = await publicHttp({
       method: 'get',
       url: '/service-review/get/' + id
+    });
+    return res;
+  },
+  searchFacility: async (query, pageNumber, address, speciality) => {
+    let res = await publicHttp({
+      method: 'post',
+      url: '/health-facilities/search/',
+      data: {
+        name: query,
+        page: pageNumber,
+        address,
+        speciality
+      }
+    });
+    return res;
+  },
+  searchService: async (name, type, speciality, page, sort) => {
+    let res = await publicHttp({
+      method: 'post',
+      url: '/health-service/search/',
+      data: {
+        name,
+        type,
+        speciality,
+        page,
+        sort
+      }
+    });
+    return res;
+  },
+  favourite: async (id) => {
+    let res = await privateHttp({
+      method: 'post',
+      url: '/favourite/create',
+      data: {
+        service_review_id: id
+      }
+    });
+    return res;
+  },
+  unFavourite: async (id) => {
+    let res = await privateHttp({
+      method: 'delete',
+      url: '/favourite/destroy/',
+      data: {
+        service_review_id: id
+      }
     });
     return res;
   }

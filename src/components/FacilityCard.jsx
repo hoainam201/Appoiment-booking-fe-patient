@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 import Rating from '@mui/material/Rating';
 import hospital from '../assets/images/hospital.png';
 import {useNavigate} from "react-router-dom";
+import AddLocationIcon from "@mui/icons-material/AddLocation";
 
 export default function FacilityCard(props) {
   const navigate = useNavigate();
@@ -23,6 +24,9 @@ export default function FacilityCard(props) {
         <p className="text-xl text-blue-500 font-bold">
           {props.name}
         </p>
+        <div className={``}>
+          <p className="text-sm text-gray-500">{props.address}</p>
+        </div>
         <Rating name="half-rating-read"
                 defaultValue={props.avg_rating}
                 precision={0.1} readOnly/>
