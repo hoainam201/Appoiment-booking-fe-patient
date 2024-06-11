@@ -57,7 +57,7 @@ export default function PackageList() {
   return (
     <div>
       <div
-        className={`justify-center items-center mx-20`}
+        className={`justify-center items-center mx-2 sm:mx-20`}
       >
         <div className="flex flex-col lg:flex-row mx-auto gap-2 mb-4 w-full">
           <Input

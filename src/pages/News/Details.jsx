@@ -31,7 +31,7 @@ const Details = () => {
 
   return (
     <div>
-      {data ? <div className={`grid lg:grid-cols-[66%,1fr] grid-cols-1 overflow-auto mx-20 gap-2`}>
+      {data ? <div className={`grid lg:grid-cols-[66%,1fr] grid-cols-1 overflow-auto sm:mx-20 gap-2`}>
         <div className="w-full flex flex-col">
           <div className={`text-6xl hover:text-blue-500`}>{data?.title}</div>
           <div className="flex justify-start gap-2">

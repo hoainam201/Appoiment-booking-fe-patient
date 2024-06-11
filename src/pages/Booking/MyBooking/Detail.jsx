@@ -151,7 +151,7 @@ const Detail = () => {
 
   return (
     <>
-      {data ? <div className="flex flex-col mx-20">
+      {data ? <div className="flex flex-col md:mx-20">
         <div className="flex justify-between">
           <Button
             sx={{
@@ -161,7 +161,7 @@ const Detail = () => {
             onClick={() => window.history.back()}
             variant="text"
             startIcon={<ArrowBackIosIcon/>}
-          >Quay lại</Button>
+          ><p className="hidden md:block">Quay lại</p></Button>
           <h1 className="text-3xl font-bold text-center">Thông tin</h1>
           {data?.service_review_id === null ?
             <Button

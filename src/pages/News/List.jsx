@@ -35,7 +35,7 @@ const NewsList = () => {
   return (
     <div>
       <div
-        className={`justify-center items-center mx-20`}
+        className={`justify-center items-center mx-2 sm:mx-20`}
       >
         <div
           className={`grid grid-cols-[repeat(auto-fill,minmax(400px,1fr))] gap-4 w-full `}

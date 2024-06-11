@@ -42,7 +42,7 @@ const CalorieCalculator = () => {
   return (
     <div>
       <div
-        className="flex flex-col items-center justify-center w-2/3 border-2 border-blue-700 mx-auto rounded-xl my-5">
+        className="flex flex-col items-center justify-center w-full sm:w-2/3 border-2 border-blue-700 mx-auto rounded-xl my-5">
         <p className="text-5xl font-bold mb-4 text-blue-500">{t('calorie_calculator')}</p>
         <form
           className="w-2/3"
@@ -98,7 +98,7 @@ const CalorieCalculator = () => {
           </div>
         )}
       </div>
-      <div className="flex flex-col gap-1 items-start justify-start w-2/3 border-2 border-blue-700 mx-auto rounded-xl my-5">
+      <div className="flex flex-col gap-1 items-start justify-start w-full sm:w-2/3 border-2 border-blue-700 mx-auto rounded-xl my-5">
         <div className="p-2">
           <div className="text-3xl hover:text-blue-500">{t('standard_daily_intake')}</div>
           <ul>

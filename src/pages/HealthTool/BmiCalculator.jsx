@@ -40,7 +40,7 @@ const BMICalculator = () => {
 
   return (
     <div>
-      <div className="flex flex-col items-center justify-center w-2/3 border-2 border-blue-700 mx-auto rounded-xl my-5">
+      <div className="flex flex-col items-center justify-center w-full sm:w-2/3 border-2 border-blue-700 mx-auto rounded-xl my-5">
         <h2>{t('bmi_calculator')}</h2>
         <div className="w-1/2">
           <label>{t('height')}:</label>
@@ -70,7 +70,7 @@ const BMICalculator = () => {
           </div>
         )}
       </div>
-      <div className="flex flex-col items-center justify-center w-2/3 border-2 border-blue-700 mx-auto rounded-xl my-5">
+      <div className="flex flex-col items-center justify-center sm:w-2/3 border-2 border-blue-700 sm:mx-auto rounded-xl my-5">
         <table className="w-3/4 text-sm text-left rtl:text-right text-gray-500">
           <thead>
           <tr>

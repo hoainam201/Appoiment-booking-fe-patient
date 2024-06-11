@@ -21,6 +21,7 @@ import dayjs from 'dayjs';
 import {Empty} from "antd";
 import Rating from "@mui/material/Rating";
 import LinearLoad from "../../components/LinearLoad";
+import {useTranslation} from "react-i18next";
 
 const times = ["8:00", "8:30", "9:30", "10:00", "10:30", "11:00", "11:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00"];
 
@@ -37,6 +38,7 @@ export default function Detail() {
   const token = localStorage.getItem("token");
   const [totalReviews, setTotalReviews] = useState(0);
   const [page, setPage] = useState(1);
+  const {t} = useTranslation();
 
   const id = useParams().id;
 
@@ -147,13 +149,13 @@ export default function Detail() {
   };
   return (
     <div>
-      <div className={`flex mx-36 mt-5 h-auto`}>
+      <div className={`flex sm:mx-36 flex-col lg:flex-row mt-5 h-auto`}>
         <div className={`w-48`}>
           <img src={doctor?.image || Logo} className={`w-40 h-40 object-fill rounded-full mx-auto`}/>
           <div className={`mt-3 flex justify-center`}>
             <Button
               onClick={handleClickOpen}
-              variant={`contained`}>Đặt khám</Button>
+              variant={`contained`}>{t('booking')}</Button>
           </div>
         </div>
         <div className={`ml-10 w-1/2`}>
@@ -163,17 +165,17 @@ export default function Detail() {
           </div>
         </div>
         <div className={`ml-10`}>
-          <div className={`text-xl`}>Địa chỉ khám</div>
+          <div className={`text-xl`}>{t('clinicAddress')}</div>
           <div className={`text-xl`}>{doctor?.facility?.name}</div>
           <div className={`text-sm`}>{doctor?.facility?.address}</div>
-          <div className={`text-sm`}>Giá khám: {doctor?.fee} VND</div>
+          <div className={`text-sm`}>{t('fee')}: {doctor?.fee} VND</div>
         </div>
       </div>
-      <div className="flex mx-36 mt-12 gap-5 min-h-[400px]">
+      <div className="flex flex-col sm:mx-36 lg:flex-row mt-12 gap-5 min-h-[400px]">
         <div className={`w-1/3 justify-start`}>
           <div className="flex flex-col outline outline-1 outline-gray-200 rounded-md">
             <div className="flex justify-center text-center text-xl">
-              Tổng quan đánh giá
+              {t('reviewOverview')}
             </div>
             <div className="flex flex-col justify-center items-center">
               <Rating name="read-only" value={Math.ceil(doctor?.avg_rating * 10) / 10} precision={0.1} readOnly/>
@@ -188,7 +190,7 @@ export default function Detail() {
           </div>
         </div>
         <div className={`flex flex-col w-full `}>
-          <p className={`w-full text-2xl`}>Đánh giá từ người dùng</p>
+          <p className={`w-full text-2xl`}>{t('userReviews')}</p>
           <div>
             {reviews && reviews.length > 0 ?
               reviews.map((review) => (
@@ -205,7 +207,7 @@ export default function Detail() {
         open={open}
         onClose={handleClose}
       >
-        <DialogTitle>Đặt lịch khám</DialogTitle>
+        <DialogTitle>{t('booking')}</DialogTitle>
         <DialogContent>
           <div className={`flex flex-col w-full mt-2`}>
             <div className={`flex w-full h-24 gap-3 justify-start`}>
@@ -219,7 +221,7 @@ export default function Detail() {
             <form className="bg-white rounded px-8 pt-6 pb-8 mb-4">
               <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
-                  Họ tên
+                  {t('fullName')}
                 </label>
                 <input
                   className="h-14 border rounded w-full py-2 px-3 text-gray-700 outline-none border-[#d5d5d5]
@@ -232,7 +234,7 @@ export default function Detail() {
               </div>
               <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2">
-                  Số điện thoại
+                  {t('phoneNumber')}
                 </label>
                 <input
                   className="h-14 border rounded w-full py-2 px-3 text-gray-700 outline-none border-[#d5d5d5]
@@ -245,7 +247,7 @@ export default function Detail() {
               </div>
               <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2">
-                  Ngày tháng năm sinh
+                  {t('dob')}
                 </label>
                 <LocalizationProvider
                   sx={{width: '100%'}}
@@ -264,7 +266,7 @@ export default function Detail() {
               </div>
               <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2">
-                  Ngày khám
+                  {t('time')}
                 </label>
                 <LocalizationProvider
                   sx={{width: '100%'}}
@@ -281,7 +283,7 @@ export default function Detail() {
               </div>
               <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2">
-                  Giờ khám
+                  {t('hour')}
                 </label>
                 <div
                   className="rounded w-full py-2 px-3 text-gray-700 leading-tight h-max-[170px]"
@@ -315,15 +317,15 @@ export default function Detail() {
                 </div>
               </div>
               <div className="mt-4">
-                <li>Vui lòng điền chính xác thông tin để bệnh viện lập hồ sơ</li>
-                <li>Chi phí đặt lích khám sẽ thanh toán tại bệnh viện</li>
+                <li>{t('fillInformation')}</li>
+                <li>{t('paymentNote')}</li>
               </div>
             </form>
           </div>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Hủy</Button>
-          <Button type="submit" onClick={handleSubmit} variant="contained">Đặt khám</Button>
+          <Button onClick={handleClose}>{t('cancel')}</Button>
+          <Button type="submit" onClick={handleSubmit} variant="contained">{t('booking')}</Button>
         </DialogActions>
       </Dialog>
     </div>

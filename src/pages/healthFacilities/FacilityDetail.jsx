@@ -76,7 +76,7 @@ const FacilityDetail = () => {
 
   return (
     <div className={`bg-[#e8f2f7] pb-5`}>
-      <div className="grid lg:grid-cols-[33%,1fr] grid-cols-1 mx-36 gap-5 mb-4">
+      <div className="grid lg:grid-cols-[33%,1fr] grid-cols-1 sm:mx-36 gap-5 mb-4">
         <div>
           <FacilityInfo {...data}/>
           <div className={`flex flex-col bg-white w-full h-96 rounded-xl gap-3 my-4 `}>
@@ -145,8 +145,8 @@ const FacilityDetail = () => {
         </div>
       </div>
       <div>
-        <div className="flex mx-36 mt-5 gap-5 bg-white rounded-xl">
-          <div className={`w-1/3 justify-start`}>
+        <div className="flex flex-col lg:flex-row sm:mx-36 mt-5 gap-5 bg-white rounded-xl">
+          <div className={`w-1/3 flex justify-center sm:justify-start`}>
             <div className="flex flex-col outline outline-1 outline-gray-200 rounded-md">
               <div className="flex justify-center text-center text-xl">
                 {t('reviewOverview')}

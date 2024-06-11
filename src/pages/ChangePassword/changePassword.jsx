@@ -53,7 +53,7 @@ const ChangePassword = () => {
 
   return (
     <div>
-      <div className="bg-white overflow-hidden shadow rounded-lg border w-1/2 m-auto">
+      <div className="bg-white overflow-hidden shadow rounded-lg border w-full sm:w-1/2 m-auto">
         <div className="px-4 py-5 sm:px-6">
           <h3 className="text-lg leading-6 font-medium text-gray-900">
             {t('changePassword')}

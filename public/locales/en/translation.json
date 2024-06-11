@@ -91,5 +91,13 @@
   "appointment": "Appointment",
   "package": "Package",
   "map": "Map",
-  "list": "List"
+  "list": "List",
+  "dob": "Date of Birth",
+  "time": "Time",
+  "hours": "Hours",
+  "fee": "Fee",
+  "booking": "Booking",
+  "fillInformation": "Please fill in the information accurately for the hospital to create a record.",
+  "paymentNote": "The appointment booking fee will be paid at the hospital.",
+  "clinicAddress": "Clinic Address"
 }

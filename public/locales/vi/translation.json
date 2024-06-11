@@ -91,5 +91,13 @@
   "appointment": "Cuộc hẹn của bạn",
   "package": "Gói khám",
   "map": "Bản đồ",
-  "list": "Danh sách"
+  "list": "Danh sách",
+  "dob": "Ngày sinh",
+  "time": "Ngày khám",
+  "hour": "Giờ khám",
+  "fee": "Chi phí",
+  "booking": "Đặt lịch",
+  "fillInformation": "Vui lòng điền chính xác thông tin để bệnh viện lập hồ sơ.",
+  "paymentNote": "Chi phí đặt lịch khám sẽ thanh toán tại bệnh viện.",
+  "clinicAddress": "Địa chỉ khám"
 }

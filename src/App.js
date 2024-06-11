@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import {NormalRoutes, NotFound} from "./routes/routes";
 import {Routes, Route, BrowserRouter} from "react-router-dom";
@@ -13,7 +12,7 @@ import {SearchProvider} from "./context/SearchContext";
 
 
 // Đối tượng intl có thể chứa các thông tin địa phương như ngôn ngữ, quốc gia, v.v.
-const locale = navigator.language || 'vn';// Ngôn ngữ và quốc gia cụ thể
+const locale = localStorage.getItem('language') || 'vn';// Ngôn ngữ và quốc gia cụ thể
 
 
 function App() {

@@ -7,6 +7,7 @@ import {toast} from "react-toastify";
 import {useNavigate} from "react-router-dom";
 import {FormattedDate} from "react-intl";
 import Loading from "../../../components/Loading";
+import {useMediaQuery} from "@mui/material";
 
 
 
@@ -24,7 +25,6 @@ const MyBooking = () => {
     );
 
 
-
     const columns = [
         {
             title: 'Họ và tên',
@@ -32,6 +32,7 @@ const MyBooking = () => {
             key: 'name',
             render: (text) => <a>{text}</a>,
             fixed: 'left',
+            responsive: ['lg'],
         },
         {
             title: 'Dịch vụ',
@@ -153,7 +154,7 @@ const MyBooking = () => {
     };
 
     return (
-        <div className="h-full py-5 mx-20">
+        <div className="h-full py-5 lg:mx-20">
             {data && data.length> 0 ? <Table
                 columns={columns}
                 dataSource={data}
