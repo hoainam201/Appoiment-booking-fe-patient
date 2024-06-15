@@ -1,1 +1,1 @@
-export const baseUrl = process.env.LINK || 'http://localhost:5000';
+export const baseUrl = process.env.LINK || 'https://appoiment-booking-and-review.onrender.com';
