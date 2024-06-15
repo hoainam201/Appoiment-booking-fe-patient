@@ -11,6 +11,7 @@ import img3 from "../../assets/images/img3.png";
 import img4 from "../../assets/images/img4.png";
 import img5 from "../../assets/images/img5.png";
 import {useSearch} from "../../context/SearchContext";
+import {useTranslation} from "react-i18next";
 
 
 const Home = () => {
@@ -18,6 +19,7 @@ const Home = () => {
   const [contentPlaceholder, setContentPlaceholder] = useState('');
   const [isShowMenu, setIsShowMenu] = useState(true);
   const {updateSearchQuery} = useSearch();
+  const {t} = useTranslation();
 
   useEffect(() => {
     const handleResize = () => {
@@ -47,19 +49,19 @@ const Home = () => {
   const items = [
     {
       id: 1,
-      name: "Đặt khám tại cơ sở",
+      name: t('navbar.health_facilities'),
       image: img1,
       linkTo: "/health-facilities",
     },
     {
       id: 2,
-      name: "Đặt khám bác sĩ",
+      name: t('navbar.doctor'),
       image: img2,
       linkTo: "/doctor",
     },
     {
       id: 3,
-      name: "Gói khám sức khỏe",
+      name: t('navbar.health_package'),
       image: img3,
       linkTo: "/health-package",
     },
@@ -71,7 +73,7 @@ const Home = () => {
     // },
     {
       id: 5,
-      name: "Cẩm nang",
+      name: t('navbar.news'),
       image: img5,
       linkTo: "/news",
     }
@@ -129,7 +131,7 @@ const Home = () => {
             <div className={`text-black text-5xl font-sans`}>
               Kết nối mọi người với dịch vụ y tế
             </div>
-            <div className="flex justify-center w-2/3 px-28 py-6">
+            <div className="flex justify-center w-full lg:w-2/3 px-4 sm:px-28 py-6">
               <Input
                 size="large"
                 className="w-full
@@ -147,7 +149,6 @@ const Home = () => {
               />
             </div>
             <div className={`text-black text-xl`}>
-              Đặt khám nhanh - Lấy số thứ tự trực tuyến - Tư vấn sức khỏe từ xa
             </div>
             <div className={`expand`}>
               <button

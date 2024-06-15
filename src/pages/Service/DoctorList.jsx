@@ -55,6 +55,10 @@ export default function DoctorList() {
 
   useEffect(() => {
     handleSearch();
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   },[pageNumber]);
 
   return (

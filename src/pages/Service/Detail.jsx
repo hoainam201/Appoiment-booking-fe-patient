@@ -104,7 +104,7 @@ export default function Detail() {
 
   const handleSelect = (t) => {
     setTime(t);
-    console.log(t);
+    // console.log(t);
   }
 
   const handleSubmit = async () => {
@@ -150,21 +150,23 @@ export default function Detail() {
   return (
     <div>
       <div className={`flex sm:mx-36 flex-col lg:flex-row mt-5 h-auto`}>
-        <div className={`w-48`}>
-          <img src={doctor?.image || Logo} className={`w-40 h-40 object-fill rounded-full mx-auto`}/>
+        <div className={`sm:w-48 w-full items-center`}>
+          <div className={`mt-3 flex justify-center`}>
+            <img src={doctor?.image || Logo} className={`w-40 h-40 object-fill rounded-full`}/>
+          </div>
           <div className={`mt-3 flex justify-center`}>
             <Button
               onClick={handleClickOpen}
               variant={`contained`}>{t('booking')}</Button>
           </div>
         </div>
-        <div className={`ml-10 w-1/2`}>
+        <div className={`sm:ml-10 sm:w-1/2 mx-2`}>
           <div className={`font-bold text-3xl header-title`}>{doctor?.name}</div>
           <div className={`text-sm break-words  mt-3`}>
             <Viewer value={doctor?.description}/>
           </div>
         </div>
-        <div className={`ml-10`}>
+        <div className={`sm:ml-10 mx-2`}>
           <div className={`text-xl`}>{t('clinicAddress')}</div>
           <div className={`text-xl`}>{doctor?.facility?.name}</div>
           <div className={`text-sm`}>{doctor?.facility?.address}</div>
@@ -172,7 +174,7 @@ export default function Detail() {
         </div>
       </div>
       <div className="flex flex-col sm:mx-36 lg:flex-row mt-12 gap-5 min-h-[400px]">
-        <div className={`w-1/3 justify-start`}>
+        <div className={`sm:w-1/3 justify-start w-full mx-2`}>
           <div className="flex flex-col outline outline-1 outline-gray-200 rounded-md">
             <div className="flex justify-center text-center text-xl">
               {t('reviewOverview')}
@@ -189,7 +191,7 @@ export default function Detail() {
 
           </div>
         </div>
-        <div className={`flex flex-col w-full `}>
+        <div className={`flex flex-col w-full mx-2`}>
           <p className={`w-full text-2xl`}>{t('userReviews')}</p>
           <div>
             {reviews && reviews.length > 0 ?

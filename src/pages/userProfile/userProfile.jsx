@@ -43,6 +43,10 @@ const UserProfile = () => {
       }
     };
     fetchData();
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   }, []);
 
   const handleSave = async () => {

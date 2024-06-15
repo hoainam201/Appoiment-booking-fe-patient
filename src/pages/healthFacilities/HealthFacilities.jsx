@@ -51,6 +51,10 @@ export default function HealthFacilities() {
 
   useEffect(() => {
     searchFacilities();
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   }, [pageNumber]);
 
   return (

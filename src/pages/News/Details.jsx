@@ -26,6 +26,10 @@ const Details = () => {
       }
     }
     fetchData();
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   }, [id.id]);
 
 

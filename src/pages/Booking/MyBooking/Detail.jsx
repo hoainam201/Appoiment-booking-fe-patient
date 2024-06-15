@@ -121,6 +121,10 @@ const Detail = () => {
 
   useEffect(() => {
     fetchData();
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   }, []);
 
   const columns = [

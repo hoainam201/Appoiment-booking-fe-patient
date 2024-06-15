@@ -30,6 +30,10 @@ const NewsList = () => {
 
   useEffect(() => {
     fetchNews();
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   }, []);
 
   return (

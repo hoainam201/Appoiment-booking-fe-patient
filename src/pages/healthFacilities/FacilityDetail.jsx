@@ -146,7 +146,7 @@ const FacilityDetail = () => {
       </div>
       <div>
         <div className="flex flex-col lg:flex-row sm:mx-36 mt-5 gap-5 bg-white rounded-xl">
-          <div className={`w-1/3 flex justify-center sm:justify-start`}>
+          <div className={`sm:w-1/3 justify-start w-full mx-2`}>
             <div className="flex flex-col outline outline-1 outline-gray-200 rounded-md">
               <div className="flex justify-center text-center text-xl">
                 {t('reviewOverview')}

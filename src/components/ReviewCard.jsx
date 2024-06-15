@@ -39,9 +39,11 @@ const ReviewCard = (props) => {
   return (
     <div className="outline outline-1 outline-gray-200 rounded-md my-2 hover:outline-2 hover:outline-gray-300 hover:shadow">
       <div className="flex flex-col ml-3">
-        <div className="flex gap-3 my-1">
-          <div className="font-bold">{props.review?.name}</div>
-          <Rating name="read-only" value={props.review?.rating} readOnly />
+        <div className="flex sm:flex-row flex-col gap-3 my-1">
+          <div className="flex gap-2">
+            <div className="font-bold">{props.review?.name}</div>
+            <Rating name="read-only" value={props.review?.rating} readOnly/>
+          </div>
           <div className="text-sm">
             <FormattedDate
               value={props.review?.created_at}
@@ -56,7 +58,7 @@ const ReviewCard = (props) => {
         {props.review?.comment && (
           <div>
             <hr />
-            <p className="my-1 text-lg">{props.review?.comment}</p>
+            <p className="my-1 text-lg break-words">{props.review?.comment}{props.review?.comment}</p>
             <hr />
             <div className="flex">
               {isFavourited ? (

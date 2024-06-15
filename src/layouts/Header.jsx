@@ -103,7 +103,7 @@ const Header = () => {
   return (
     <div className="sticky top-0 flex flex-col w-full bg-white z-[999]">
       <div className="flex flex-col justify-between sm:justify-center w-full bg-white h-28">
-        <div className="flex justify-between py-4 px-20 top-0 w-full font-bold text-2xl">
+        <div className="flex justify-between py-4 sm:px-20 top-0 w-full font-bold text-2xl">
           <button
             className="flex text-center items-center text-blue-400 font-bold text-nowrap"
             onClick={() => navigate('/')}
@@ -117,7 +117,7 @@ const Header = () => {
             {/*<Navbar/>*/}
             {/*<Input size="small" className="w-96 rounded-full" placeholder="Search..." prefix={<SearchOutlined/>}/>*/}
           </div>
-          <div className="flex gap-4 w-1/4 justify-end">
+          <div className="flex gap-4 sm:w-1/4 justify-end">
             <div className="translate">
               <button id="VI" onClick={() => {
                 turnLg('VI');
