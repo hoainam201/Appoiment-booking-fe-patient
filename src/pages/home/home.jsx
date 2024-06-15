@@ -125,11 +125,11 @@ const Home = () => {
           className={`home bg-cover bg-center w-full bg-no-repeat bg-bottom my-2`}
         >
           <div className={`flex items-center flex-col mt-36`}>
-            <div className={`text-blue-400 text-2xl`}>
-              Nền tảng công nghệ
+            <div className={`text-blue-400 sm:text-2xl text-xl font-sans mx-1`}>
+              {t('homeTitle')}
             </div>
-            <div className={`text-black text-5xl font-sans`}>
-              Kết nối mọi người với dịch vụ y tế
+            <div className={`text-black sm:text-5xl font-sans mx-1 text-2xl `}>
+              {t('homeSubTitle')}
             </div>
             <div className="flex justify-center w-full lg:w-2/3 px-4 sm:px-28 py-6">
               <Input

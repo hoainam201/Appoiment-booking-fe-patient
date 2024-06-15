@@ -103,7 +103,7 @@ const Header = () => {
   return (
     <div className="sticky top-0 flex flex-col w-full bg-white z-[999]">
       <div className="flex flex-col justify-between sm:justify-center w-full bg-white h-28">
-        <div className="flex justify-between py-4 sm:px-20 top-0 w-full font-bold text-2xl">
+        <div className="flex justify-between py-4 sm:px-20 px-1 top-0 w-full font-bold text-2xl">
           <button
             className="flex text-center items-center text-blue-400 font-bold text-nowrap"
             onClick={() => navigate('/')}
@@ -111,7 +111,7 @@ const Header = () => {
             <div className="flex gap-4 w-10 h-10">
               <img className="w-full h-full" src={logo}/>
             </div>
-            <p className="text-2xl text-blue-400 font-bold text-nowrap hidden sm:flex">Health Pro</p>
+            <p className="text-2xl text-blue-400 font-bold text-nowrap">Health Pro</p>
           </button>
           <div className=" hidden md:flex">
             {/*<Navbar/>*/}

@@ -24,7 +24,7 @@ const Footer = () =>{
               Health Pro
             </button>
           </div>
-          <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-8 sm:gap-6 sm:grid-cols-3">
             <div>
               <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase">mạng xã hội</h2>
               <ul className="text-gray-500 font-medium">

@@ -99,5 +99,7 @@
   "booking": "Đặt lịch",
   "fillInformation": "Vui lòng điền chính xác thông tin để bệnh viện lập hồ sơ.",
   "paymentNote": "Chi phí đặt lịch khám sẽ thanh toán tại bệnh viện.",
-  "clinicAddress": "Địa chỉ khám"
+  "clinicAddress": "Địa chỉ khám",
+  "homeTitle": "Nền tảng công nghệ",
+  "homeSubTitle": "Kết nối mọi người với dịch vụ y tế"
 }
