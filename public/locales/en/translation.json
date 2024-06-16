@@ -94,7 +94,7 @@
   "list": "List",
   "dob": "Date of Birth",
   "time": "Time",
-  "hours": "Hours",
+  "hour": "Hours",
   "fee": "Fee",
   "booking": "Booking",
   "fillInformation": "Please fill in the information accurately for the hospital to create a record.",

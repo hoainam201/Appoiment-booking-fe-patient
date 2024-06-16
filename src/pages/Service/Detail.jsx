@@ -20,8 +20,8 @@ import {toast} from "react-toastify";
 import dayjs from 'dayjs';
 import {Empty} from "antd";
 import Rating from "@mui/material/Rating";
-import LinearLoad from "../../components/LinearLoad";
 import {useTranslation} from "react-i18next";
+import {FacebookIcon, FacebookShareButton, XIcon, TwitterShareButton} from "react-share";
 
 const times = ["8:00", "8:30", "9:30", "10:00", "10:30", "11:00", "11:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00"];
 
@@ -39,6 +39,7 @@ export default function Detail() {
   const [totalReviews, setTotalReviews] = useState(0);
   const [page, setPage] = useState(1);
   const {t} = useTranslation();
+  const url = process.env.REACT_APP_DOMAIN + "services/" + useParams().id;
 
   const id = useParams().id;
 
@@ -160,17 +161,39 @@ export default function Detail() {
               variant={`contained`}>{t('booking')}</Button>
           </div>
         </div>
+        <div className={`sm:ml-10 mx-2 sm:hidden block border p-2 m-2 rounded-xl border-gray-300`}>
+          <div className={`text-xl`}>{t('clinicAddress')}</div>
+          <div className={`text-xl`}>{doctor?.facility?.name}</div>
+          <div className={`text-sm`}>{doctor?.facility?.address}</div>
+          <div className={`text-sm`}>{t('fee')}: {doctor?.fee} VND</div>
+          <div className="flex gap-1">
+            <FacebookShareButton url={`${url}`} hashtag={`HealthPro`}>
+              <FacebookIcon size={32} round={true}/>
+            </FacebookShareButton>
+            <TwitterShareButton url={`${url}`} hashtag={`HealthPro`}>
+              <XIcon size={32} round={true}/>
+            </TwitterShareButton>
+          </div>
+        </div>
         <div className={`sm:ml-10 sm:w-1/2 mx-2`}>
           <div className={`font-bold text-3xl header-title`}>{doctor?.name}</div>
           <div className={`text-sm break-words  mt-3`}>
             <Viewer value={doctor?.description}/>
           </div>
         </div>
-        <div className={`sm:ml-10 mx-2`}>
+        <div className={`sm:ml-10 mx-2 hidden sm:block`}>
           <div className={`text-xl`}>{t('clinicAddress')}</div>
           <div className={`text-xl`}>{doctor?.facility?.name}</div>
           <div className={`text-sm`}>{doctor?.facility?.address}</div>
           <div className={`text-sm`}>{t('fee')}: {doctor?.fee} VND</div>
+          <div className="flex gap-1">
+            <FacebookShareButton url={`${url}`} hashtag={`HealthPro`}>
+              <FacebookIcon size={32} round={true}/>
+            </FacebookShareButton>
+            <TwitterShareButton url={`${url}`} hashtag={`HealthPro`}>
+              <XIcon size={32} round={true}/>
+            </TwitterShareButton>
+          </div>
         </div>
       </div>
       <div className="flex flex-col sm:mx-36 lg:flex-row mt-12 gap-5 min-h-[400px]">
@@ -183,12 +206,6 @@ export default function Detail() {
               <Rating name="read-only" value={Math.ceil(doctor?.avg_rating * 10) / 10} precision={0.1} readOnly/>
               <div>{Math.ceil(doctor?.avg_rating * 10) / 10}/5 ({totalReviews} đánh giá)</div>
             </div>
-            <div>
-              {/*{items.map((item) => (*/}
-              {/*  <LinearLoad key={item} {...item}/>*/}
-              {/*))}*/}
-            </div>
-
           </div>
         </div>
         <div className={`flex flex-col w-full mx-2`}>
@@ -220,7 +237,7 @@ export default function Detail() {
               </div>
             </div>
             <div className={`w-full h-1 bg-gray-200 my-3`}/>
-            <form className="bg-white rounded px-8 pt-6 pb-8 mb-4">
+            <form className="bg-white rounded sm:px-8 pt-6 pb-8 mb-4">
               <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
                   {t('fullName')}

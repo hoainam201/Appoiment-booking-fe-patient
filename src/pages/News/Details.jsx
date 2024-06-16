@@ -5,7 +5,7 @@ import USER from "../../services/userService";
 import NewsButton from "../../components/NewsButton/NewsButton";
 import {FormattedDate} from "react-intl";
 import Loading from "../../components/Loading";
-import {FacebookIcon, FacebookShareButton, TwitterIcon, TwitterShareButton} from "react-share";
+import {FacebookIcon, FacebookShareButton, XIcon, TwitterShareButton} from "react-share";
 import {useTranslation} from "react-i18next";
 
 const Details = () => {
@@ -13,6 +13,7 @@ const Details = () => {
   const [data, setData] = useState(null);
   const [orther, setOrther] = useState([]);
   const {t, i18n} = useTranslation();
+  const url = process.env.REACT_APP_DOMAIN + "news/" + id.id;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -39,11 +40,11 @@ const Details = () => {
         <div className="w-full flex flex-col">
           <div className={`text-6xl hover:text-blue-500`}>{data?.title}</div>
           <div className="flex justify-start gap-2">
-            <FacebookShareButton url={`https://www.facebook.com/sharer/sharer.php?u=${data?.url}`}>
+            <FacebookShareButton url={`${url}`} hashtag={`HealthPro`}>
               <FacebookIcon size={32} round={true}/>
             </FacebookShareButton>
-            <TwitterShareButton url={`https://twitter.com/intent/tweet?text=${data?.title} ${data?.url}`}>
-              <TwitterIcon size={32} round={true}/>
+            <TwitterShareButton url={`${url}`} hashtag={`HealthPro`} title={data?.title}>
+              <XIcon size={32} round={true}/>
             </TwitterShareButton>
           </div>
           <Viewer value={data?.content}/>

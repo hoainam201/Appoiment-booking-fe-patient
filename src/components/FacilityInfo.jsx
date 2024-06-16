@@ -1,12 +1,13 @@
 import React from "react";
 import Logo from "../assets/images/hospital.png";
-import {Button} from "@mui/material";
-import AddLocationIcon from '@mui/icons-material/AddLocation';
+import ShareLocationIcon from '@mui/icons-material/ShareLocation';
+import {FacebookIcon, FacebookShareButton, XIcon, TwitterShareButton} from "react-share";
 
 
-const stringWithNewLine = "Bệnh Viện Đại Học Y Dược Thành phố Hồ Chí Minh - Cơ Sở 2 không chỉ là nơi cung cấp dịch vụ y tế, mà còn là biểu tượng của sự phát triển và chăm sóc sức khỏe cho cộng đồng. Với sứ mệnh \"Y Tế Cho Sự Sống\", cơ sở này tiếp tục nỗ lực để đem lại niềm tin và sức khỏe cho mọi người.";
 
 export default function FacilityInfo(props) {
+
+  const url = process.env.REACT_APP_DOMAIN + "health-facilities/" + props?.id;
 
   return (
     <div className={`flex flex-col bg-white w-full h-auto rounded-2xl gap-3 my-4`}>
@@ -19,7 +20,16 @@ export default function FacilityInfo(props) {
         </div>
         <hr className="my-2"/>
         <div className={`flex whitespace-pre-line break-words`}>
-          <AddLocationIcon color="primary"/><p className="text-lg">{props.address}</p>
+          <ShareLocationIcon color="primary"/>
+          <span className="text-lg">{props.address}</span>
+        </div>
+        <div className="flex sm:justify-start justify-center gap-1 my-1">
+          <FacebookShareButton url={`${url}`} hashtag={`HealthPro`}>
+            <FacebookIcon size={32} round={true}/>
+          </FacebookShareButton>
+          <TwitterShareButton url={`${url}`} hashtag={`HealthPro`} title={props?.name}>
+            <XIcon size={32} round={true}/>
+          </TwitterShareButton>
         </div>
       </div>
     </div>

@@ -16,6 +16,7 @@ import Stack from "@mui/material/Stack";
 import Chip from "@mui/material/Chip";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
+import {useTranslation} from "react-i18next";
 
 const times = ["8:00", "8:30", "9:30", "10:00", "10:30", "11:00", "11:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00"];
 
@@ -27,6 +28,7 @@ export default function FormDialog(props, open, {setOpen}) {
   const [address, setAddress] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
+  const {t} = useTranslation();
   // const [open, setOpen] = useState(false);
   const handleSelect = (t) => {
     setTime(t);
@@ -135,7 +137,7 @@ export default function FormDialog(props, open, {setOpen}) {
               </div>
               <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2">
-                  Giờ khám
+                  {t('hour')}
                 </label>
                 <div
                   className="rounded w-full py-2 px-3 text-gray-700 leading-tight h-max-[170px]"

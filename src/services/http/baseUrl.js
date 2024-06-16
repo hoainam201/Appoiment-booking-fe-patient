@@ -1,1 +1,1 @@
-export const baseUrl = process.env.LINK || 'https://appoiment-booking-and-review.onrender.com';
+export const baseUrl = process.env.REACT_APP_API_URL
