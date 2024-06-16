@@ -86,6 +86,78 @@ export const specialities = [
   }
 ];
 
+export const specialitiesKey = [
+  {
+    id: 0,
+    key: "General",
+  },
+  {
+    id: 1,
+    key: "Gastroenterology",
+  },
+  {
+    id: 2,
+    key: "Cardiology",
+  },
+  {
+    id: 3,
+    key: "Orthopedics",
+  },
+  {
+    id: 4,
+    key: "ENT",
+  },
+  {
+    id: 5,
+    key: "Neurology",
+  },
+  {
+    id: 6,
+    key: "Dermatology",
+  },
+  {
+    id: 7,
+    key: "Andrology",
+  },
+  {
+    id: 8,
+    key: "Urology",
+  },
+  {
+    id: 9,
+    key: "Gynecology",
+  },
+  {
+    id: 10,
+    key: "Pulmonology",
+  },
+  {
+    id: 11,
+    key: "Dentomaxillofacial",
+  },
+  {
+    id: 12,
+    key: "Rheumatology",
+  },
+  {
+    id: 13,
+    key: "Pediatrics",
+  },
+  {
+    id: 14,
+    key: "Oncology",
+  },
+  {
+    id: 15,
+    key: "Opthalmology",
+  },
+  {
+    id: 16,
+    key: "Veterinary",
+  }
+];
+
+
 export const bookingStatus = [
   {
     id: 0,

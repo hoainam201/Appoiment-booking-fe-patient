@@ -3,7 +3,6 @@ import {useNavigate} from "react-router-dom";
 import {Input} from "antd";
 import {SearchOutlined, MenuOutlined} from "@ant-design/icons";
 import BoxSx from "../../components/Box";
-import ActionAreaCard from "../../components/ActionAreaCard";
 import "./home.css";
 import img1 from "../../assets/images/img1.png";
 import img2 from "../../assets/images/img2.png";
@@ -12,6 +11,12 @@ import img4 from "../../assets/images/img4.png";
 import img5 from "../../assets/images/img5.png";
 import {useSearch} from "../../context/SearchContext";
 import {useTranslation} from "react-i18next";
+import Flickity from 'react-flickity-component'
+import UserService from "../../services/userService";
+import NewsImage from "../../assets/images/news.png";
+import hospital from "../../assets/images/hospital.png";
+import DoctorImage from "../../assets/images/doctor.png"
+import {specialitiesKey} from "../../utils/constants";
 
 
 const Home = () => {
@@ -20,6 +25,79 @@ const Home = () => {
   const [isShowMenu, setIsShowMenu] = useState(true);
   const {updateSearchQuery} = useSearch();
   const {t} = useTranslation();
+  const [topHealthFacilities, setTopHealthFacilities] = useState([]);
+  const token = localStorage.getItem("token");
+
+  const [topDoctors, setTopDoctors] = useState([]);
+  const [packages, setPackages] = useState([]);
+  const [news, setNews] = useState([]);
+
+  const flickityOptions = {
+    initialIndex: 2
+  }
+
+  const fetchTopHealthFacilities = async () => {
+    try {
+      const res = await UserService.getTopHealthFacilities();
+      if (res.status === 200) {
+        setTopHealthFacilities(res.data);
+      } else {
+        console.log(res)
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+
+  const fetchTopDoctors = async () => {
+    try {
+      const res = await UserService.getTopDoctors();
+      if (res.status === 200) {
+        setTopDoctors(res.data);
+      } else {
+        console.log(res)
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+
+  const fetchPackages = async () => {
+    try {
+      let res = token ? await UserService.getTopServices() : await UserService.getTopServices();
+      if (res.status === 200) {
+        setPackages(res.data);
+      } else {
+        console.log(res)
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+
+  const fetchNews = async () => {
+    try {
+      let res = await UserService.getLatestNews();
+      if (res.status === 200) {
+        setNews(res.data);
+      } else {
+        console.log(res)
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  useEffect(() => {
+    fetchTopHealthFacilities();
+    fetchTopDoctors();
+    fetchPackages();
+    fetchNews();
+  }, []);
+
 
   useEffect(() => {
     const handleResize = () => {
@@ -39,7 +117,7 @@ const Home = () => {
   }, []);
 
   const onSearch = () => {
-    if(contentPlaceholder.trim() === '') {
+    if (contentPlaceholder.trim() === '') {
       return;
     }
     updateSearchQuery(contentPlaceholder);
@@ -155,9 +233,9 @@ const Home = () => {
                 onClick={() => {
                   setIsShowMenu(!isShowMenu);
                 }}
-              ><MenuOutlined ></MenuOutlined></button>
+              ><MenuOutlined></MenuOutlined></button>
             </div>
-            <div className={`nam gap-8 pt-4`} >
+            <div className={`nam gap-8 pt-4`}>
               {isShowMenu ? (
                 items.map((item) => (
                   <BoxSx key={item.id} name={item.name} image={item.image} linkTo={item.linkTo}/>
@@ -165,22 +243,140 @@ const Home = () => {
               ) : (
                 <></>
               )}
-              {/*{items.map((item) => (*/}
-              {/*  <BoxSx key={item.id} name={item.name} image={item.image} linkTo={item.linkTo}/>*/}
-              {/*))}*/}
             </div>
           </div>
         </div>
-        {/*<div className={`flex flex-col justify-center w-2/3 bg-blue-600 my-36 rounded-lg`}>*/}
-        {/*  <div className={`text-white text-center text-4xl my-4`}>Thông tin</div>*/}
-        {/*  <div className={`text-white text-lg pt-4 pb-8 `}>*/}
-        {/*    <div className={`justify-center brue flex items-center gap-10`}>*/}
-        {/*      {info.map((item) => (*/}
-        {/*        <ActionAreaCard key={item.id} name={item.name} number={item.number}/>*/}
-        {/*      ))}*/}
-        {/*    </div>*/}
-        {/*  </div>*/}
-        {/*</div>*/}
+      </div>
+      <div>
+        {topHealthFacilities.length > 0 &&
+          <div>
+            <div className="sm:text-3xl text-xl font-bold text-blue-400 mx-auto my-4 text-center">
+              {t('featuredHospitals')}
+            </div>
+            <div className="overflow-y-hidden my-2">
+              <Flickity
+                className={'carousel'} // default ''
+                elementType={'div'} // default 'div'
+                options={flickityOptions} // takes flickity options {}
+                disableImagesLoaded={true} // default false
+                reloadOnUpdate // default false
+                static // default false
+              >
+                {
+                  topHealthFacilities.map((item) =>
+                    <button
+                      className="h-56 w-80 border-2 border-gray-200 shadow-md p-1 rounded-lg cursor-pointer hover:border-blue-500 mx-1"
+                      onClick={() => {
+                        navigate('/health-facilities/' + item.id);
+                      }}
+                    >
+                      <img src={item.avatar ? item.avatar : hospital}
+                           className={`w-40 h-40 mx-auto object-cover`}/>
+                      <div>
+                        <p className="text-xl text-blue-500 font-bold">
+                          {item.name}
+                        </p>
+                        <div className={``}>
+                          <p className="text-sm text-gray-500">{item.address}</p>
+                        </div>
+                      </div>
+                    </button>
+                  )
+                }
+              </Flickity>
+            </div>
+          </div>}
+        {
+          news.length > 0 && topDoctors.length > 0 && packages.length > 0 &&
+          <div>
+            <div className="grid sm:grid-cols-[66%,1fr] grid-cols-1 gap-1 my-2 mx-4">
+              <div>
+                <div>
+                  <p className="font-sans text-xl font-bold">{t('doctorsForYou')}</p>
+                  <hr/>
+                  <div className="grid grid-cols-1 gap-3">
+                    {
+                      topDoctors.map((item) =>
+                        <button>
+                          <div
+                            className="flex gap-1 h-36 sm:w-[90%] w-full cursor-pointer"
+                            onClick={() => {
+                              navigate('/service/' + item.id);
+                            }}
+                          >
+                            <img src={item.image || DoctorImage} className={`w-36 h-36 object-cover`}/>
+                            <div className='flex flex-col w-full justify-start items-start my-auto'>
+                              <p className="text-2xl text-blue-500 font-bold">
+                                {item.name}
+                              </p>
+                              <p className="text-sm text-gray-500">{t(`${specialitiesKey[item.speciality].key}`)}</p>
+
+                            </div>
+                          </div>
+                          <hr/>
+                        </button>
+                      )
+                    }
+                  </div>
+                </div>
+                <div>
+                  <p className="font-sans text-xl font-bold">{t('packagesForYou')}</p>
+                  <hr/>
+                  <div className="grid grid-cols-1 gap-3">
+                    {
+                      packages.map((item) =>
+                        <button>
+                          <div
+                            className="flex gap-1 h-36 sm:w-[90%] w-full cursor-pointer"
+                            onClick={() => {
+                              navigate('/service/' + item.id);
+                            }}
+                          >
+                            <img src={item.image || DoctorImage} className={`w-36 h-36 object-cover`}/>
+                            <div className='flex flex-col w-full justify-start items-start my-auto'>
+                              <p className="text-2xl text-blue-500 font-bold">
+                                {item.name}
+                              </p>
+                              <p className="text-sm text-gray-500">{t(`${specialitiesKey[item.speciality].key}`)}</p>
+
+                            </div>
+                          </div>
+                          <hr/>
+                        </button>
+                      )
+                    }
+                  </div>
+                </div>
+
+              </div>
+              <div>
+                <p className="font-sans text-xl font-bold">{t('latestNews')}</p>
+                <hr/>
+                <div className="grid grid-cols-1 gap-3">
+                  {
+                    news.map((item) =>
+                      <div
+                        className="flex h-auto sm:w-[90%] w-full border-2 border-gray-200 p-1 rounded-lg cursor-pointer hover:border-blue-500 mx-1"
+                        onClick={() => {
+                          navigate('/news/' + item.id);
+                        }}
+                      >
+                        <img src={item.image || NewsImage} className={`w-40 h-40 object-cover`}/>
+                        <div>
+                          <p className="text-xl text-blue-500 font-bold">
+                            {item.title}
+                          </p>
+                          <div className={``}>
+                            <p className="text-sm text-gray-500">{item.description}</p>
+                          </div>
+                        </div>
+                      </div>)
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+        }
       </div>
     </div>
   )

@@ -244,6 +244,41 @@ const USER = {
       }
     });
     return res;
+  },
+  getTopHealthFacilities: async () => {
+    let res = await publicHttp({
+      method: 'get',
+      url: '/health-facilities/top-health-facilities'
+    });
+    return res;
+  },
+  getTopDoctors: async () => {
+    let res = await publicHttp({
+      method: 'get',
+      url: '/health-service/top-doctors'
+    });
+    return res;
+  },
+  getTopServices: async () => {
+    let res = await publicHttp({
+      method: 'get',
+      url: '/health-service/top-packages'
+    });
+    return res;
+  },
+  getLatestNews: async () => {
+    let res = await publicHttp({
+      method: 'get',
+      url: '/news/latest'
+    });
+    return res;
+  },
+  getRecommend: async () => {
+    let res = await publicHttp({
+      method: 'get',
+      url: 'health-service/recommendations/1'
+    });
+    return res;
   }
 }
 
