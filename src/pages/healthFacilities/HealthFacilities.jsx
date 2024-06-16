@@ -8,22 +8,27 @@ import Loading from "../../components/Loading";
 import {useSearch} from "../../context/SearchContext";
 import {SearchOutlined} from "@ant-design/icons";
 import {Input, Select} from "antd";
-import {specialities} from "../../utils/constants";
-const { Option } = Select;
+import {specialities, specialitiesKey} from "../../utils/constants";
+import {useTranslation} from "react-i18next";
+
+const {Option} = Select;
 
 export default function HealthFacilities() {
   const [facilities, setFacilities] = useState([]);
   const [pageNumber, setPageNumber] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
-  const {searchQuery, searchResults, address, speciality, updateSearchQuery, updateSearchResults, updateAddress, updateSpeciality} = useSearch();
+  const {
+    searchQuery,
+    searchResults,
+    address,
+    speciality,
+    updateSearchQuery,
+    updateSearchResults,
+    updateAddress,
+    updateSpeciality
+  } = useSearch();
+  const {t} = useTranslation();
 
-  const province = (
-    <Select defaultValue="" onChange={(value) => updateAddress(value)}>
-      <Option value="">Tất cả</Option>
-      <Option value="Hà Nội">Hà Nội</Option>
-      <Option value="Đà Nẵng">Đà Nẵng</Option>
-    </Select>
-  )
 
   const getFacilities = async () => {
     try {
@@ -39,7 +44,7 @@ export default function HealthFacilities() {
     try {
       console.log(searchQuery, address, speciality);
       const res = await USER.searchFacility(searchQuery.trim().replace(/\s+/g, ' '), pageNumber, address, speciality);
-      if(res.status === 200) {
+      if (res.status === 200) {
         setFacilities(res.data.healthFacility);
         setTotalPages(res.data.maxPage)
       }
@@ -78,9 +83,9 @@ export default function HealthFacilities() {
               onChange={(e) => updateAddress(e.target.value)}
               className="rounded-full w-[120px] border-2 border-[#dcdcdc] hover:border-blue-700 text-center"
             >
-              <option value="">Tất cả</option>
-              <option value="Hà Nội">Hà Nội</option>
-              <option value="Đà Nẵng">Đà Nẵng</option>
+              <option value="">{t('national')}</option>
+              <option value="Hà Nội">{t('hanoi')}</option>
+              <option value="Đà Nẵng">{t('danang')}</option>
             </select>
 
             <select
@@ -89,16 +94,16 @@ export default function HealthFacilities() {
               onChange={(e) => updateSpeciality(e.target.value)}
               className="rounded-full w-[120px] border-2 border-[#dcdcdc] hover:border-blue-700 text-center"
             >
-              <option value="">Tất cả</option>
-              {specialities.map((item) => {
-                return <option key={item.id} value={item.id}>{item.name}</option>
+              <option value="">{t('All')}</option>
+              {specialitiesKey.map((item) => {
+                return <option key={item.id} value={item.id}>{t(`${item.key}`)}</option>
               })}
             </select>
             <button
               onClick={searchFacilities}
               className="flex bg-blue-500 gap-1 items-center border-2 border-blue-500 hover:outline-1 hover:outline-white rounded-full w-[120px] text-center justify-center">
               <SearchOutlined className="text-white"/>
-              <span className="text-white">Tìm kiếm</span>
+              <span className="text-white">{t('navbar.search')}</span>
             </button>
           </div>
         </div>

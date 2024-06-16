@@ -104,7 +104,7 @@
   "homeSubTitle": "Connecting everyone with healthcare services",
   "featuredHospitals": "Featured Hospitals",
   "latestNews": "Latest News",
-  "doctorsForYou": "Doctors for You",
+  "doctorsForYou": "Outstanding doctor",
   "packagesForYou": "Packages for You",
   "General": "General",
   "Gastroenterology": "Gastroenterology",
@@ -122,5 +122,15 @@
   "Pediatrics": "Pediatrics",
   "Oncology": "Oncology",
   "Opthalmology": "Opthalmology",
-  "Veterinary": "Veterinary"
+  "Veterinary": "Veterinary",
+  "All": "All",
+  "latest": "Latest",
+  "oldest": "Oldest",
+  "ratingAsc": "Rating ascending",
+  "ratingDesc": "Rating descending",
+  "priceAsc": "Price ascending",
+  "priceDesc": "Price descending",
+  "national": "Nationwide",
+  "hanoi": "Hanoi",
+  "danang": "Danang"
 }

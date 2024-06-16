@@ -16,6 +16,7 @@ import UserService from "../../services/userService";
 import NewsImage from "../../assets/images/news.png";
 import hospital from "../../assets/images/hospital.png";
 import DoctorImage from "../../assets/images/doctor.png"
+import PackgeImage from "../../assets/images/healthpackage.png"
 import {specialitiesKey} from "../../utils/constants";
 
 
@@ -96,6 +97,10 @@ const Home = () => {
     fetchTopDoctors();
     fetchPackages();
     fetchNews();
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   }, []);
 
 
@@ -214,7 +219,7 @@ const Home = () => {
                 size="large"
                 className="w-full
                 rounded-full"
-                placeholder="Search..."
+                placeholder={t('navbar.search')}
                 prefix={<SearchOutlined/>}
                 onChange={(e) => {
                   setContentPlaceholder(e.target.value);
@@ -292,7 +297,7 @@ const Home = () => {
             <div className="grid sm:grid-cols-[66%,1fr] grid-cols-1 gap-1 my-2 mx-4">
               <div>
                 <div>
-                  <p className="font-sans text-xl font-bold">{t('doctorsForYou')}</p>
+                  <p className="font-sans sm:text-3xl text-xl uppercase mt-3">{t('doctorsForYou')}</p>
                   <hr/>
                   <div className="grid grid-cols-1 gap-3">
                     {
@@ -320,7 +325,7 @@ const Home = () => {
                   </div>
                 </div>
                 <div>
-                  <p className="font-sans text-xl font-bold">{t('packagesForYou')}</p>
+                  <p className="font-sans sm:text-3xl text-xl uppercase mt-3">{t('packagesForYou')}</p>
                   <hr/>
                   <div className="grid grid-cols-1 gap-3">
                     {
@@ -332,7 +337,7 @@ const Home = () => {
                               navigate('/service/' + item.id);
                             }}
                           >
-                            <img src={item.image || DoctorImage} className={`w-36 h-36 object-cover`}/>
+                            <img src={item.image || PackgeImage} className={`w-36 h-36 object-cover`}/>
                             <div className='flex flex-col w-full justify-start items-start my-auto'>
                               <p className="text-2xl text-blue-500 font-bold">
                                 {item.name}

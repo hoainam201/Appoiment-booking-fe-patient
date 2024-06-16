@@ -7,7 +7,8 @@ import {toast} from "react-toastify";
 import Loading from "../../components/Loading";
 import {Input} from "antd";
 import {SearchOutlined} from "@ant-design/icons";
-import {specialities} from "../../utils/constants";
+import {specialitiesKey} from "../../utils/constants";
+import {useTranslation} from "react-i18next";
 
 export default function PackageList() {
   const [pageNumber, setPageNumber] = useState(1);
@@ -16,6 +17,7 @@ export default function PackageList() {
   const [search, setSearch] = useState('');
   const [speciality, setSpeciality] = useState('');
   const [sort, setSort] = useState(0);
+  const {t} = useTranslation();
 
 
   const getPackage = async () => {
@@ -80,9 +82,9 @@ export default function PackageList() {
               onChange={(e) => setSpeciality(e.target.value)}
               className="rounded-full w-[120px] border-2 border-[#dcdcdc] hover:border-blue-700 text-center"
             >
-              <option value="">Tất cả</option>
-              {specialities.map((item) => {
-                return <option key={item.id} value={item.id}>{item.name}</option>
+              <option value="">{t('All')}</option>
+              {specialitiesKey.map((item) => {
+                return <option key={item.id} value={item.id}>{t(`${item.key}`)}</option>
               })}
             </select>
             <select
@@ -90,18 +92,18 @@ export default function PackageList() {
               onChange={(e) => setSort(e.target.value)}
               className="rounded-full w-[150px] border-2 border-[#dcdcdc] hover:border-blue-700 text-center"
             >
-              <option value="1">Mới nhất</option>
-              <option value="2">Cũ nhất</option>
-              <option value="3">Đánh giá tăng</option>
-              <option value="4">Đánh giá giảm</option>
-              <option value="5">Giá tăng dần</option>
-              <option value="6">Giá giảm dần</option>
+              <option value="1">{t('latest')}</option>
+              <option value="2">{t('oldest')}</option>
+              <option value="3">{t('ratingAsc')}</option>
+              <option value="4">{t('ratingDesc')}</option>
+              <option value="5">{t('priceAsc')}</option>
+              <option value="6">{t('priceDesc')}</option>
             </select>
             <button
               onClick={handleSearch}
               className="flex bg-blue-500 gap-1 items-center border-2 border-blue-500 hover:outline-1 hover:outline-white rounded-full w-[120px] text-center justify-center">
               <SearchOutlined className="text-white"/>
-              <span className="text-white">Tìm kiếm</span>
+              <span className="text-white">{t('navbar.search')}</span>
             </button>
           </div>
         </div>
