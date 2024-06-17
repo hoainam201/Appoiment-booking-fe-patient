@@ -101,7 +101,7 @@ const Header = () => {
   }, [i18n.language]);
 
   return (
-    <div className="sticky top-0 flex flex-col w-full bg-white z-[9999]">
+    <div className="sticky top-0 flex flex-col w-full bg-white z-[1001]">
       <div className="flex flex-col justify-between sm:justify-center w-full bg-white h-28">
         <div className="flex justify-between py-4 sm:px-20 px-1 top-0 w-full font-bold text-2xl">
           <button
