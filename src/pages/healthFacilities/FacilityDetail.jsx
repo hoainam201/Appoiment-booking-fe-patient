@@ -64,7 +64,7 @@ const FacilityDetail = () => {
           setLat(res.data.latitude);
           setLng(res.data.longitude);
           setServices(res.data.services);
-
+          setSearchResult(res.data.services);
         } else {
           toast.error(res.data.message);
         }

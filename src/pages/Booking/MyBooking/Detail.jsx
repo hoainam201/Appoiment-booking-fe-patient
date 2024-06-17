@@ -18,6 +18,7 @@ import DialogActions from "@mui/material/DialogActions";
 import Rating from "@mui/material/Rating";
 import Filter from 'bad-words';
 import {badwords} from "../../../utils/badwords";
+import {useTranslation} from "react-i18next";
 
 
 const Detail = () => {
@@ -31,6 +32,7 @@ const Detail = () => {
   const [service, setService] = useState(null);
   const [reviewData, setReviewData] = useState(null);
   const filter = new Filter();
+  const {t} = useTranslation();
   filter.addWords(...badwords);
 
 
@@ -48,17 +50,17 @@ const Detail = () => {
       // Kiểm tra xem người dùng đã đánh giá hay chưa
       if (rating === 0) {
         toast.dismiss();
-        toast.error("Vui lòng đánh giá");
+        toast.error(t('pleaseRate'));
         return;
       }
       if(filter.isProfane(content)) {
         toast.dismiss();
-        toast.error("Vui lòng sử dụng ngôn từ phù hợp");
+        toast.error(t('useAppropriateLanguage'));
         return;
       }
       // Hiển thị thông báo loading
       toast.dismiss();
-      toast.loading("Đang đánh giá...");
+      toast.loading(t('ratingInProgress'));
       const index = id.id;
       // Gửi yêu cầu lưu đánh giá
       const response = await USER.rateBooking(service, index, rating, content);
@@ -66,19 +68,19 @@ const Detail = () => {
       // Kiểm tra nếu yêu cầu thành công
       if (response.status === 201) {
         toast.dismiss();
-        toast.success("Đánh giá đã được cập nhật");
+        toast.success(t('ratingUpdated'));
         setOpen(false);
         // Cập nhật dữ liệu trên giao diện
         fetchData();
       }
       else {
         toast.dismiss();
-        toast.error("Đã xảy ra lỗi khi lưu đánh giá. Vui lòng thử lại sau.");
+        toast.error(t('updateFailed'));
       }
     } catch (error) {
       // Xử lý lỗi nếu yêu cầu không thành công
       toast.dismiss();
-      toast.error("Đã xảy ra lỗi khi lưu đánh giá. Vui lòng thử lại sau.");
+      toast.error(t('updateFailed'));
     }
   };
 
@@ -101,8 +103,8 @@ const Detail = () => {
         }
       }
     } catch (error) {
-      toast.dismiss();
-      toast.error("Vui lòng thử lại sau1");
+      // toast.dismiss();
+      // toast.error(t('updateFailed'));
     }
   }
 
@@ -113,8 +115,8 @@ const Detail = () => {
         setReviewData(response.data);
       }
     } catch (error) {
-      toast.dismiss();
-      toast.error("Vui lòng thử lại sau1");
+      // toast.dismiss();
+      // toast.error("Vui lòng thử lại sau1");
     }
   }
 
@@ -129,7 +131,7 @@ const Detail = () => {
 
   const columns = [
     {
-      title: 'Tên thuốc',
+      title: t('medicineName'),
       dataIndex: 'drug',
       key: 'drug',
       fixed: 'left',
@@ -137,14 +139,14 @@ const Detail = () => {
       render: (text) => <a>{text}</a>,
     },
     {
-      title: 'Số lượng',
+      title: t('quantity'),
       dataIndex: 'quantity',
       key: 'quantity',
       width: 100,
       render: (text) => <a>{text}</a>,
     },
     {
-      title: 'Liều dùng',
+      title: t('dosage'),
       dataIndex: 'instruction',
       key: 'instruction',
       // width: 300,
@@ -165,8 +167,8 @@ const Detail = () => {
             onClick={() => window.history.back()}
             variant="text"
             startIcon={<ArrowBackIosIcon/>}
-          ><p className="hidden md:block">Quay lại</p></Button>
-          <h1 className="text-3xl font-bold text-center">Thông tin</h1>
+          ><p className="hidden md:block">{t('back')}</p></Button>
+          <h1 className="text-3xl font-bold text-center">{t('information')}</h1>
           {data?.service_review_id === null ?
             <Button
               sx={{
@@ -187,7 +189,7 @@ const Detail = () => {
         </div>
         <div className="flex items-center h-12 w-full justify-between">
           <p className="text-xl font-bold text-center">
-            Tên bệnh nhân
+            {t('fullName')}
           </p>
           <div className="flex ml-2 mt-1">
             <p>
@@ -198,7 +200,7 @@ const Detail = () => {
         <hr/>
         <div className="flex items-center h-12 w-full justify-between">
           <p className="text-xl font-bold text-center">
-            Dịch vụ khám
+            {t('medicalService')}
           </p>
           <div className="flex ml-2 mt-1">
             <p>
@@ -209,7 +211,7 @@ const Detail = () => {
         <hr/>
         <div className="flex items-center h-12 w-full justify-between">
           <p className="text-xl font-bold text-center">
-            Ngày tháng năm sinh
+            {t('dob')}
           </p>
           <div className="flex ml-2 mt-1">
             <p>
@@ -220,7 +222,7 @@ const Detail = () => {
         <hr/>
         <div className="flex items-center h-12 w-full justify-between">
           <p className="text-xl font-bold text-center">
-            Thời gian đăng ký khám
+            {t('time')}
           </p>
           <div className="flex ml-2 mt-1">
             <p>
@@ -232,7 +234,7 @@ const Detail = () => {
         <hr/>
         <div className="flex items-center h-12 w-full justify-between">
           <p className="text-xl font-bold text-center">
-            Số điện thoại
+            {t('phoneNumber')}
           </p>
           <div className="flex ml-2 mt-1">
             <p>
@@ -244,7 +246,7 @@ const Detail = () => {
         {data?.payment_status ?
           <div className="flex flex-col items-start">
             <div className="flex w-full justify-start">
-              <p className="text-xl font-bold">Chẩn đoán</p>
+              <p className="text-xl font-bold">{t('diagnosis')}</p>
             </div>
             <textarea
               className="w-full outline-1 border-2 border-gray-200 p-2 rounded-lg text-base focus:outline-blue-500"
@@ -262,7 +264,7 @@ const Detail = () => {
 
         {reviewData && <div>
           <p className="text-xl font-bold">
-            Đánh giá của bạn
+            {t('review')}
           </p>
           <div className="flex gap-3 my-1">
             <Rating name="read-only" value={reviewData?.rating} readOnly/>
@@ -297,7 +299,7 @@ const Detail = () => {
           },
         }}
       >
-        <DialogTitle>Đánh giá</DialogTitle>
+        <DialogTitle>{t('review')}</DialogTitle>
         <DialogContent>
         <Rating
               defaultValue={rating}
@@ -307,7 +309,7 @@ const Detail = () => {
               }}
               precision={1}/>
             <TextArea
-              name="Nội dung"
+              name={t('content')}
               id="outlined-multiline-static"
               multiline
               rows={4}
@@ -318,8 +320,8 @@ const Detail = () => {
             />
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleClose}>Hủy</Button>
-            <Button onClick={handleSave}>Gửi</Button>
+            <Button onClick={handleClose}>{t('cancel')}</Button>
+            <Button onClick={handleSave}>{t('submit')}</Button>
           </DialogActions>
         </Dialog>
       </div> : <><Loading/></>}

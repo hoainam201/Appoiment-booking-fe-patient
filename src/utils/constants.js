@@ -191,6 +191,39 @@ export const bookingStatus = [
   },
 ];
 
+export const bookingStatusI = [
+  {
+    id: 0,
+    name: 'waiting',
+    color: 'yellow',
+  },
+  {
+    id: 1,
+    name: 'confirmed',
+    color: 'green',
+  },
+  {
+    id: 2,
+    name: 'rejected',
+    color: 'red',
+  },
+  {
+    id: 3,
+    name: 'completed',
+    color: 'blue',
+  },
+  {
+    id: 4,
+    name: 'canceled',
+    color: 'gray',
+  },
+  {
+    id: 5,
+    name: 'inProgress',
+    color: 'cyan',
+  },
+];
+
 export const serviceType = {
   DOCTOR: 0,
   PACKAGE: 1,

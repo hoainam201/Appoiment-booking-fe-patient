@@ -1,19 +1,21 @@
 import React, {useEffect, useState} from 'react';
 import {Table, Tag, Button} from 'antd';
 import {format} from 'date-fns';
-import {bookingStatus} from "../../../utils/constants";
+import {bookingStatus, bookingStatusI} from "../../../utils/constants";
 import USER from "../../../services/userService";
 import {toast} from "react-toastify";
 import {useNavigate} from "react-router-dom";
 import {FormattedDate} from "react-intl";
 import Loading from "../../../components/Loading";
 import {useMediaQuery} from "@mui/material";
+import {useTranslation} from "react-i18next";
 
 
 const MyBooking = () => {
   const [data, setData] = useState([]);
   const token = localStorage.getItem('token');
   const navigate = useNavigate();
+  const {t} = useTranslation();
 
   useEffect(() => {
       if (!token) {
@@ -26,7 +28,7 @@ const MyBooking = () => {
 
   const columns = [
     {
-      title: 'Họ và tên',
+      title: t('fullName'),
       dataIndex: 'name',
       key: 'name',
       render: (text) => <a>{text}</a>,
@@ -34,24 +36,24 @@ const MyBooking = () => {
       responsive: ['lg'],
     },
     {
-      title: 'Dịch vụ',
+      title: t('medicalService'),
       dataIndex: 'service_name',
       key: 'service_name',
       fixed: 'left',
       render: (text) => <a>{text}</a>,
     },
     {
-      title: 'Ngày sinh',
+      title: t('dob'),
       dataIndex: 'dob',
       key: 'dob',
     },
     {
-      title: 'Số điện thoại',
+      title: t('phoneNumber'),
       dataIndex: 'phone',
       key: 'phone',
     },
     {
-      title: 'Thời gian khám',
+      title: t('time'),
       dataIndex: 'time',
       key: 'time',
       sorter: (a, b) => new Date(a.time) - new Date(b.time),
@@ -63,7 +65,7 @@ const MyBooking = () => {
                                        minute="numeric"/>
     },
     {
-      title: 'Thời gian tạo',
+      title: t('createdAt'),
       dataIndex: 'created_at',
       key: 'create_at',
       sorter: (a, b) => new Date(a.create) - new Date(b.create),
@@ -75,23 +77,23 @@ const MyBooking = () => {
                                        minute="numeric"/>
     },
     {
-      title: 'Trạng thái',
+      title: t('status'),
       key: 'status',
       dataIndex: 'status',
-      filters: bookingStatus.map(status => ({text: status.name, value: status.id})),
+      filters: bookingStatusI.map(status => ({text: t(status.name), value: status.id})),
       onFilter: (value, record) => record.status === value,
       render: (_, {status}) => (
         <>
           {
-            <Tag color={bookingStatus[status].color}>
-              {bookingStatus[status].name}
+            <Tag color={bookingStatusI[status].color}>
+              {t(bookingStatusI[status].name)}
             </Tag>
           }
         </>
       ),
     },
     {
-      title: 'Lựa chọn',
+      title: t('action'),
       key: 'action',
       render: (_, {id, status}) => {
         switch (status) {
@@ -99,13 +101,13 @@ const MyBooking = () => {
           case 1:
             return (
               <>
-                <Button shape="round" danger onClick={() => handleCancelBooking(id)}>Hủy khám</Button>
+                <Button shape="round" danger onClick={() => handleCancelBooking(id)}>{t('cancel')}</Button>
               </>
             )
           default:
             return (
               <div className="gap-2">
-                <Button shape="round" onClick={() => navigate(`/appointments/${id}`)}>Chi tiết</Button>
+                <Button shape="round" onClick={() => navigate(`/appointments/${id}`)}>{t('detail')}</Button>
               </div>
             )
         }
@@ -139,12 +141,9 @@ const MyBooking = () => {
 
   const handleCancelBooking = async (id) => {
     try {
-      toast.dismiss();
-      toast.loading("Đang xử lý...");
       const response = await USER.cancelBooking(id);
       if (response.status === 200) {
         toast.dismiss();
-        toast.success("Đặt lần khám thanh cách");
         fetchData();
       } else {
         toast.dismiss();
@@ -166,7 +165,7 @@ const MyBooking = () => {
           defaultPageSize: 5,
           showSizeChanger: true,
           pageSizeOptions: ['5', '10', '20'],
-          showTotal: (total) => `Bạn đã đặt ${total} lần khám`,
+          // showTotal: (total) => `Bạn đã đặt ${total} lần khám`,
         }}
         scroll={{x: 'max-content'}}
       /> : <div className="h-96">

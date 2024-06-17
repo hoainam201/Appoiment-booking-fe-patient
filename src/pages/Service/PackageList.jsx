@@ -5,7 +5,7 @@ import Pagination from "@mui/material/Pagination";
 import USER from "../../services/userService";
 import {toast} from "react-toastify";
 import Loading from "../../components/Loading";
-import {Input} from "antd";
+import {Empty, Input} from "antd";
 import {SearchOutlined} from "@ant-design/icons";
 import {specialitiesKey} from "../../utils/constants";
 import {useTranslation} from "react-i18next";
@@ -20,22 +20,6 @@ export default function PackageList() {
   const {t} = useTranslation();
 
 
-  const getPackage = async () => {
-    try {
-      const res = await USER.getPackages(pageNumber ? pageNumber : null);
-      if (res.status === 200) {
-        console.log(res.data);
-        setPackages(res.data.packages.rows);
-        setTotalPages(res.data.maxPage);
-      } else {
-        toast.dismiss();
-        toast.error("Có lỗi xảy ra, vui lòng thử lại sau")
-      }
-    } catch (error) {
-      toast.dismiss();
-      toast.error("Có lỗi xảy ra, vui lòng thử lại sau")
-    }
-  }
 
 
   const handleSearch = async () => {
@@ -116,7 +100,7 @@ export default function PackageList() {
             ))
           }
         </div> : <div className="h-[60vh]">
-          <Loading/>
+          <Empty />
         </div>}
         {totalPages > 1 ? (
           <div className={'flex justify-center items-center mx-auto'}>

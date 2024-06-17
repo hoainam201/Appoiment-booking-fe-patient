@@ -7,12 +7,14 @@ import USER from "../../../services/userService";
 import Header from "../../../layouts/Header";
 import Footer from "../../../layouts/Footer";
 import {isValidEmail} from "../../../utils/validate";
+import {useTranslation} from "react-i18next";
 const Register = () => {
   const navigate = useNavigate();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const {t} = useTranslation();
 
   const handleNameChange = (event) => {
     setName(event.target.value);
@@ -36,11 +38,11 @@ const Register = () => {
   const handleRegister = async () => {
     try {
       if (!name || !email || !password || !confirmPassword) {
-        toast.error('Please enter email and password');
+        toast.error(t('fillAllFields'));
         return;
       }
       if (password !== confirmPassword) {
-        toast.error('Passwords do not match');
+        toast.error(t('passwordsDoNotMatch'));
         return;
       }
       if(isValidEmail(email) === false) {
@@ -53,13 +55,13 @@ const Register = () => {
         password: password,
       })
       if (res.status === 200) {
-        toast.success('Đăng ký thành công!');
+        toast.success(t('registrationSuccessful'));
         navigate('/Login');
       } else if(res.status === 409){
         toast.error(res.data.message);
       }
     } catch (error) {
-      toast.error('Đăng ký thất bại!');
+      toast.error('registrationFailed');
     }
   };
 
@@ -91,12 +93,12 @@ const Register = () => {
               <form>
                 <div
                   className="mb-2 flex flex-row items-center justify-center lg:justify-start">
-                  <p className="mb-0 mr-4 text-lg">Đăng ký</p>
+                  <p className="mb-0 mr-4 text-lg">{t('register')}</p>
                 </div>
 
                 <div className="relative mb-6">
                   <div className="flex">
-                    <label className = "justify-start">Họ và tên</label>
+                    <label className = "justify-start">{t('fullName')}</label>
                   </div>
                   <input
                     type="text"
@@ -120,7 +122,7 @@ const Register = () => {
 
                 <div className="relative mb-6">
                   <div className="flex">
-                    <label class = "justify-start">Mật khẩu</label>
+                    <label class = "justify-start">{t('passwords')}</label>
                   </div>
                   <input
                     type="password"
@@ -133,7 +135,7 @@ const Register = () => {
 
                 <div className="relative mb-6">
                   <div className="flex">
-                    <label className = "justify-start">Mật khẩu</label>
+                    <label className = "justify-start">{t('confirmPassword')}</label>
                   </div>
                   <input
                     type="password"
@@ -149,15 +151,15 @@ const Register = () => {
                     variant={`contained`}
                     onClick={handleRegister}
                   >
-                    Đăng ký
+                    {t('register')}
                   </Button>
 
                   <p className="mb-0 mt-2 pt-1 text-sm font-semibold">
-                    Đã có tài khoản?
+                    {t('haveAccount')}
                     <button
                       onClick={navigateToLogin}
                       className="px-1 text-rose-600 transition duration-150 ease-in-out hover:text-danger-600 focus:text-red-800 active:text-red-800"
-                    >Đăng nhập</button
+                    >{t('login')}</button
                     >
                   </p>
                 </div>

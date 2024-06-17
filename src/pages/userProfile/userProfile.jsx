@@ -51,35 +51,40 @@ const UserProfile = () => {
 
   const handleSave = async () => {
     try {
-      if(name.trim() === '') {
-        toast.error('Vui lòng điền đầy đủ thông tin');
+      if (name.trim() === '') {
+        toast.dismiss();
+        toast.error(t('fillAllFields'));
         return;
       }
-      if(name.trim().length < 6) {
-        toast.error('Tên người dùng phải có độ dài tối thiểu 6 ký tự');
+      if (name.trim().length < 1) {
+        toast.dismiss();
+        toast.error(t('usernameLength'));
         return;
       }
       const req = {
         name: name.trim(),
         gender: gender,
       }
-      if(phone.trim() !== '') {
-        if(!validator.isMobilePhone(phone, 'vi-VN') || phone.trim().length !== 10) {
+      if (phone.trim() !== '') {
+        if (!validator.isMobilePhone(phone, 'vi-VN') || phone.trim().length !== 10) {
+          toast.dismiss(); // Huy toast
           toast.error('Số điện thoại không hợp lệ');
           return;
         }
         req.phone = phone.trim();
       }
-      if(address.trim() !== '') {
+      if (address.trim() !== '') {
         req.address = address.trim();
       }
       const res = await USER.updateProfile({
         ...req
       });
       if (res.status === 200) {
-        toast.success('Cập nhật thành công');
+        toast.dismiss();
+        toast.success(t('updateSuccessful'));
       } else {
-        toast.error('Cập nhật thất bại');
+        toast.dismiss();
+        toast.error(t('updateFailed'));
       }
     } catch (error) {
       console.error(error);

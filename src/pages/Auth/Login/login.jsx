@@ -4,11 +4,13 @@ import {toast,} from "react-toastify";
 import {useNavigate} from 'react-router-dom';
 import USER from "../../../services/userService";
 import {isValidEmail} from "../../../utils/validate";
+import {useTranslation} from "react-i18next";
 
 const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const {t} = useTranslation();
 
 
   const handleMailChange = (event) => {
@@ -29,11 +31,11 @@ const Login = () => {
   const handleLogin = async () => {
     try {
       if (!email || !password) {
-        toast.error('Please enter email and password');
+        toast.error(t('enterEmailAndPassword'));
         return;
       }
       if(isValidEmail(email) === false) {
-        toast.error('Please enter valid email');
+        toast.error(t('enterValidEmail'));
         return;
       }
       console.log(email, password);
@@ -45,12 +47,12 @@ const Login = () => {
       if (token && res.status === 200) {
         localStorage.setItem('token', token);
         navigate(-1);
-        toast.success('Login successful');
+        toast.success(t('loginSuccessful'));
       } else {
-        toast.error(res.data.message);
+        toast.error(t('loginFailed'));
       }
     } catch (error) {
-      toast.error('Login failed');
+      toast.error(t('loginFailed'));
     }
   };
 
@@ -81,7 +83,7 @@ const Login = () => {
               <form onKeyDown={(e) => e.key === 'Enter' ? handleLogin() : null}>
                 <div
                   className="mb-2 flex flex-row items-center justify-center lg:justify-start">
-                  <p className="mb-0 mr-4 text-lg">Đăng nhập</p>
+                  <p className="mb-0 mr-4 text-lg">{t('login')}</p>
                 </div>
 
 
@@ -99,7 +101,7 @@ const Login = () => {
 
                 <div className="relative mb-6">
                   <div className="flex">
-                    <label className="justify-start">Mật khẩu</label>
+                    <label className="justify-start">{t('passwords')}</label>
                   </div>
                   <input
                     type="password"
@@ -111,7 +113,7 @@ const Login = () => {
                 </div>
 
                 <div className="mb-6 flex items-center justify-between">
-                  <button type="button" className="hover:underline" onClick={navigateToForgotPassword}>Quên mật khẩu?</button>
+                  <button type="button" className="hover:underline" onClick={navigateToForgotPassword}>{t('forgotPassword')}</button>
                 </div>
 
                 <div className="text-center lg:text-left">
@@ -119,16 +121,16 @@ const Login = () => {
                     variant="contained"
                     onClick={handleLogin}
                   >
-                    Đăng nhập
+                    {t('login')}
                   </Button>
 
                   <p className="mb-0 mt-2 pt-1 text-sm font-semibold">
-                    Chưa có tài khoản?
+                    {t('noAccount')}
                     <button
                       type="button"
                       onClick={navigateToRegister}
                       className="px-1 text-rose-600 transition duration-150 ease-in-out hover:text-danger-600 focus:text-red-800 active:text-red-800"
-                    >Đăng ký</button>
+                    >{t('register')}</button>
                   </p>
                 </div>
               </form>

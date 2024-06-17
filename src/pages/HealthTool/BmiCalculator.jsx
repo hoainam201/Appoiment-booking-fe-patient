@@ -125,7 +125,7 @@ const BMICalculator = () => {
             <td className="px-6 py-4">{t('calorie_table.swimming_calories')}</td>
           </tr>
           <tr className="bg-white border-b">
-            <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{t('bicycling_table.bicycling')}</th>
+            <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{t('calorie_table.bicycling')}</th>
             <td className="px-6 py-4">{t('calorie_table.bicycling_calories')}</td>
           </tr>
           <tr className="bg-white border-b">

@@ -28,11 +28,11 @@ const ChangePassword = () => {
   const handleSave = async () => {
     try {
       if (!oldPassword || !newPassword || !confirmPassword) {
-        toast.error('Vui lòng điền đầy đủ thông tin');
+        toast.error(t('fillAllFields'));
         return;
       }
       if(newPassword !== confirmPassword) {
-        toast.error('Mật khẩu xác nhận không đúng');
+        toast.error(t('passwordsDoNotMatch'));
         return;
       }
       const res = await USER.changePassword({
@@ -40,7 +40,7 @@ const ChangePassword = () => {
         newPassword: newPassword,
       })
       if (res.status === 200) {
-        toast.success('Cập nhật thành công');
+        toast.success(t('updateSuccessful'));
       } else {
         toast.error(res.data.message);
       }

@@ -116,7 +116,7 @@ export default function Detail() {
       const dayjsDate = dayjs(dateTimeString, 'YYYY-MM-DDTHH:mm:ss.SSSZ');
       const isAfter = dayjsDate.isAfter(dayjs(), 'day');
       if (!isAfter) {
-        toast.error("Ngày đặt lịch phải sau hôm nay");
+        toast.error(t('dateRequirement'));
         return;
       }
       const res = await UserService.bookAppointment({
@@ -128,15 +128,15 @@ export default function Detail() {
       });
       if (res.status === 200) {
         toast.dismiss();
-        toast.success("Đặt lịch thành công");
+        toast.success(t("bookingSuccessful"));
         navigate("/appointments");
       } else {
         toast.dismiss();
-        toast.error("Đặt lịcĥ thất bại");
+        toast.error(t("bookingFailed"));
       }
     } catch (error) {
       toast.dismiss();
-      toast.error(error.message);
+      toast.error(t("bookingFailed"));
     }
   }
 
@@ -204,7 +204,7 @@ export default function Detail() {
             </div>
             <div className="flex flex-col justify-center items-center">
               <Rating name="read-only" value={Math.ceil(doctor?.avg_rating * 10) / 10} precision={0.1} readOnly/>
-              <div>{Math.ceil(doctor?.avg_rating * 10) / 10}/5 ({totalReviews} đánh giá)</div>
+              <div>{Math.ceil(doctor?.avg_rating * 10) / 10}/5 ({totalReviews} {t('review')})</div>
             </div>
           </div>
         </div>

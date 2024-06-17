@@ -5,6 +5,7 @@ import {useNavigate} from 'react-router-dom';
 import USER from "../../../services/userService";
 import Header from "../../../layouts/Header";
 import { Layout } from 'antd';
+import {useTranslation} from "react-i18next";
 
 const { Footer, Sider, Content } = Layout;
 
@@ -12,6 +13,7 @@ const { Footer, Sider, Content } = Layout;
 const ForgotPassword = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
+  const {t} = useTranslation();
 
 
   const handleMailChange = (event) => {
@@ -22,7 +24,7 @@ const ForgotPassword = () => {
   const handleReset = async () => {
     try {
       if (!email ) {
-        toast.error('Vui lòng điền thông tin email');
+        toast.error(t('enterValidEmail'));
         return;
       }
       const res = await USER.forgotPassword({
@@ -30,12 +32,12 @@ const ForgotPassword = () => {
       });
       if (res.status === 200) {
         navigate('/Login');
-        toast.success('Mật khẩu đã được đặt lại. Vui lòng kiểm tra email');
+        toast.success(t('passwordReset'));
       } else {
         toast.error(res.data.message);
       }
     } catch (error) {
-      toast.error('Thất bại');
+      toast.error(t('updateFailed'));
     }
   };
 
