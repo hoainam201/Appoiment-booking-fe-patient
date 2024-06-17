@@ -202,7 +202,7 @@ const Home = () => {
   ]
 
   return (
-    <div className={`relative`}>
+    <div className={`relative w-full`}>
       <div className={`flex flex-col justify-center items-center bg-blue-200`}>
         <div
           className={`home bg-cover bg-center w-full bg-no-repeat bg-bottom my-2`}
@@ -258,7 +258,7 @@ const Home = () => {
             <div className="sm:text-3xl text-xl font-bold text-blue-400 mx-auto my-4 text-center">
               {t('featuredHospitals')}
             </div>
-            <div className="overflow-y-hidden my-2">
+            <div className="overflow-y-hidden my-2 mx-auto w-[90%]">
               <Flickity
                 className={'carousel'} // default ''
                 elementType={'div'} // default 'div'
@@ -293,8 +293,8 @@ const Home = () => {
           </div>}
         {
           news.length > 0 && topDoctors.length > 0 && packages.length > 0 &&
-          <div>
-            <div className="grid sm:grid-cols-[66%,1fr] grid-cols-1 gap-1 my-2 mx-4">
+          <div className="flex justify-center w-5/6 mx-auto">
+            <div className="grid sm:grid-cols-[66%,1fr] grid-cols-1 gap-1 my-2 mx-4 w-full">
               <div>
                 <div>
                   <p className="font-sans sm:text-3xl text-xl uppercase mt-3">{t('doctorsForYou')}</p>
