@@ -102,6 +102,7 @@ const MyBooking = () => {
             return (
               <>
                 <Button shape="round" danger onClick={() => handleCancelBooking(id)}>{t('cancel')}</Button>
+                <Button shape="round" onClick={() => navigate(`/appointments/${id}`)}>{t('detail')}</Button>
               </>
             )
           default:
