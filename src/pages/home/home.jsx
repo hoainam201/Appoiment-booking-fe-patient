@@ -293,8 +293,8 @@ const Home = () => {
           </div>}
         {
           news.length > 0 && topDoctors.length > 0 && packages.length > 0 &&
-          <div className="flex justify-center w-5/6 mx-auto">
-            <div className="grid sm:grid-cols-[66%,1fr] grid-cols-1 gap-1 my-2 mx-4 w-full">
+          <div className="flex justify-center sm:w-[90%] sm:mx-auto w-full mx-1">
+            <div className="grid sm:grid-cols-[66%,1fr] grid-cols-1 gap-1 my-2 sm:mx-4 w-full">
               <div>
                 <div>
                   <p className="font-sans sm:text-3xl text-xl uppercase mt-3">{t('doctorsForYou')}</p>
@@ -311,7 +311,7 @@ const Home = () => {
                           >
                             <img src={item.image || DoctorImage} className={`w-36 h-36 object-cover`}/>
                             <div className='flex flex-col w-full justify-start items-start my-auto'>
-                              <p className="text-2xl text-blue-500 font-bold">
+                              <p className="sm:text-2xl text-xl text-blue-500 font-bold">
                                 {item.name}
                               </p>
                               <p className="text-sm text-gray-500">{t(`${specialitiesKey[item.speciality].key}`)}</p>
@@ -339,7 +339,7 @@ const Home = () => {
                           >
                             <img src={item.image || PackgeImage} className={`w-36 h-36 object-cover`}/>
                             <div className='flex flex-col w-full justify-start items-start my-auto'>
-                              <p className="text-2xl text-blue-500 font-bold">
+                              <p className="sm:text-2xl text-xl text-blue-500 font-bold">
                                 {item.name}
                               </p>
                               <p className="text-sm text-gray-500">{t(`${specialitiesKey[item.speciality].key}`)}</p>
@@ -361,7 +361,7 @@ const Home = () => {
                   {
                     news.map((item) =>
                       <div
-                        className="flex h-auto sm:w-[90%] w-full border-2 border-gray-200 p-1 rounded-lg cursor-pointer hover:border-blue-500 mx-1"
+                        className="flex h-auto sm:w-[90%] w-full border-2 border-gray-200 sm:p-1 rounded-lg cursor-pointer hover:border-blue-500 mx-1"
                         onClick={() => {
                           navigate('/news/' + item.id);
                         }}
