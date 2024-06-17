@@ -15,7 +15,6 @@ import Rating from "@mui/material/Rating";
 import {useTranslation} from "react-i18next";
 
 const FacilityDetail = () => {
-  const [id, setId] = useState('');
   const [data, setData] = useState('');
   const [lat, setLat] = useState(0);
   const [lng, setLng] = useState(0);
@@ -26,7 +25,9 @@ const FacilityDetail = () => {
   const token = localStorage.getItem("token");
   const [totalReviews, setTotalReviews] = useState(0);
   const [page, setPage] = useState(1);
+  const [search, setSearch] = useState('');
   const {t} = useTranslation();
+  const [searchResult, setSearchResult] = useState([]);
 
   const fetchReviews = async () => {
     try {
@@ -43,6 +44,15 @@ const FacilityDetail = () => {
     }
   }
 
+  useEffect(() => {
+    if(search.trim() !== '') {
+      setSearchResult(services.filter((service) => service.name.toLowerCase().includes(search.toLowerCase())));
+      console.log(searchResult);
+    } else {
+      setSearchResult(services);
+    }
+  }, [search]);
+
 
   useEffect(() => {
     const getFacilityDetail = async () => {
@@ -54,6 +64,7 @@ const FacilityDetail = () => {
           setLat(res.data.latitude);
           setLng(res.data.longitude);
           setServices(res.data.services);
+
         } else {
           toast.error(res.data.message);
         }
@@ -102,7 +113,7 @@ const FacilityDetail = () => {
           </div>
           <div className={`w-full h-[500px]`}>
             <div className={`flex flex-col bg-white w-full h-full rounded-2xl gap-3 my-4 `}>
-              <div className={`flex justify-start mt-3 h-auto mx-10 w-3/4 gap-3`}>
+              <div className={`flex justify-start mt-3 h-auto sm:mx-10 w-3/4 gap-3`}>
                 <div className={`text-blue-400 text-2xl`}>{t('list')}</div>
                 <Chip
                   sx={{
@@ -127,9 +138,15 @@ const FacilityDetail = () => {
                   onClick={() => setSelect(serviceType.PACKAGE)}
                   color={select === serviceType.PACKAGE ? 'primary' : 'default'}/>
               </div>
+              <div>
+                <input
+                  className={`border-2 border-gray-300 rounded-md w-[90%] h-10 px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500 sm:mx-10 mx-1`}
+                  placeholder={t('navbar.search')}
+                  type="text" value={search} onChange={(e) => setSearch(e.target.value)}/>
+              </div>
               <hr className={`mx-5 mt-2 bg-gray-500`}/>
               <div className={`gap-2 mx-2 overflow-y-auto`}>
-                {services.length > 0 ? services.map((item) => (
+                {searchResult.length > 0 ? searchResult.map((item) => (
                     item.type === select && (
                       <ServiceButton
                         key={item.id}
