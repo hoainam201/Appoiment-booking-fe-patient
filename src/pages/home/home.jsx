@@ -203,7 +203,7 @@ const Home = () => {
 
   return (
     <div className={`relative w-full`}>
-      <div className={`flex flex-col justify-center items-center bg-white`}>
+      <div className={`flex flex-col justify-center items-center bg-blue-50`}>
         <div
           className={`home bg-cover bg-center w-full bg-no-repeat my-2`}
         >

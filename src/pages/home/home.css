@@ -1,6 +1,6 @@
 @media (min-width: 768px) {
     .home {
-        background-image: url("../../assets/images/homebg.png");
+        /*background-image: url("../../assets/images/homebg.png");*/
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
