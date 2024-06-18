@@ -45,6 +45,7 @@ export default function HealthFacilities() {
       console.log(searchQuery, address, speciality);
       const res = await USER.searchFacility(searchQuery.trim().replace(/\s+/g, ' '), pageNumber, address, speciality);
       if (res.status === 200) {
+        console.log(res.data , pageNumber);
         setFacilities(res.data.healthFacility);
         setTotalPages(res.data.maxPage)
       }
@@ -86,6 +87,7 @@ export default function HealthFacilities() {
               <option value="">{t('national')}</option>
               <option value="Hà Nội">{t('hanoi')}</option>
               <option value="Đà Nẵng">{t('danang')}</option>
+              <option value="Hồ Chí Minh">{t('hochiminh')}</option>
             </select>
 
             <select
