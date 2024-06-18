@@ -270,18 +270,18 @@ const Home = () => {
                 {
                   topHealthFacilities.map((item) =>
                     <button
-                      className="h-56 w-80 border-2 border-gray-200 shadow-md p-1 rounded-lg cursor-pointer hover:border-blue-500 mx-1"
+                      className="h-72 justify-between flex-col flex w-80 border-2 border-gray-200 shadow-md p-1 rounded-lg cursor-pointer hover:border-blue-500 mx-1"
                       onClick={() => {
                         navigate('/health-facilities/' + item.id);
                       }}
                     >
-                      <img src={item.avatar ? item.avatar : hospital}
-                           className={`w-40 h-40 mx-auto object-cover`}/>
+                        <img src={item.avatar ? item.avatar : hospital}
+                             className={`w-40 h-40 mx-auto object-cover`}/>
                       <div>
                         <p className="text-xl text-blue-500 font-bold">
-                          {item.name}
+                        {item.name}
                         </p>
-                        <div className={``}>
+                        <div className={`items-end`}>
                           <p className="text-sm text-gray-500">{item.address}</p>
                         </div>
                       </div>
