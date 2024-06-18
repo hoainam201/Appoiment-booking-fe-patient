@@ -203,11 +203,11 @@ const Home = () => {
 
   return (
     <div className={`relative w-full`}>
-      <div className={`flex flex-col justify-center items-center bg-blue-200`}>
+      <div className={`flex flex-col justify-center items-center bg-white`}>
         <div
-          className={`home bg-cover bg-center w-full bg-no-repeat bg-bottom my-2`}
+          className={`home bg-cover bg-center w-full bg-no-repeat my-2`}
         >
-          <div className={`flex items-center flex-col mt-36`}>
+          <div className={`flex items-center flex-col mt-20`}>
             <div className={`text-blue-400 sm:text-2xl text-xl font-sans mx-1`}>
               {t('homeTitle')}
             </div>
