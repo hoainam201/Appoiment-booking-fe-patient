@@ -10,7 +10,6 @@ export default function FacilityInfo(props) {
 
   const url = process.env.REACT_APP_DOMAIN + "health-facilities/" + props?.id;
 
-  console.log(props);
 
   return (
     <div className={`flex flex-col bg-white w-full h-auto rounded-2xl gap-3 my-4`}>
@@ -26,10 +25,10 @@ export default function FacilityInfo(props) {
           <ShareLocationIcon color="primary"/>
           <span className="ml-1 text-lg hover:underline">{props.address}</span>
         </div>
-        <div className={`flex whitespace-pre-line break-words`}>
+        {props?.phone && <div className={`flex whitespace-pre-line break-words`}>
           <PhoneIcon color="primary"/>
-          <span className="ml-1 text-lg hover:underline">{props.phone}</span>
-        </div>
+          <span className="ml-1 text-lg hover:underline">{props?.phone || ""}</span>
+        </div>}
         <div className="flex sm:justify-start justify-center gap-1 my-1">
           <FacebookShareButton url={`${url}`} hashtag={`HealthPro`}>
             <FacebookIcon size={32} round={true}/>
