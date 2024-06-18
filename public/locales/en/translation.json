@@ -178,5 +178,6 @@
   "completed": "Completed",
   "canceled": "Canceled",
   "inProgress": "In Progress",
-  "detail": "Detail"
+  "detail": "Detail",
+  "socialMedia": "Social Media"
 }
