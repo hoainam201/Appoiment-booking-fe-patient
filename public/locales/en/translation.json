@@ -180,5 +180,6 @@
   "canceled": "Canceled",
   "inProgress": "In Progress",
   "detail": "Detail",
-  "socialMedia": "Social Media"
+  "socialMedia": "Social Media",
+  "phoneInvalid": "Please enter a valid phone number"
 }

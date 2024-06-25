@@ -122,7 +122,15 @@ export default function Detail() {
       }
       if (!validator.isMobilePhone(phone, 'vi-VN') || phone.trim().length !== 10) {
         toast.dismiss(); // Huy toast
-        toast.error('Số điện thoại không hợp lệ');
+        toast.error(t('phoneInvalid'));
+        return;
+      }
+      if(name.trim() === '') {
+        toast.error(t('fillAllFields'));
+        return;
+      }
+      if(name.trim().length < 1) {
+        toast.error(t('usernameLength'));
         return;
       }
       const res = await UserService.bookAppointment({

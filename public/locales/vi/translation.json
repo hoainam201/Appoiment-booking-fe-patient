@@ -180,5 +180,6 @@
   "canceled": "Đã huỷ",
   "inProgress": "Đang khám",
   "detail": "Chi tiết",
-  "socialMedia": "MẠNG XÃ HỘI"
+  "socialMedia": "MẠNG XÃ HỘI",
+  "phoneInvalid": "Số điện thoại không hợp lệ"
 }

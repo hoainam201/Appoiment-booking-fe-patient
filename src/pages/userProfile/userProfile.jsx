@@ -68,7 +68,7 @@ const UserProfile = () => {
       if (phone.trim() !== '') {
         if (!validator.isMobilePhone(phone, 'vi-VN') || phone.trim().length !== 10) {
           toast.dismiss(); // Huy toast
-          toast.error('Số điện thoại không hợp lệ');
+          toast.error(t('phoneInvalid'));
           return;
         }
         req.phone = phone.trim();
