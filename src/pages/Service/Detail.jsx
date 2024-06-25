@@ -22,6 +22,7 @@ import {Empty} from "antd";
 import Rating from "@mui/material/Rating";
 import {useTranslation} from "react-i18next";
 import {FacebookIcon, FacebookShareButton, XIcon, TwitterShareButton} from "react-share";
+import validator from "validator";
 
 const times = ["8:00", "8:30", "9:30", "10:00", "10:30", "11:00", "11:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00"];
 
@@ -117,6 +118,11 @@ export default function Detail() {
       const isAfter = dayjsDate.isAfter(dayjs(), 'day');
       if (!isAfter) {
         toast.error(t('dateRequirement'));
+        return;
+      }
+      if (!validator.isMobilePhone(phone, 'vi-VN') || phone.trim().length !== 10) {
+        toast.dismiss(); // Huy toast
+        toast.error('Số điện thoại không hợp lệ');
         return;
       }
       const res = await UserService.bookAppointment({
