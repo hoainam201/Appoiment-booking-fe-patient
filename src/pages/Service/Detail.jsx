@@ -23,6 +23,7 @@ import Rating from "@mui/material/Rating";
 import {useTranslation} from "react-i18next";
 import {FacebookIcon, FacebookShareButton, XIcon, TwitterShareButton} from "react-share";
 import validator from "validator";
+import Packagelogo from "../../assets/images/healthpackage.png";
 
 const times = ["8:00", "8:30", "9:30", "10:00", "10:30", "11:00", "11:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00"];
 
@@ -167,7 +168,11 @@ export default function Detail() {
       <div className={`flex sm:mx-36 flex-col lg:flex-row mt-5 h-auto`}>
         <div className={`sm:w-48 w-full items-center`}>
           <div className={`mt-3 flex justify-center`}>
-            <img src={doctor?.image || Logo} className={`w-40 h-40 object-fill rounded-full`}/>
+            {
+              doctor?.type === 0
+                ? <img src={doctor?.image || Logo} className={`w-40 h-40 object-fill rounded-full`}/>
+                : <img src={doctor?.image || Packagelogo} className={`w-40 h-40 object-fill`}/>
+            }
           </div>
           <div className={`mt-3 flex justify-center`}>
             <Button
