@@ -366,9 +366,9 @@ const Home = () => {
                           navigate('/news/' + item.id);
                         }}
                       >
-                        <img src={item.image || NewsImage} className={`w-40 h-40 object-cover`}/>
+                        <img src={item.banner || NewsImage} className={`w-40 h-40 object-cover`}/>
                         <div>
-                          <p className="text-xl text-blue-500 font-bold">
+                          <p className="text-xl text-blue-500 font-bold ml-1">
                             {item.title}
                           </p>
                           <div className={``}>
