@@ -38,6 +38,10 @@ export default function PackageList() {
 
   useEffect(() => {
     handleSearch()
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   }, [pageNumber]);
 
   return (
