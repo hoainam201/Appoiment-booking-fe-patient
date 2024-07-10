@@ -311,7 +311,7 @@ const Home = () => {
                           >
                             <img src={item.image || DoctorImage} className={`w-36 h-36 object-cover`}/>
                             <div className='flex flex-col w-full justify-start items-start my-auto'>
-                              <p className="sm:text-2xl text-xl text-blue-500 font-bold">
+                              <p className="sm:text-2xl text-xl text-blue-500 font-bold text-start">
                                 {item.name}
                               </p>
                               <p className="text-sm text-gray-500">{t(`${specialitiesKey[item.speciality].key}`)}</p>
@@ -339,7 +339,7 @@ const Home = () => {
                           >
                             <img src={item.image || PackgeImage} className={`w-36 h-36 object-cover`}/>
                             <div className='flex flex-col w-full justify-start items-start my-auto'>
-                              <p className="sm:text-2xl text-xl text-blue-500 font-bold">
+                              <p className="sm:text-2xl text-xl text-blue-500 font-bold text-start">
                                 {item.name}
                               </p>
                               <p className="text-sm text-gray-500">{t(`${specialitiesKey[item.speciality].key}`)}</p>
