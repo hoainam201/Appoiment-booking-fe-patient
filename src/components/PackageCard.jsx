@@ -19,7 +19,7 @@ export default function PackageCard( {...props}) {
         <div className={`h-full flex flex-col justify-end w-full`}>
           <div className={`font-bold max-h-1/2 overflow-hidden line-clamp-2`}>{props?.name}</div>
             <Rating
-                    defaultValue={`4.5`}
+                    defaultValue={Math.ceil(props?.rating * 10) / 10}
                     precision={0.1} readOnly/>
           <div className={`flex justify-between`}>
             <div className={`justify-start items-center`}>Giá:</div>
