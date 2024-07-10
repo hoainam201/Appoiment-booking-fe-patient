@@ -42,7 +42,7 @@ export default function HealthFacilities() {
 
   const searchFacilities = async () => {
     try {
-      console.log(searchQuery, address, speciality);
+      // console.log(searchQuery, address, speciality);
       const res = await USER.searchFacility(searchQuery.trim().replace(/\s+/g, ' '), pageNumber, address, speciality);
       if (res.status === 200) {
         console.log(res.data , pageNumber);
@@ -76,7 +76,14 @@ export default function HealthFacilities() {
             value={searchQuery}
             onChange={event => updateSearchQuery(event.target.value)}
             prefix={<SearchOutlined/>}
-            onPressEnter={searchFacilities}
+            onPressEnter={()=>{
+              setPageNumber(1);
+              searchFacilities();
+              window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+              });
+            }}
           />
           <div className="flex h-10 gap-2">
             <select
@@ -102,7 +109,14 @@ export default function HealthFacilities() {
               })}
             </select>
             <button
-              onClick={searchFacilities}
+              onClick={() => {
+                setPageNumber(1);
+                searchFacilities();
+                window.scrollTo({
+                  top: 0,
+                  behavior: 'smooth'
+                });
+              }}
               className="flex bg-blue-500 gap-1 items-center border-2 border-blue-500 hover:outline-1 hover:outline-white rounded-full w-[120px] text-center justify-center">
               <SearchOutlined className="text-white"/>
               <span className="text-white">{t('navbar.search')}</span>
@@ -124,15 +138,16 @@ export default function HealthFacilities() {
           </div>
         ) : null}
         {totalPages > 1 ? (
-          <div className={'flex justify-center items-center mx-auto'}>
+          <div className={'flex justify-center items-center mx-auto my-1'}>
             <Stack spacing={5}>
               <Pagination
                 count={totalPages}
                 variant={`outlined`}
                 onChange={(event, value) => {
-                  console.log(value);
+                  // console.log(value);
                   setPageNumber(value);
                 }}
+                page={pageNumber}
               />
             </Stack>
           </div>

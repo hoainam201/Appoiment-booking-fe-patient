@@ -59,7 +59,12 @@ export default function PackageList() {
             prefix={<SearchOutlined/>}
             onKeyDown={(event) => {
               if (event.key === 'Enter') {
+                setPageNumber(1)
                 handleSearch();
+                window.scrollTo({
+                  top: 0,
+                  behavior: 'smooth'
+                });
               }
             }}
           />
@@ -88,7 +93,14 @@ export default function PackageList() {
               <option value="6">{t('priceDesc')}</option>
             </select>
             <button
-              onClick={handleSearch}
+              onClick={() => {
+                setPageNumber(1)
+                handleSearch();
+                window.scrollTo({
+                  top: 0,
+                  behavior: 'smooth'
+                });
+              }}
               className="flex bg-blue-500 gap-1 items-center border-2 border-blue-500 hover:outline-1 hover:outline-white rounded-full w-[120px] text-center justify-center">
               <SearchOutlined className="text-white"/>
               <span className="text-white">{t('navbar.search')}</span>
@@ -113,9 +125,10 @@ export default function PackageList() {
                 count={totalPages}
                 variant={`outlined`}
                 onChange={(event, value) => {
-                  console.log(value);
+                  // console.log(value);
                   setPageNumber(value);
                 }}
+                page={pageNumber}
               />
             </Stack>
           </div>

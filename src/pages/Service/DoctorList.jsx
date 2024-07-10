@@ -76,7 +76,14 @@ export default function DoctorList() {
             value={search}
             onChange={event => setSearch(event.target.value)}
             prefix={<SearchOutlined/>}
-            onPressEnter={handleSearch}
+            onPressEnter={()=>{
+              setPageNumber(1);
+              handleSearch();
+              window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+              });
+            }}
           />
           <div className="flex h-10 gap-2">
             <select
@@ -103,7 +110,14 @@ export default function DoctorList() {
               <option value="6">{t('priceDesc')}</option>
             </select>
             <button
-              onClick={handleSearch}
+              onClick={() => {
+                setPageNumber(1);
+                handleSearch();
+                window.scrollTo({
+                  top: 0,
+                  behavior: 'smooth'
+                });
+              }}
               className="flex bg-blue-500 gap-1 items-center border-2 border-blue-500 hover:outline-1 hover:outline-white rounded-full w-[120px] text-center justify-center">
               <SearchOutlined className="text-white"/>
                 <span className="text-white">{t('navbar.search')}</span>
@@ -132,15 +146,16 @@ export default function DoctorList() {
         )}
 
         {totalPages > 1 ? (
-          <div className={'flex justify-center items-center mx-auto'}>
+          <div className={'flex justify-center items-center mx-auto my-1'}>
             <Stack spacing={5}>
               <Pagination
                 count={totalPages}
                 variant={`outlined`}
                 onChange={(event, value) => {
-                  console.log(value);
+                  // console.log(value);
                   setPageNumber(value);
                 }}
+                page={pageNumber}
               />
             </Stack>
           </div>
