@@ -41,7 +41,7 @@ export default function Detail() {
   const [totalReviews, setTotalReviews] = useState(0);
   const [page, setPage] = useState(1);
   const {t} = useTranslation();
-  const url = process.env.REACT_APP_DOMAIN + "services/" + useParams().id;
+  const url = process.env.REACT_APP_DOMAIN + "service/" + useParams().id;
 
   const id = useParams().id;
 
