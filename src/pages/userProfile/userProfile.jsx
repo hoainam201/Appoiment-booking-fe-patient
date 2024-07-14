@@ -15,6 +15,7 @@ const UserProfile = () => {
   const [address, setAddress] = useState('');
   const [gender, setGender] = useState('');
   const {t, i18n} = useTranslation();
+  const [dob, setDob] = useState('');
 
 
   const token = useMemo(() => localStorage.getItem('token'), []);
@@ -32,12 +33,13 @@ const UserProfile = () => {
       try {
         const response = await USER.getProfile();
         setData(response.data);
-        console.log(data);
+        console.log(response.data);
         setName(response.data.name);
         setPhone(response.data.phone);
         setGender(response.data.gender);
         setEmail(response.data.email);
         setAddress(response.data.address);
+        setDob(response.data.dob);
       } catch (error) {
         console.error(error);
       }
@@ -64,6 +66,7 @@ const UserProfile = () => {
       const req = {
         name: name.trim(),
         gender: gender,
+        dob: dob
       }
       if (phone.trim() !== '') {
         if (!validator.isMobilePhone(phone, 'vi-VN') || phone.trim().length !== 10) {
@@ -149,6 +152,18 @@ const UserProfile = () => {
                   value={phone}
                   placeholder="Chưa có số điện thoại"
                   onChange={(e) => setPhone(e.target.value)}/>
+              </dd>
+            </div>
+            <div className="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt className="text-sm font-medium text-gray-500">
+                {t('phoneNumber')}
+              </dt>
+              <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                <input
+                  type="date"
+                  value={dob}
+                  onChange={(e) => setDob(e.target.value)}
+                />
               </dd>
             </div>
             <div className="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">

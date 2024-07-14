@@ -53,7 +53,7 @@ const USER = {
     });
     return res;
   },
-  updateProfile: async ({name, phone, gender, address}) => {
+  updateProfile: async ({name, phone, gender, address, dob}) => {
     let res = await privateHttp({
       method: 'put',
       url: '/user/update-user',
@@ -61,7 +61,8 @@ const USER = {
         name,
         phone,
         gender,
-        address
+        address,
+        dob
       }
     });
     return res;
