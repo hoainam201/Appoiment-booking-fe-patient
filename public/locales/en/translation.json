@@ -177,6 +177,7 @@
   "confirmed": "Confirmed",
   "rejected": "Rejected",
   "completed": "Completed",
+  "inQueue": "In Queue",
   "canceled": "Canceled",
   "inProgress": "In Progress",
   "detail": "Detail",

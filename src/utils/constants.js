@@ -188,7 +188,11 @@ export const bookingStatus = [
     id: 5,
     name: 'Đang khám',
     color: 'cyan',
-  },
+  },{
+    id: 6,
+    name: 'Chờ khám',
+    color: 'purple',
+  }
 ];
 
 export const bookingStatusI = [
@@ -222,6 +226,11 @@ export const bookingStatusI = [
     name: 'inProgress',
     color: 'cyan',
   },
+  {
+    id: 6,
+    name: 'inQueue',
+    color: 'purple',
+  }
 ];
 
 export const serviceType = {

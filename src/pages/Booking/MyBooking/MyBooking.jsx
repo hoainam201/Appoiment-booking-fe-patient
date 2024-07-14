@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Table, Tag, Button} from 'antd';
+import {Table, Tag, Button, Empty} from 'antd';
 import {format} from 'date-fns';
 import {bookingStatus, bookingStatusI} from "../../../utils/constants";
 import USER from "../../../services/userService";
@@ -170,7 +170,7 @@ const MyBooking = () => {
         }}
         scroll={{x: 'max-content'}}
       /> : <div className="h-96">
-        <Loading/>
+        <Empty image={Empty.PRESENTED_IMAGE_SIMPLE}/>
       </div>}
     </div>
   );
