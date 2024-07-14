@@ -93,9 +93,10 @@ export default function Detail() {
       }
       const res = await UserService.getProfile();
       if (res.status === 200) {
+        console.log(res.data);
         setName(res.data.name);
         setPhone(res.data.phone);
-        console.log(res.data);
+        setDob(res.data.dob);
       } else {
         console.log(res)
       }
@@ -298,6 +299,7 @@ export default function Detail() {
                       sx={{
                         width: '100%',
                       }}
+                      value={dob ? dayjs(dob) : null}
                       onChange={(e) => setDob(e)}/>
                   </DemoContainer>
                 </LocalizationProvider>
