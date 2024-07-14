@@ -42,6 +42,7 @@ export default function Detail() {
   const [page, setPage] = useState(1);
   const {t} = useTranslation();
   const url = process.env.REACT_APP_DOMAIN + "service/" + useParams().id;
+  const today = dayjs();
 
   const id = useParams().id;
 
@@ -57,6 +58,12 @@ export default function Detail() {
       console.error(error);
     }
   }
+
+  const shouldDisableDate = (date) => {
+    const day = date.day();
+    // Day.js ngày bắt đầu từ Chủ Nhật (0) đến Thứ Bảy (6)
+    return day === 0 || day === 6; // Disable Chủ Nhật và Thứ Bảy
+  };
 
   const fetchReviews = async () => {
     try {
@@ -300,6 +307,7 @@ export default function Detail() {
                         width: '100%',
                       }}
                       value={dob ? dayjs(dob) : null}
+                      maxDate={today}
                       onChange={(e) => setDob(e)}/>
                   </DemoContainer>
                 </LocalizationProvider>
@@ -317,6 +325,8 @@ export default function Detail() {
                     components={['DatePicker']}>
                     <DatePicker
                       sx={{width: '100%'}}
+                      shouldDisableDate={shouldDisableDate}
+                      minDate={today}
                       onChange={(e) => setDate(e)}/>
                   </DemoContainer>
                 </LocalizationProvider>

@@ -5,6 +5,11 @@ import {Button} from "@mui/material";
 import {toast} from "react-toastify";
 import validator from 'validator'
 import {useTranslation} from "react-i18next";
+import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
+import {DemoContainer} from "@mui/x-date-pickers/internals/demo";
+import {DatePicker} from "@mui/x-date-pickers/DatePicker";
+import dayjs from "dayjs";
+import {LocalizationProvider} from "@mui/x-date-pickers/LocalizationProvider";
 
 const UserProfile = () => {
   const navigate = useNavigate();
@@ -17,6 +22,7 @@ const UserProfile = () => {
   const {t, i18n} = useTranslation();
   const [dob, setDob] = useState('');
 
+  const today = dayjs();
 
   const token = useMemo(() => localStorage.getItem('token'), []);
 
@@ -154,16 +160,34 @@ const UserProfile = () => {
                   onChange={(e) => setPhone(e.target.value)}/>
               </dd>
             </div>
-            <div className="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-              <dt className="text-sm font-medium text-gray-500">
-                {t('phoneNumber')}
+            <div className="py-1 sm:py-1 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt className="text-sm my-auto font-medium text-gray-500">
+                {t('dob')}
               </dt>
-              <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                <input
-                  type="date"
-                  value={dob}
-                  onChange={(e) => setDob(e.target.value)}
-                />
+              <dd className="text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                <LocalizationProvider
+                  sx={{
+                    width: '100%',
+                }}
+                  dateAdapter={AdapterDayjs}
+                  adapterLocale="vi"
+
+                >
+                  <DemoContainer
+                    sx={{
+                      width: '100%',
+                  }}
+                    components={['DatePicker']}>
+                    <DatePicker
+                      sx={{
+                        width: '100%',
+                      }}
+                      slotProps={{ textField: { size: 'small' } }}
+                      value={dob ? dayjs(dob) : null}
+                      maxDate={today}
+                      onChange={(e) => setDob(e)}/>
+                  </DemoContainer>
+                </LocalizationProvider>
               </dd>
             </div>
             <div className="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
