@@ -156,7 +156,7 @@ const UserProfile = () => {
                 <input
                   type="text"
                   value={phone}
-                  placeholder="Chưa có số điện thoại"
+                  placeholder="0123456789"
                   onChange={(e) => setPhone(e.target.value)}/>
               </dd>
             </div>
@@ -198,7 +198,7 @@ const UserProfile = () => {
                 <input
                   type="text"
                   value={address}
-                  placeholder="Chưa có địa chỉ"
+                  placeholder="hanoi, vietnam"
                   onChange={(e) => setAddress(e.target.value)}/>
               </dd>
             </div>
